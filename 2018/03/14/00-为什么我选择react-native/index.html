@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="react-native," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在所有的技术选型之前都有一个为什么。  为什么我选择了React-native？选择这个技术到底给我带来了什么样的技术福利？如果你正在考虑RN，或者还在研究选择什么样的技术实现自家的APP。不妨看看我的课程，说不定你就有了不一样的感受。   注：react-native以下会简称RN。  我注意的优点选择RN之前我也看过了其他的几种技术，早一点的时候我也使用过其他的技术做APP。比如HBuild">
+<meta name="keywords" content="react-native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="00.为什么我选择react-native">
+<meta property="og:url" content="http://www.guofangchao.com/2018/03/14/00-为什么我选择react-native/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="在所有的技术选型之前都有一个为什么。  为什么我选择了React-native？选择这个技术到底给我带来了什么样的技术福利？如果你正在考虑RN，或者还在研究选择什么样的技术实现自家的APP。不妨看看我的课程，说不定你就有了不一样的感受。   注：react-native以下会简称RN。  我注意的优点选择RN之前我也看过了其他的几种技术，早一点的时候我也使用过其他的技术做APP。比如HBuild">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://images.gitbook.cn/d52d8080-177d-11e8-9825-3dba87aeef7e">
+<meta property="og:image" content="http://images.gitbook.cn/d1937460-177e-11e8-9825-3dba87aeef7e">
+<meta property="og:image" content="http://images.gitbook.cn/97228460-177e-11e8-9825-3dba87aeef7e">
+<meta property="og:updated_time" content="2018-03-14T14:15:33.879Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="00.为什么我选择react-native">
+<meta name="twitter:description" content="在所有的技术选型之前都有一个为什么。  为什么我选择了React-native？选择这个技术到底给我带来了什么样的技术福利？如果你正在考虑RN，或者还在研究选择什么样的技术实现自家的APP。不妨看看我的课程，说不定你就有了不一样的感受。   注：react-native以下会简称RN。  我注意的优点选择RN之前我也看过了其他的几种技术，早一点的时候我也使用过其他的技术做APP。比如HBuild">
+<meta name="twitter:image" content="http://images.gitbook.cn/d52d8080-177d-11e8-9825-3dba87aeef7e">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.guofangchao.com/2018/03/14/00-为什么我选择react-native/"/>
+
+
+
+
+
+  <title>00.为什么我选择react-native | 博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?643d73884f29a250f12d991eaf23e1d7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.guofangchao.com/2018/03/14/00-为什么我选择react-native/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="疯狂紫萧">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">00.为什么我选择react-native</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T22:10:00+08:00">
+                2018-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/big-front-end/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>在所有的技术选型之前都有一个为什么。</p>
+</blockquote>
+<p>为什么我选择了React-native？选择这个技术到底给我带来了什么样的技术福利？<br>如果你正在考虑RN，或者还在研究选择什么样的技术实现自家的APP。不妨看看我的课程，说不定你就有了不一样的感受。</p>
+<p><strong>  注：react-native以下会简称RN。 </strong></p>
+<h2 id="我注意的优点"><a href="#我注意的优点" class="headerlink" title="我注意的优点"></a>我注意的优点</h2><p>选择RN之前我也看过了其他的几种技术，早一点的时候我也使用过其他的技术做APP。比如HBuilder的框架，非常的方便、非常的好用、什么都不需要管。但是开发完之后发现性能很差，做一个稍微复杂点的项目就非常上火。后来切了原生，但是使用java做开发也有非常多得问题，开发效率很低。</p>
+<p>后来我选择了RN，它使用js更新虚拟dom，通过一个桥接器将需要更新的结果通知到UI层，让native执行UI的改变。简单来说，就是用js做驱动开发一个类原生的APP。所有的渲染都是和原生一样的，一下子就讲原生开发和js开发连接起来。通过这么一个模式，将传统的java或者oc开发转变成了简单易懂的前端js开发。这是移动开发的一大进步，避免了一个APP多个平台多套代码的尴尬，同时提升了开发效率，将移动开发带入了一个新的层面。</p>
+<p><img src="http://images.gitbook.cn/d52d8080-177d-11e8-9825-3dba87aeef7e" alt="enter image description here"></p>
+<h3 id="性能相似"><a href="#性能相似" class="headerlink" title="性能相似"></a>性能相似</h3><p>很多人说RN的性能比不上原生的APP。这个说法是要看具体的场景下的。</p>
+<p>在一般的应用场景下RN的表现和原生APP是没有太大的差别的。一个APP也不会是到处都是复杂的交互效果。一些简单的点缀动画再加上列表图片等才是一个APP最常见的内容。这种情况下它们之间的表现是一样的。</p>
+<p>RN本身只是使用js处理了UI渲染之前的一些逻辑，在最终的渲染上其实使用的还是原生的逻辑。尤其是渲染完成之后更是和原生的没有半点区别。</p>
+<p>我们的案例是一个电商项目，主要渲染逻辑是首页的自定义模板、无限加载的列表等。目前最大的性能瓶颈其实是在事件的优化上，优化之后用户已经感知不到和原生的区别了。我们会在后面的部分提到性能优化，将一个粗糙的app通过简单的方法提高10倍性能，再通过另外一个稍微复杂的方法减低内存占用。</p>
+<h3 id="开发效率高"><a href="#开发效率高" class="headerlink" title="开发效率高"></a>开发效率高</h3><p>通常情况开发一款APP需要发布在安卓和iOS两个平台，导致的结果就是一个APP两个团队两套代码。界面几乎一样，为什么不能使用一套代码呢？之前也有大神使用各种手段达成这个目标，但是并不是很理想。</p>
+<p>由于使用熟悉的react和jsx的模式，开发者只需要有前端知识就可以很迅速的上手一个RN项目。如果再学一些实战的例子，稍微复杂一些的项目也难不倒各位前端开发者。</p>
+<p>debug超级方便，一边开发一边看效果再也不是梦。</p>
+<h3 id="快速热更新"><a href="#快速热更新" class="headerlink" title="快速热更新"></a>快速热更新</h3><p>RN生成的js文件，只要不涉及原生功能的增减，已经发布的APP完全不需要重新安装即可完成新版功能的上线。用户只需打开APP就能体验到最新的APP，省去了下载重装的各种麻烦。把app的更新做到了和网页更新一样的方便快捷。</p>
+<p>使用RN就能达到既有原生的所有能力，又有类似浏览器上的快速更新能力。同时还可以接入各种定制好的网页，将APP的自由度提高到一个非常高的地步。</p>
+<h3 id="大公司背书"><a href="#大公司背书" class="headerlink" title="大公司背书"></a>大公司背书</h3><p>RN的开发者是facebook，背靠大树好乘凉，社区更疯狂。FB本身也在尝试使用RN技术开发自己的APP，RN一定会越来越完善。截止写这篇文章的时候RN已经更新到了0.53.0。</p>
+<p>RN本身也是开源的，所有的源代码都是可以看到的。社区的讨论也是比较热烈的。现在可能中文文档还比较少，未来随着开发者的努力，这些坑都会填起来的。</p>
+<hr>
+<p>其实最开始的时候也没有想很多，仅仅是冲着RN可以快速开发，上线快体验好。经过了这么长时间的开发，我更加喜欢RN的这种开发方式，项目中也填了各种各样的坑。后面就用一个实际的例子来展示RN是怎样开发的吧。</p>
+<h2 id="RN的缺点"><a href="#RN的缺点" class="headerlink" title="RN的缺点"></a>RN的缺点</h2><h3 id="升级快"><a href="#升级快" class="headerlink" title="升级快"></a>升级快</h3><p>RN本身其实还处于测试版，开发组经常会升级RN，解决一些遗留或者隐藏的bug。在这个的过程中就导致了RN本身升级非常快，开发者在使用RN开发APP的过程中应该尽量提高自己的版本，不需要一直是最新的，只要能够跟的上FB的节奏即可。</p>
+<p>自己搞定的问题也是可以合并入RN的源代码里的。不要一味的等RN更新，有些问题自己解决更方便。建议会Android或者ios同学自己动手。</p>
+<h3 id="动画难"><a href="#动画难" class="headerlink" title="动画难"></a>动画难</h3><p>这里的难指的是复杂的动画在开发中很难去优化。尤其是开发者懂前端但是不懂原生的情况下。好在常见的APP也不需要多么复杂的动画。一般使用位移变换就足够了，太复杂的动画建议使用RN的svg组件来做。</p>
+<h3 id="webview难用"><a href="#webview难用" class="headerlink" title="webview难用"></a>webview难用</h3><p>RN自带的webview跟浏览器有一定的差别。APP经常要打开一些网页，可能在开发的时候一切正常，但是到了RN里面就会有一些奇怪的问题，主要还是受到系统浏览器的影响，会有一些兼容方面的问题。这种情况下不如微信使用自己研发的浏览器，可以畅快的使用ES6之类的新技术。</p>
+<h3 id="需要原生支持"><a href="#需要原生支持" class="headerlink" title="需要原生支持"></a>需要原生支持</h3><p>简单的东西和界面的展现已经完全放手给了开发者。但是还是有一些功能只能原生去实现，如果原生部分的开发者对RN不太了解可能会给APP带来不可预知的bug。好在大多数开源看只需要执行link命令就可以把原生部分也安装好。</p>
+<hr>
+<p>技术都会有优点和缺点。选择合适的技术才能给项目带来长久的生命力。</p>
+<h2 id="其他技术"><a href="#其他技术" class="headerlink" title="其他技术"></a>其他技术</h2><h3 id="weex"><a href="#weex" class="headerlink" title="weex"></a>weex</h3><p>核心思想上，这两家其实并没有什么区别。weex也可以算是站在RN的肩膀上起步的。目前活跃度不高，大多数是在观望中。</p>
+<h4 id="开发框架"><a href="#开发框架" class="headerlink" title="开发框架"></a>开发框架</h4><p>weex使用vue。熟悉vue的开发者可能会更熟悉。</p>
+<p>RN使用react。都是facebook出品，框架融合上会更方便一些。</p>
+<p>它们都是组件化开发，都输数据绑定，都有虚拟dom。社区同样活跃，使用人数也都非常多。</p>
+<h4 id="学习成本"><a href="#学习成本" class="headerlink" title="学习成本"></a>学习成本</h4><p>react的jsx初期会比较难上手，css的写法也跟前端的样式写法不一样。<br>weex使用模板的形式，直接html+css开发。上手会稍微简单一些。</p>
+<h4 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h4><p>weex只支持callback的形式。<br>RN支持promise的形式。</p>
+<p>这些都是可以解决的。不是什么问题。</p>
+<h4 id="社区"><a href="#社区" class="headerlink" title="社区"></a>社区</h4><p>RN开源早，有facebook支持。社区的组件库已经比较丰富，社区活跃度比较高。<br>weex开源晚，社区活跃不高，以阿里系比较多。</p>
+<h3 id="Flutter"><a href="#Flutter" class="headerlink" title="Flutter"></a>Flutter</h3><p>Flutter 是Google推出的一个跨平台（Android 和 iOS）移动开发框架，使用的是 Dart 语言。</p>
+<p>Flutter 的目标是用来创建高性能、高稳定性、高帧率、低延迟的 Android 和 iOS 应用。并且开发出来的应用在不同的平台用起来跟原生应用具有一样的体验。不同的平台的原生体验应该得到保留，让该应用看起来同整个系统更加协调。不同平台的滚动操作、字体、图标 等特殊的特性 应该和该平台上的其他应用保持一致，让用户感觉就像操作原生应用一样。比如，返回图标 Android 和 iOS 是不一样的；滚动内容滚动到底的反馈也是不一样的。</p>
+<h4 id="兼容"><a href="#兼容" class="headerlink" title="兼容"></a>兼容</h4><p>Flutter不使用系统提供的组件，自己实现了一套渲染机制，所以在性能优化、跨平台方面表现优秀。实际体验上，性能比RN要高不少。</p>
+<p><img src="http://images.gitbook.cn/d1937460-177e-11e8-9825-3dba87aeef7e" alt="enter image description here"></p>
+<p>RN最终调用的还是系统的组件，虽然FB已经很努力了，但是在某些时候还是会有兼容性需要处理。</p>
+<h4 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h4><p>Flutter 内置了对Material Design的支持，给开发者提供了丰富的 UI 控件库选择。同时所有的组件都有扩展，保持了很高的灵活性。</p>
+<p>RN通过react也做到了组件式开发，跟Flutter相比，多了一个桥接器的转换，性能上肯定不如Flutter。</p>
+<h4 id="开发语言"><a href="#开发语言" class="headerlink" title="开发语言"></a>开发语言</h4><p>Flutter使用Dart实现。Dart号称要完全取代js，不过目前离这个目标还非常远。初期上手还是有一些难度的。</p>
+<p>RN使用js开发，做过前端的都非常熟悉，上手很容易。</p>
+<p><img src="http://images.gitbook.cn/97228460-177e-11e8-9825-3dba87aeef7e" alt="enter image description here"></p>
+<hr>
+<p>Flutter现在还在实验阶段，不排除google使用别的框架替换它的可能性。Dart语言也处于成长阶段，只有google的浏览器在支持。或许在Flutter持续发展到一个阶段之后，才会有很多支持者。</p>
+<p>在写文章的时候google放出了第一个测试版，感兴趣的同学可以下载下来玩玩。</p>
+<hr>
+<p>相比于其他几种技术，RN是目前社区最活跃，开发效率最高的一种选择。选择RN也是需要在一个比较短的时间内能够完成APP的开发。尤其现在前端开发者可以非常容易的从网页开发转到APP开发上。对于我们包含APP、微信、小程序这样的三个平台更是需要RN这样的技术，一个团队就可以维护项目的持续增长。</p>
+<p>如果你需要RN来开发自己的项目，那就看下去吧。我们将从简单的界面开发，数据更新等开始逐步深入。后面涉及到性能优化、自定义原生部分等。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react-native/" rel="tag"># react-native</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/14/01-基础-项目初始化/" rel="prev" title="01.基础-项目初始化">
+                01.基础-项目初始化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">疯狂紫萧</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#我注意的优点"><span class="nav-number">1.</span> <span class="nav-text">我注意的优点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#性能相似"><span class="nav-number">1.1.</span> <span class="nav-text">性能相似</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发效率高"><span class="nav-number">1.2.</span> <span class="nav-text">开发效率高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速热更新"><span class="nav-number">1.3.</span> <span class="nav-text">快速热更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大公司背书"><span class="nav-number">1.4.</span> <span class="nav-text">大公司背书</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RN的缺点"><span class="nav-number">2.</span> <span class="nav-text">RN的缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#升级快"><span class="nav-number">2.1.</span> <span class="nav-text">升级快</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动画难"><span class="nav-number">2.2.</span> <span class="nav-text">动画难</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#webview难用"><span class="nav-number">2.3.</span> <span class="nav-text">webview难用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#需要原生支持"><span class="nav-number">2.4.</span> <span class="nav-text">需要原生支持</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他技术"><span class="nav-number">3.</span> <span class="nav-text">其他技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#weex"><span class="nav-number">3.1.</span> <span class="nav-text">weex</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#开发框架"><span class="nav-number">3.1.1.</span> <span class="nav-text">开发框架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#学习成本"><span class="nav-number">3.1.2.</span> <span class="nav-text">学习成本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异步"><span class="nav-number">3.1.3.</span> <span class="nav-text">异步</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#社区"><span class="nav-number">3.1.4.</span> <span class="nav-text">社区</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flutter"><span class="nav-number">3.2.</span> <span class="nav-text">Flutter</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#兼容"><span class="nav-number">3.2.1.</span> <span class="nav-text">兼容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件"><span class="nav-number">3.2.2.</span> <span class="nav-text">组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#开发语言"><span class="nav-number">3.2.3.</span> <span class="nav-text">开发语言</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">疯狂紫萧</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

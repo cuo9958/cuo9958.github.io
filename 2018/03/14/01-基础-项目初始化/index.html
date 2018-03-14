@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="react-native," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="知识点：1.快速创建RN项目2.添加使用路由功能3.不要在RN中使用的功能  从这里开始，我们将一步一步的创建一个可以真正的使用的app。第一部分讲述开发一个app的大致过程，第二部分将开始优化性能、开发效率等，第三部分教大家添加热更新、支付、分享这些功能。大多数第三方组件可以很方便的link到项目里，部分需要手动导入甚至主动开发一些东西，这里也会在用到的时候讲出来。 创建项目的前提条件·使用r">
+<meta name="keywords" content="react-native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="01.基础-项目初始化">
+<meta property="og:url" content="http://www.guofangchao.com/2018/03/14/01-基础-项目初始化/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="知识点：1.快速创建RN项目2.添加使用路由功能3.不要在RN中使用的功能  从这里开始，我们将一步一步的创建一个可以真正的使用的app。第一部分讲述开发一个app的大致过程，第二部分将开始优化性能、开发效率等，第三部分教大家添加热更新、支付、分享这些功能。大多数第三方组件可以很方便的link到项目里，部分需要手动导入甚至主动开发一些东西，这里也会在用到的时候讲出来。 创建项目的前提条件·使用r">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://images.gitbook.cn/071f3b30-17ef-11e8-bb03-7fdf01f131d9">
+<meta property="og:image" content="http://images.gitbook.cn/9ddb0af0-17f3-11e8-8ff9-0914ae84128c">
+<meta property="og:image" content="http://images.gitbook.cn/479e89e0-1876-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/084841b0-187a-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/da200e80-187e-11e8-8087-9b6b3b447adf">
+<meta property="og:updated_time" content="2018-03-14T14:39:05.931Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="01.基础-项目初始化">
+<meta name="twitter:description" content="知识点：1.快速创建RN项目2.添加使用路由功能3.不要在RN中使用的功能  从这里开始，我们将一步一步的创建一个可以真正的使用的app。第一部分讲述开发一个app的大致过程，第二部分将开始优化性能、开发效率等，第三部分教大家添加热更新、支付、分享这些功能。大多数第三方组件可以很方便的link到项目里，部分需要手动导入甚至主动开发一些东西，这里也会在用到的时候讲出来。 创建项目的前提条件·使用r">
+<meta name="twitter:image" content="http://images.gitbook.cn/071f3b30-17ef-11e8-bb03-7fdf01f131d9">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.guofangchao.com/2018/03/14/01-基础-项目初始化/"/>
+
+
+
+
+
+  <title>01.基础-项目初始化 | 博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?643d73884f29a250f12d991eaf23e1d7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.guofangchao.com/2018/03/14/01-基础-项目初始化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="疯狂紫萧">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">01.基础-项目初始化</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T22:12:00+08:00">
+                2018-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/big-front-end/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>知识点：<br>1.快速创建RN项目<br>2.添加使用路由功能<br>3.不要在RN中使用的功能</p>
+</blockquote>
+<p>从这里开始，我们将一步一步的创建一个可以真正的使用的app。第一部分讲述开发一个app的大致过程，第二部分将开始优化性能、开发效率等，第三部分教大家添加热更新、支付、分享这些功能。大多数第三方组件可以很方便的link到项目里，部分需要手动导入甚至主动开发一些东西，这里也会在用到的时候讲出来。</p>
+<h2 id="创建项目的前提条件·"><a href="#创建项目的前提条件·" class="headerlink" title="创建项目的前提条件·"></a>创建项目的前提条件·</h2><p>使用react-native创建一个新的项目请确保你的电脑上已经满足下面的这些条件。</p>
+<ul>
+<li>nodejs。RN的所有库都是从npm上安装的。请确保你的电脑上已经安装了npm。可以使用<code>npm -v</code>来查看当前是否安装了npm。当前项目使用的node版本是8.9.3，npm的版本是5.5.3。</li>
+<li>react-native-cli。这个通常用作RN的初始化和启动模拟器等，是用npm可以安装到电脑上。</li>
+<li>python。RN里面有些脚本是使用python写的。请确保电脑上已经安装了python2.7以上的版本。</li>
+<li>jdk1.8。安卓项目需要使用jdk1.8，请在电脑上安装好jdk1.8。安装的教程可以方便从网上搜索到。</li>
+<li>Android Studio。调试以及编译安卓代码需要使用到。请在安装Android Studio之后安装好Android SDK以及模拟器。模拟器可以使用市面上的安卓模拟器，它们普遍比自带的模拟器要快。闲麻烦的同学可以直接连接手机调试。在安装好IED之后请下载好需要使用到的androidSDK。下载SDK需要科学上网或者把下载地址替换成国内的几个下载源。</li>
+<li>git。后面的项目会加入到git中，使用git做版本管理的好处不言而喻。</li>
+<li>Xcode（仅ios项目中）。安装了Xcode才能使用iOS模拟器。ios模拟器下的开发速度要明显优于安卓下，后面的开发过程大多数也是在ios模拟器中进行的。在模拟器中的表现都差不多，有些不一样的效果可以在看到的时候单独调试。</li>
+<li>Watchman（仅mac系统用到）。Watchman用来监听文件变动等。mac下必须安装Watchman。</li>
+<li>vscode。文中演示项目使用的编辑器是vscode。这里也推荐使用vscode开发前端项目。</li>
+</ul>
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>我们先在本地创建一个可运行的项目，同时这个项目会加入到git的版本管理中。</p>
+<ol>
+<li><p>执行<code>react-native init anxintao --version 0.53.0</code>。<br><img src="http://images.gitbook.cn/071f3b30-17ef-11e8-bb03-7fdf01f131d9" alt="enter image description here"><br>图中<code>1</code>代表之前安装的react-native-cli的命令。<br>图中<code>2</code>代表初始化命令。<br>图中<code>3</code>代表项目的名称，这里是<code>anxintao</code>。<br>图中<code>4</code>代表指定RN的版本号，这个参数不传默认使用最新版。<br>图中<code>5</code>代表RN具体使用的版本号。</p>
+</li>
+<li><p>使用vscode打开项目，在项目根目录下执行命令启动初始化之后的项目，mac下推荐<code>react-native run-ios</code>，window下推荐<code>react-native run-android</code>启动默认的项目。如果能启动说明项目初始化完成，否则说明项目的某些东西没有安装好。<br><img src="http://images.gitbook.cn/9ddb0af0-17f3-11e8-8ff9-0914ae84128c" alt="enter image description here"><br>这里推荐把启动的命令写入到package.json文件中。比如:输入<code>npm run ios</code>即可代替原来的<code>react-native run-ios</code>，输入命令的速度快了不少。也可以给vscode安装一个启动RN的插件，不过效果跟输命令差不多，具体要看个人习惯了。</p>
+</li>
+<li><p>到这里就说明项目创建成功了。这个项目现在还很简单，它的原生部分只有一个简单的空壳。这个空壳仅仅是初始化了一个RN的activity，所有的js都是运行在根视图上的。</p>
+</li>
+<li>这里注意一下，新建的项目提示了按键可以刷新页面或者调出菜单。这显示的是ios模拟器，按键为<code>command R</code>刷新和<code>command D</code>调出菜单。</li>
+</ol>
+<h2 id="添加路由"><a href="#添加路由" class="headerlink" title="添加路由"></a>添加路由</h2><p>一个完整的项目不能没有路由。这里我们使用<a href="https://reactnavigation.org/" target="_blank" rel="noopener">React Navigation</a>。</p>
+<p>在写文章的时候已经有一个路由组件<code>react-native-navigation</code>热度超过了react-navigation。它更多的使用的是原生的路由切换，效果更好。想用的同学可以去尝试一下。</p>
+<ol>
+<li>安装路由。在根目录下执行<code>npm install --save react-navigation</code>。</li>
+<li>在根目录下新建<code>src</code>目录。所有页面放入这个文件夹下。</li>
+<li><p>新建一个首页，给后面的路由调用。页面路径为:<code>根目录/src/home/index.js</code></p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">    StyleSheet,</span><br><span class="line">    View,</span><br><span class="line">    Text</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> &lt;View style=&#123;&#123; marginTop: 200 &#125;&#125;&gt;</span><br><span class="line">            &lt;Text&gt;这是首页&lt;/Text&gt;</span><br><span class="line">        &lt;/View&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改根目录下的<code>index.js</code>。添加整个项目的路由。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; AppRegistry &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"><span class="keyword">import</span> Pages <span class="keyword">from</span> <span class="string">'./src'</span>;</span><br><span class="line"><span class="comment">//启动</span></span><br><span class="line">AppRegistry.registerComponent(<span class="string">'anxintao'</span>, () =&gt; Pages);</span><br></pre></td></tr></table></figure>
+<p>5.在src目录下新建<code>index.js</code>文件。在这个文件里添加路由。我们从简单的一个页面开始。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">'use strict'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">    StyleSheet</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"><span class="comment">//添加路由组件</span></span><br><span class="line"><span class="keyword">import</span> Navigation <span class="keyword">from</span> <span class="string">'react-navigation'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加展示用的首页</span></span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./home/index'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//创建路由</span></span><br><span class="line"><span class="keyword">const</span> Pages = Navigation.StackNavigator(&#123;</span><br><span class="line">    <span class="string">'Home'</span>: &#123;</span><br><span class="line">        screen: Home</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    <span class="comment">//这里做了一个页面跳转的动画</span></span><br><span class="line">    transitionConfig: <span class="function"><span class="params">()</span> =&gt;</span> (&#123;</span><br><span class="line">        screenInterpolator: <span class="function"><span class="params">sceneProps</span> =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> &#123; layout, position, scene &#125; = sceneProps;</span><br><span class="line">            <span class="keyword">const</span> &#123; index &#125; = scene;</span><br><span class="line">            <span class="comment">//设置页面跳转的动画</span></span><br><span class="line">            <span class="keyword">const</span> translateX = position.interpolate(&#123;</span><br><span class="line">                inputRange: [index - <span class="number">1</span>, index, index + <span class="number">1</span>],</span><br><span class="line">                outputRange: [layout.initWidth, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">const</span> opacity = position.interpolate(&#123;</span><br><span class="line">                inputRange: [index - <span class="number">1</span>, index - <span class="number">0.99</span>, index, index + <span class="number">0.99</span>, index + <span class="number">1</span>],</span><br><span class="line">                outputRange: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0.3</span>, <span class="number">0</span>]</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">return</span> &#123; opacity, <span class="attr">transform</span>: [&#123; translateX &#125;] &#125;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;),</span><br><span class="line">    navigationOptions: &#123;</span><br><span class="line">        header: <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建一个自己的容器,方便以后对路由做一些处理</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> &lt;Pages onNavigationStateChange=&#123;this.listenChange.bind(this)&#125;&gt;&lt;/Pages&gt;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//监听路由的跳转</span></span><br><span class="line">    listenChange(state1, state2, action) &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>6.添加完成之后删除掉初始化项目之后的App.js。这个时候在模拟器中使用快捷键<code>command+R</code>即可刷新刷新页面。<br><img src="http://images.gitbook.cn/479e89e0-1876-11e8-8087-9b6b3b447adf" alt="enter image description here"><br>7.至此就完成了简单的路由设置。之后只需要添加页面并在路由中注册即可使用。</p>
+<h2 id="路由升级版"><a href="#路由升级版" class="headerlink" title="路由升级版"></a>路由升级版</h2><p>简单的路由并不能起到很好的作用，我们还是创建一个更实用的路由吧。比如带3个tab切换的首页，这也是大多数app使用套路。</p>
+<ol>
+<li>添加4个tab切换页。我们假定未来需要4个切换页，分别是首页、分类页、购物车、个人中心。在home下分别创建他们。<br><img src="http://images.gitbook.cn/084841b0-187a-11e8-8087-9b6b3b447adf" alt="enter image description here"></li>
+<li>修改路由所在的index文件。引入下面要用到的几个组件和页面</li>
+</ol>
+<p>添加新加入的页面<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">    StyleSheet,</span><br><span class="line">    Image</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"><span class="comment">//添加路由组件</span></span><br><span class="line"><span class="keyword">import</span> Navigation <span class="keyword">from</span> <span class="string">'react-navigation'</span>;</span><br><span class="line"><span class="comment">//添加展示用的首页</span></span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./home/index'</span></span><br><span class="line"><span class="keyword">import</span> Products <span class="keyword">from</span> <span class="string">'./home/products'</span></span><br><span class="line"><span class="keyword">import</span> Shop_Cart <span class="keyword">from</span> <span class="string">'./home/shop_cart'</span></span><br><span class="line"><span class="keyword">import</span> My <span class="keyword">from</span> <span class="string">'./home/my'</span></span><br></pre></td></tr></table></figure></p>
+<p>创建底部的样式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建tab页的顶部样式</span></span><br><span class="line"><span class="keyword">const</span> styles = StyleSheet.create(&#123;</span><br><span class="line">    tab: &#123;</span><br><span class="line">        height: <span class="number">40</span>,</span><br><span class="line">        backgroundColor: <span class="string">'#fbfafc'</span>,</span><br><span class="line">        borderTopColor: <span class="string">'#efefef'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    tabIcon: &#123;</span><br><span class="line">        width: <span class="number">20</span>,</span><br><span class="line">        height: <span class="number">20</span></span><br><span class="line">    &#125;,</span><br><span class="line">    tabLabel: &#123;</span><br><span class="line">        marginBottom: <span class="number">4</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>创建一个tab路由，为了简单这里只展示2个页面的。具体的代码可以去git仓库查看。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//创建首页的tab页</span></span><br><span class="line"><span class="keyword">const</span> Tabs = Navigation.TabNavigator(&#123;</span><br><span class="line">    <span class="string">'Home'</span>: &#123;</span><br><span class="line">        screen: Home,</span><br><span class="line">        navigationOptions: <span class="function">(<span class="params">&#123; navigation, screenProps &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                tabBarLabel: <span class="string">'首页'</span>,</span><br><span class="line">                tabBarIcon: <span class="function">(<span class="params">opt</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (opt.focused) <span class="keyword">return</span> &lt;Image source=&#123;&#123; uri: require('./images/tab-home-active') &#125;&#125; style=&#123;styles.tabIcon&#125;&gt;&lt;/Image&gt;;</span><br><span class="line">                    <span class="keyword">return</span> &lt;Image source=&#123;&#123; uri: require('./images/tab-home') &#125;&#125; style=&#123;styles.tabIcon&#125;&gt;&lt;/Image&gt;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">'Products'</span>: &#123;</span><br><span class="line">        screen: Products,</span><br><span class="line">        navigationOptions: <span class="function">(<span class="params">&#123; navigation, screenProps &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> &#123;</span><br><span class="line">                tabBarLabel: <span class="string">'产品分类'</span>,</span><br><span class="line">                tabBarIcon: <span class="function">(<span class="params">opt</span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (opt.focused) <span class="keyword">return</span> &lt;Image source=&#123;&#123; uri: require('./images/tab-products-active') &#125;&#125; style=&#123;styles.tabIcon&#125;&gt;&lt;/Image&gt;;</span><br><span class="line">                    <span class="keyword">return</span> &lt;Image source=&#123;&#123; uri: require('./images/tab-products') &#125;&#125; style=&#123;styles.tabIcon&#125;&gt;&lt;/Image&gt;;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;, &#123;</span><br><span class="line">	<span class="comment">//设置tab使用的组件</span></span><br><span class="line">    tabBarComponent: Navigation.TabBarBottom,</span><br><span class="line">    <span class="comment">//点击哪个才加载哪个tab里的页面</span></span><br><span class="line">    lazy: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">//设置tab放在界面的底部</span></span><br><span class="line">    tabBarPosition: <span class="string">'bottom'</span>,</span><br><span class="line">    <span class="comment">//设置tab里面的样式</span></span><br><span class="line">    tabBarOptions: &#123;</span><br><span class="line">        style: styles.tab,</span><br><span class="line">        labelStyle: styles.tabLabel,</span><br><span class="line">        activeTintColor: <span class="string">'#d0648f'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>替换Pages里的第一个页面为刚才创建的Tab路由。由于默认加载第一个，所以需要将第一个设置成tab页。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'Tabs'</span>: &#123;</span><br><span class="line">        screen: Tabs</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>3.现在再刷新模拟器,就会发现底部的Tab切换已经好了。点击可以切换不同的页面。<br><img src="http://images.gitbook.cn/da200e80-187e-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<p>4.这里我将图片转化成base64的方式再引入到图片组件中。好处是打包之后会变成一个整体。坏处是打包之后的bundle文件会变大，做增量更新也比较麻烦。</p>
+<h2 id="不推荐使用的东西"><a href="#不推荐使用的东西" class="headerlink" title="不推荐使用的东西"></a>不推荐使用的东西</h2><ol>
+<li>投影。安卓不支持投影，在开发的时候如果没有必要就使用别的方式代替吧。比如使用图片代替投影。</li>
+<li>边框色。在长列表中尽量不要使用边框色，在某些安卓手机下会闪退。</li>
+<li>使用了圆角的情况再使用背景色。ios手机会出现边框颜色异常或者异常色块。去掉背景即可。</li>
+<li>过于深层次的结构</li>
+<li>过于频繁的刷新state</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react-native/" rel="tag"># react-native</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/14/00-为什么我选择react-native/" rel="next" title="00.为什么我选择react-native">
+                <i class="fa fa-chevron-left"></i> 00.为什么我选择react-native
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/14/02-基础-封装自己的库/" rel="prev" title="02.基础-封装自己的库">
+                02.基础-封装自己的库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">疯狂紫萧</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建项目的前提条件·"><span class="nav-number">1.</span> <span class="nav-text">创建项目的前提条件·</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#创建项目"><span class="nav-number">2.</span> <span class="nav-text">创建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加路由"><span class="nav-number">3.</span> <span class="nav-text">添加路由</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由升级版"><span class="nav-number">4.</span> <span class="nav-text">路由升级版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不推荐使用的东西"><span class="nav-number">5.</span> <span class="nav-text">不推荐使用的东西</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">疯狂紫萧</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

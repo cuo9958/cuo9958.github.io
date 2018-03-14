@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="react-native," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="知识点：1.给首页添加banner2.给首页添加运营模板3.获取接口的商品4.给顶部加一个搜索条  从这章开始我们正式开始案例的开发。git仓库的地址会放到下一章显示，需要的同学可以直接去git上看每一次提交的代码。 本文先从最早的代码形式开始一步一步的讲下去，开始开发的app会在某些情况下很卡，后面会将优化需要做的东西讲出来。这里先从简单的实现app界面开始讲，如果你觉得手机反应慢，请看后面的">
+<meta name="keywords" content="react-native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="03.基础-首页模板和商品列表">
+<meta property="og:url" content="http://www.guofangchao.com/2018/03/14/03-基础-首页模板和商品列表/index.html">
+<meta property="og:site_name" content="博客">
+<meta property="og:description" content="知识点：1.给首页添加banner2.给首页添加运营模板3.获取接口的商品4.给顶部加一个搜索条  从这章开始我们正式开始案例的开发。git仓库的地址会放到下一章显示，需要的同学可以直接去git上看每一次提交的代码。 本文先从最早的代码形式开始一步一步的讲下去，开始开发的app会在某些情况下很卡，后面会将优化需要做的东西讲出来。这里先从简单的实现app界面开始讲，如果你觉得手机反应慢，请看后面的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://images.gitbook.cn/f4e4f830-18af-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/bc64f0d0-18b1-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/bf88b420-18b3-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/b27a69b0-1938-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/14fef190-193a-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/f39655b0-193f-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/9969cfd0-1940-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/a53303c0-1942-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/c8d9e820-1942-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/e9656640-1943-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/ee2d3210-1944-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/d29bb680-1948-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/224e6470-1949-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/91048660-1949-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/c301c420-1949-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/fccbecd0-1949-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/80e0ea40-194d-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/0c6a0ba0-194e-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/50a934d0-194e-11e8-8087-9b6b3b447adf">
+<meta property="og:image" content="http://images.gitbook.cn/94028eb0-194a-11e8-8087-9b6b3b447adf">
+<meta property="og:updated_time" content="2018-03-14T14:39:49.655Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="03.基础-首页模板和商品列表">
+<meta name="twitter:description" content="知识点：1.给首页添加banner2.给首页添加运营模板3.获取接口的商品4.给顶部加一个搜索条  从这章开始我们正式开始案例的开发。git仓库的地址会放到下一章显示，需要的同学可以直接去git上看每一次提交的代码。 本文先从最早的代码形式开始一步一步的讲下去，开始开发的app会在某些情况下很卡，后面会将优化需要做的东西讲出来。这里先从简单的实现app界面开始讲，如果你觉得手机反应慢，请看后面的">
+<meta name="twitter:image" content="http://images.gitbook.cn/f4e4f830-18af-11e8-8087-9b6b3b447adf">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.guofangchao.com/2018/03/14/03-基础-首页模板和商品列表/"/>
+
+
+
+
+
+  <title>03.基础-首页模板和商品列表 | 博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?643d73884f29a250f12d991eaf23e1d7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.guofangchao.com/2018/03/14/03-基础-首页模板和商品列表/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="疯狂紫萧">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">03.基础-首页模板和商品列表</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-14T22:39:00+08:00">
+                2018-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/big-front-end/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>知识点：<br>1.给首页添加banner<br>2.给首页添加运营模板<br>3.获取接口的商品<br>4.给顶部加一个搜索条</p>
+</blockquote>
+<p>从这章开始我们正式开始案例的开发。git仓库的地址会放到下一章显示，需要的同学可以直接去git上看每一次提交的代码。</p>
+<p>本文先从最早的代码形式开始一步一步的讲下去，开始开发的app会在某些情况下很卡，后面会将优化需要做的东西讲出来。这里先从简单的实现app界面开始讲，如果你觉得手机反应慢，请看后面的优化部分。</p>
+<h2 id="首页容器"><a href="#首页容器" class="headerlink" title="首页容器"></a>首页容器</h2><p>修改首页index.js文件,创建一个容器,用来放置后面要添加的各种组件。<br><img src="http://images.gitbook.cn/f4e4f830-18af-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<h2 id="Banner和快捷入口"><a href="#Banner和快捷入口" class="headerlink" title="Banner和快捷入口"></a>Banner和快捷入口</h2><p>这里的Banner用到了一个轮播图组件。根目录下执行<code>npm i --save react-native-swiper</code>安装新的组件。</p>
+<p>创建一个组件，这个组件用来放Banner和快捷入口。<br><img src="http://images.gitbook.cn/bc64f0d0-18b1-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<p>这里创建state中变量，banners用来存储banner列表，quicks用来存储快捷入口的列表。</p>
+<p>请求远程接口，将返回的数据放入state中。<br><img src="http://images.gitbook.cn/bf88b420-18b3-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<p>将banner渲染再页面上。这里有一个小技巧，如果只有一张图片就不再使用轮播图。<br><img src="http://images.gitbook.cn/b27a69b0-1938-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<p>接下来就是快捷入口，由于快捷入口用到了gif图。所以这里添加一个第三方的组件<code>react-native-fast-image</code>。在线的项目使用的是官方推荐的设置方法，让RN的image组件支持的gif。</p>
+<p>执行<code>npm i --save react-native-fast-image</code>，然后使用link命令将组件加入到原生代码里。<code>react-native link react-native-fast-image</code>，执行完毕重新运行模拟器<code>react-native run-ios</code>。<br><img src="http://images.gitbook.cn/14fef190-193a-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<p>将state中的数据渲染在banner的下面。这里用到了几个组件和一个新的图片，需要单独添加。ImageBackground是RN在0.47之后的版本加入的组件，它可以将一个图片当做背景来使用。这里推荐在0.50之后的版本中使用。<br><img src="http://images.gitbook.cn/f39655b0-193f-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<p>刷新模拟器看看效果。一个简单的banner+入口的界面就显示出来了。是不是非常简单！<br><img src="http://images.gitbook.cn/9969cfd0-1940-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<h2 id="自定义模板"><a href="#自定义模板" class="headerlink" title="自定义模板"></a>自定义模板</h2><p>从入口下面开始就是一个自定义的模板。这里使用现成的接口，现成的设计来做模板。运营人员会在后端传入图片并设置跳转链接。app根据设计好的样式渲染模板结果。目前有8个模板在使用，后面可能会添加更多。这里先不管后面的新模板。</p>
+<p>在home下新建一个<code>floor_modules.js</code>文件。自定义模板单独放在这里处理。这里由于代码比较长就不贴出来了，有想看具体情况的可以去git仓库看。<br><img src="http://images.gitbook.cn/a53303c0-1942-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<p><img src="http://images.gitbook.cn/c8d9e820-1942-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<p> 到目前为止使用还是View组件。这个组件是不支持滑动的，要想列表可以滑动，需要将渲染结果放在专门的列表组件中才行。这里不适用ScrollView的原因是，FlatList可以在滚动的时候隐藏屏幕外的无用节点。可以提高列表性能，尤其是列表非常长的时候。<br><img src="http://images.gitbook.cn/e9656640-1943-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<p>把刚才写的2个组件放到Flatlist中的header组件中<code>ListHeaderComponent</code>。</p>
+<ul>
+<li>使用numColumns设置列表为双列。</li>
+<li>使用refreshing传入下拉刷新使用到的变量。</li>
+<li>使用onRefresh在下拉刷新的时候重新获取列表数据</li>
+<li>使用onEndReached在滑动到列表底部的时候加载下一页</li>
+<li>使用ListHeaderComponent渲染列表的头</li>
+<li>使用renderItem渲染列表项。</li>
+<li>使用ListFooterComponent设置底部的文字，一般可以给加载下一页展示加载的状态、文字。</li>
+<li>使用onScroll在滑动的时候触发自己的事件。这里使用scrollEventThrottle控制触发的频率，内部的数字就是1000毫秒内触发的次数，数字越大触发越少。</li>
+<li>使用keyExtractor设置列表每个项的key。在列表判断列表项的时候会使用这个返回的id作为key。注意，这里返回的值不能重复。</li>
+<li>使用data设置商品的项，必须是数组。</li>
+</ul>
+<h2 id="商品列表"><a href="#商品列表" class="headerlink" title="商品列表"></a>商品列表</h2><p>首先给上面的2个组件添加一个名字，然后在刷新方法里调用他们的刷新方法。这样就可以做到在下拉刷新的时候同时可以刷新前面2个组件。<br><img src="http://images.gitbook.cn/ee2d3210-1944-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<p>添加一个请求数据的方法并在组件初始化结束之后调用方法。这里使用await来达到同步等待请求结果的效果。注意，必须使用try来包裹这个方法。否则在返回错误信息的时候会发生app奔溃的效果。<br><img src="http://images.gitbook.cn/d29bb680-1948-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<p>这里设置了一个start变量来存储页码。这里注意一下，只有需要改变UI的变量才需要放到state里面，其他的尽量放到组件自身上面或者其他地方。否在在改变一些无意义的数据的时候也会触发界面刷新。</p>
+<p><img src="http://images.gitbook.cn/224e6470-1949-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<p>这里把加载下一页单独写成一个方法了。有的手机在初始化列表的时候不仅会调用一次获取第一页的方法，同时也会调用一次下一页的方法。</p>
+<p>新建商品列表组件GoodItem，修改Flatlist组件，把GoodItem放到内容渲染方法里。<br><img src="http://images.gitbook.cn/91048660-1949-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<p>这里将数组序号也传入组件，目的是给商品列表的每一项添加一个不一样的样式。这里设置的样式在安卓和ios上会有不同的效果<br><img src="http://images.gitbook.cn/c301c420-1949-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<p>通过取余方法即可完成每行有2中不同的样式。这在双列的列表中非常的常用。<br><img src="http://images.gitbook.cn/fccbecd0-1949-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<hr>
+<p>首页列表中的这个大块头部组件和列表中的非常多得商品项会暴露出很多问题。后面会把这一块优化，以达到和原生一样的效果。</p>
+<h2 id="头部组件"><a href="#头部组件" class="headerlink" title="头部组件"></a>头部组件</h2><p>初步开发已经完成了。但是我们还需要在这个的基础上再加上头部组件，这个组件负责显示用的一些信息和一个假的搜索条。这样才是一个完整的APP该有的样子。</p>
+<p>添加一个SearchHeader组件，用来做商品列表页的顶部。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//顶部搜索条组件</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SearchHeader</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    render()&#123;</span><br><span class="line">	    <span class="comment">//这里先不去管具体的内容</span></span><br><span class="line">        <span class="keyword">return</span> &lt;View&gt;&lt;/View&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>将组件放在最外层，同时使用绝对定位将顶部浮动在所有组件的最前面。这里先不讲动画，看着难受的同学可以先把浮动的组件改成普通的组件。<br><img src="http://images.gitbook.cn/80e0ea40-194d-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> styles = StyleSheet.create(&#123;</span><br><span class="line">    headerView: &#123;</span><br><span class="line">        position: <span class="string">"absolute"</span>,</span><br><span class="line">        left: <span class="number">0</span>,</span><br><span class="line">        right: <span class="number">0</span>,</span><br><span class="line">        top: <span class="number">0</span>,</span><br><span class="line">        zIndex: <span class="number">100</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    pageView: &#123;</span><br><span class="line">        flex: <span class="number">1</span>,</span><br><span class="line">        width: deviceWidth,</span><br><span class="line">    &#125;,</span><br><span class="line">    loading: &#123;</span><br><span class="line">        textAlign: <span class="string">'center'</span>,</span><br><span class="line">        fontSize: px(<span class="number">28</span>),</span><br><span class="line">        color: <span class="string">"#ccc"</span></span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>顶部添加一个头像显示组件，中间添加一个输入框。这里的输入框没有实际的功能，主要是为了跳转到真正的搜索页的。<br><img src="http://images.gitbook.cn/0c6a0ba0-194e-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<p>到这里基本就开发完了。将它们组合在一起然后刷新页面。<br><img src="http://images.gitbook.cn/50a934d0-194e-11e8-8087-9b6b3b447adf" alt="enter image description here"></p>
+<h2 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h2><p>到这里就完成了基础的首页开发。一个简单的首页就呈现在外面的面前。如果懂打包的同学已经可以马上打一个apk文件了。这里稍微注意一下，模拟器使用的是ios，打包最方便的还是安卓，但是ios和安卓在某些情况下会有一些区别。比如样式上会根据手机的不同有一些不一样的效果，有些组件甚至只支持ios。</p>
+<p>在浏览的时候也会看到滑动会有一些生涩，点击跳转也没有做。顶部最好有一些动画等等。这些在后面都会有涉及。<br><img src="http://images.gitbook.cn/94028eb0-194a-11e8-8087-9b6b3b447adf" alt="enter image description here"><br>图中就是在说列表太长导致更新很慢，同时还提醒开发者使用PureComponent来优化性能。后面会教大家怎样使用purComponent和shouldComponentUpdate来优化性能。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/react-native/" rel="tag"># react-native</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/14/02-基础-封装自己的库/" rel="next" title="02.基础-封装自己的库">
+                <i class="fa fa-chevron-left"></i> 02.基础-封装自己的库
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/14/04-基础-组件和商品详情/" rel="prev" title="04.基础-组件和商品详情">
+                04.基础-组件和商品详情 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">疯狂紫萧</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#首页容器"><span class="nav-number">1.</span> <span class="nav-text">首页容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Banner和快捷入口"><span class="nav-number">2.</span> <span class="nav-text">Banner和快捷入口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义模板"><span class="nav-number">3.</span> <span class="nav-text">自定义模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#商品列表"><span class="nav-number">4.</span> <span class="nav-text">商品列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#头部组件"><span class="nav-number">5.</span> <span class="nav-text">头部组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完成"><span class="nav-number">6.</span> <span class="nav-text">完成</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">疯狂紫萧</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
