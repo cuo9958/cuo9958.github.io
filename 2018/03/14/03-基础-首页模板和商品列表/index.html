@@ -91,7 +91,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="03.基础-首页模板和商品列表">
 <meta property="og:url" content="http://www.guofangchao.com/2018/03/14/03-基础-首页模板和商品列表/index.html">
-<meta property="og:site_name" content="博客">
+<meta property="og:site_name" content="IT技术博客">
 <meta property="og:description" content="知识点：1.给首页添加banner2.给首页添加运营模板3.获取接口的商品4.给顶部加一个搜索条  从这章开始我们正式开始案例的开发。git仓库的地址会放到下一章显示，需要的同学可以直接去git上看每一次提交的代码。 本文先从最早的代码形式开始一步一步的讲下去，开始开发的app会在某些情况下很卡，后面会将优化需要做的东西讲出来。这里先从简单的实现app界面开始讲，如果你觉得手机反应慢，请看后面的">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://images.gitbook.cn/f4e4f830-18af-11e8-8087-9b6b3b447adf">
@@ -154,7 +154,7 @@
 
 
 
-  <title>03.基础-首页模板和商品列表 | 博客</title>
+  <title>03.基础-首页模板和商品列表 | IT技术博客</title>
   
 
 
@@ -194,12 +194,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">博客</span>
+        <span class="site-title">IT技术博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">一个技术人的实验室</p>
       
   </div>
 
@@ -286,11 +286,11 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="疯狂紫萧">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="博客">
+      <meta itemprop="name" content="IT技术博客">
     </span>
 
     
@@ -345,6 +345,16 @@
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/14/03-基础-首页模板和商品列表/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/14/03-基础-首页模板和商品列表/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -430,6 +440,30 @@
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请支持我一下吧.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wxzs.jpeg" alt="疯狂紫萧 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
@@ -492,6 +526,11 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
 
 
 
@@ -528,8 +567,12 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="疯狂紫萧" />
+            
               <p class="site-author-name" itemprop="name">疯狂紫萧</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">疯狂紫萧,郭方超</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -571,6 +614,22 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/cuo9958" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:545570335@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
           
 
           
@@ -795,6 +854,28 @@
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'JVfh8Anp0UMvaxLASDflkRGG-gzGzoHsz',
+        appKey: 'mMoiWejqJwBDcku0FIuKXMYy',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
