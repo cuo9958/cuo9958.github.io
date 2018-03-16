@@ -86,16 +86,17 @@
 
 
 
-<meta name="description" content="疯狂紫萧,郭方超">
-<meta property="og:type" content="website">
-<meta property="og:title" content="IT技术博客">
-<meta property="og:url" content="http://www.guofangchao.com/archives/2018/index.html">
+<meta name="description" content="在React-native中有一个api叫AppRegistry。这是RN中的一个重要api。 接口介绍 static registerComponent(appKey, componentProvider, section?)注册组件，js中非常重要的一步，只有这里注册了，native code中才会找到要执行的js。 static registerRunnable(appKey, run)注册">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AppRegistry详细解析">
+<meta property="og:url" content="http://www.guofangchao.com/2018/03/16/AppRegistry详细解析/index.html">
 <meta property="og:site_name" content="IT技术博客">
-<meta property="og:description" content="疯狂紫萧,郭方超">
+<meta property="og:description" content="在React-native中有一个api叫AppRegistry。这是RN中的一个重要api。 接口介绍 static registerComponent(appKey, componentProvider, section?)注册组件，js中非常重要的一步，只有这里注册了，native code中才会找到要执行的js。 static registerRunnable(appKey, run)注册">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-16T15:16:28.673Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IT技术博客">
-<meta name="twitter:description" content="疯狂紫萧,郭方超">
+<meta name="twitter:title" content="AppRegistry详细解析">
+<meta name="twitter:description" content="在React-native中有一个api叫AppRegistry。这是RN中的一个重要api。 接口介绍 static registerComponent(appKey, componentProvider, section?)注册组件，js中非常重要的一步，只有这里注册了，native code中才会找到要执行的js。 static registerRunnable(appKey, run)注册">
 
 
 
@@ -125,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://www.guofangchao.com/archives/2018/"/>
+  <link rel="canonical" href="http://www.guofangchao.com/2018/03/16/AppRegistry详细解析/"/>
 
 
 
 
 
-  <title>归档 | IT技术博客</title>
+  <title>AppRegistry详细解析 | IT技术博客</title>
   
 
 
@@ -160,7 +161,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,259 +245,189 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.guofangchao.com/2018/03/16/AppRegistry详细解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="疯狂紫萧">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">AppRegistry详细解析</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-16T23:14:17+08:00">
+                2018-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 6 篇日志。 继续努力。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/16/AppRegistry详细解析/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/16/AppRegistry详细解析/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/16/AppRegistry详细解析/" itemprop="url">
-              
-                <span itemprop="name">AppRegistry详细解析</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-16T23:14:17+08:00"
-              content="2018-03-16" >
-          03-16
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/14/04-基础-组件和商品详情/" itemprop="url">
-              
-                <span itemprop="name">04.基础-组件和商品详情</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-14T22:40:00+08:00"
-              content="2018-03-14" >
-          03-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/14/03-基础-首页模板和商品列表/" itemprop="url">
-              
-                <span itemprop="name">03.基础-首页模板和商品列表</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-14T22:39:00+08:00"
-              content="2018-03-14" >
-          03-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>在React-native中有一个api叫AppRegistry。这是RN中的一个重要api。</p>
+<h3 id="接口介绍"><a href="#接口介绍" class="headerlink" title="接口介绍"></a>接口介绍</h3><ul>
+<li><code>static registerComponent(appKey, componentProvider, section?)</code>注册组件，js中非常重要的一步，只有这里注册了，native code中才会找到要执行的js。</li>
+<li><code>static registerRunnable(appKey, run)</code>注册一个新的线程，通过第一个参数来区分，第二个参数是一个方法。</li>
+<li><code>static runApplication(appKey, appParameters) #</code>根据key来执行对应的应用（例如使用Runable注册的）。如果<code>appKey</code>不存在会报错。</li>
+<li><code>static getAppKeys()</code>获取注册的所有线程。其中包括第一步注册的Component和后面注册的Runable</li>
+<li><code>static unmountApplicationComponentAtRootTag(rootTag)</code>结束应用，不传参数默认结束<code>appKeys</code>中的第一个</li>
+<li><code>static registerHeadlessTask(taskKey, task)</code>创建一个任务，这个线程不支持UI。</li>
+<li><code>static startHeadlessTask(taskId, taskKey, data)</code>执行对应的任务。（暂不支持）</li>
+<li><code>static registerSection(appKey, component)</code>注册一个切片</li>
+</ul>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><ul>
+<li><code>appKey</code>用到这个参数的地方，使用方法都一样</li>
+<li><code>registerHeadlessTask</code>这个方法的第二个参数是一个方法，要求返回的是一个Promise对象</li>
+</ul>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/14/02-基础-封装自己的库/" itemprop="url">
-              
-                <span itemprop="name">02.基础-封装自己的库</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-14T22:38:00+08:00"
-              content="2018-03-14" >
-          03-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/14/01-基础-项目初始化/" itemprop="url">
-              
-                <span itemprop="name">01.基础-项目初始化</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-14T22:12:00+08:00"
-              content="2018-03-14" >
-          03-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/03/14/00-为什么我选择react-native/" itemprop="url">
-              
-                <span itemprop="name">00.为什么我选择react-native</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-14T22:10:00+08:00"
-              content="2018-03-14" >
-          03-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请支持我一下吧.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wxzs.jpeg" alt="疯狂紫萧 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/14/04-基础-组件和商品详情/" rel="next" title="04.基础-组件和商品详情">
+                <i class="fa fa-chevron-left"></i> 04.基础-组件和商品详情
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -504,6 +435,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -524,8 +464,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -611,6 +560,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#接口介绍"><span class="nav-number">1.</span> <span class="nav-text">接口介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释"><span class="nav-number">2.</span> <span class="nav-text">解释</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -757,6 +722,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
