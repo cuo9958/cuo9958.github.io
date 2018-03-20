@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="guofangchao,疯狂紫萧" />
+  <meta name="keywords" content="react-native," />
 
 
 
@@ -86,17 +86,28 @@
 
 
 
-<meta name="description" content="在React-native中有一个api叫AppRegistry。这是RN中的一个重要api。 接口介绍 static registerComponent(appKey, componentProvider, section?)注册组件，js中非常重要的一步，只有这里注册了，native code中才会找到要执行的js。 static registerRunnable(appKey, run)注册">
+<meta name="description" content="记得从2010年开始，前端就逐渐绽放光芒。 在那之前的我还是一个勤恳的后端工程师，每天的工作就是一边干着后端代码一边还要写一点table之类的前端代码。嗯，也算不上前端，仅仅是一个又一个表格的嵌套而已。那个时候的前端真的是个垃圾啊。 也就在那一年，我第一次转做开发web应用，依然记得跟我配合的是一个可爱的前端妹子。从前端妹子身上我学到了基础的前端开发方式，也就是在那一年我认识了锋利的jquery。">
+<meta name="keywords" content="react-native">
 <meta property="og:type" content="article">
-<meta property="og:title" content="AppRegistry详细解析">
-<meta property="og:url" content="http://www.guofangchao.com/2018/03/16/AppRegistry详细解析/index.html">
+<meta property="og:title" content="react-native:一场APP中的革命">
+<meta property="og:url" content="http://www.guofangchao.com/2018/03/20/react-native-一场APP中的革命/index.html">
 <meta property="og:site_name" content="IT技术博客">
-<meta property="og:description" content="在React-native中有一个api叫AppRegistry。这是RN中的一个重要api。 接口介绍 static registerComponent(appKey, componentProvider, section?)注册组件，js中非常重要的一步，只有这里注册了，native code中才会找到要执行的js。 static registerRunnable(appKey, run)注册">
+<meta property="og:description" content="记得从2010年开始，前端就逐渐绽放光芒。 在那之前的我还是一个勤恳的后端工程师，每天的工作就是一边干着后端代码一边还要写一点table之类的前端代码。嗯，也算不上前端，仅仅是一个又一个表格的嵌套而已。那个时候的前端真的是个垃圾啊。 也就在那一年，我第一次转做开发web应用，依然记得跟我配合的是一个可爱的前端妹子。从前端妹子身上我学到了基础的前端开发方式，也就是在那一年我认识了锋利的jquery。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-16T15:16:28.673Z">
+<meta property="og:image" content="http://images.gitbook.cn/811a0580-2b7e-11e8-a6fe-b7f160bc5336">
+<meta property="og:image" content="http://images.gitbook.cn/db931d60-2b80-11e8-a6fe-b7f160bc5336">
+<meta property="og:image" content="http://images.gitbook.cn/4c1c3520-2b82-11e8-a6fe-b7f160bc5336">
+<meta property="og:image" content="http://images.gitbook.cn/6852a670-2b82-11e8-a6fe-b7f160bc5336">
+<meta property="og:image" content="http://images.gitbook.cn/a2f750a0-2b82-11e8-a6fe-b7f160bc5336">
+<meta property="og:image" content="http://images.gitbook.cn/366578d0-2b83-11e8-a6fe-b7f160bc5336">
+<meta property="og:image" content="http://images.gitbook.cn/8c390f60-2b83-11e8-a6fe-b7f160bc5336">
+<meta property="og:image" content="http://images.gitbook.cn/77f548c0-2bec-11e8-9837-d1511c85f875">
+<meta property="og:image" content="http://images.gitbook.cn/a0264790-2b88-11e8-a6fe-b7f160bc5336">
+<meta property="og:updated_time" content="2018-03-20T03:35:47.605Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AppRegistry详细解析">
-<meta name="twitter:description" content="在React-native中有一个api叫AppRegistry。这是RN中的一个重要api。 接口介绍 static registerComponent(appKey, componentProvider, section?)注册组件，js中非常重要的一步，只有这里注册了，native code中才会找到要执行的js。 static registerRunnable(appKey, run)注册">
+<meta name="twitter:title" content="react-native:一场APP中的革命">
+<meta name="twitter:description" content="记得从2010年开始，前端就逐渐绽放光芒。 在那之前的我还是一个勤恳的后端工程师，每天的工作就是一边干着后端代码一边还要写一点table之类的前端代码。嗯，也算不上前端，仅仅是一个又一个表格的嵌套而已。那个时候的前端真的是个垃圾啊。 也就在那一年，我第一次转做开发web应用，依然记得跟我配合的是一个可爱的前端妹子。从前端妹子身上我学到了基础的前端开发方式，也就是在那一年我认识了锋利的jquery。">
+<meta name="twitter:image" content="http://images.gitbook.cn/811a0580-2b7e-11e8-a6fe-b7f160bc5336">
 
 
 
@@ -126,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://www.guofangchao.com/2018/03/16/AppRegistry详细解析/"/>
+  <link rel="canonical" href="http://www.guofangchao.com/2018/03/20/react-native-一场APP中的革命/"/>
 
 
 
 
 
-  <title>AppRegistry详细解析 | IT技术博客</title>
+  <title>react-native:一场APP中的革命 | IT技术博客</title>
   
 
 
@@ -259,7 +270,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.guofangchao.com/2018/03/16/AppRegistry详细解析/">
+    <link itemprop="mainEntityOfPage" href="http://www.guofangchao.com/2018/03/20/react-native-一场APP中的革命/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="疯狂紫萧">
@@ -276,7 +287,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">AppRegistry详细解析</h1>
+          <h1 class="post-title" itemprop="name headline">react-native:一场APP中的革命</h1>
         
 
         <div class="post-meta">
@@ -288,8 +299,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-16T23:14:17+08:00">
-                2018-03-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-20T11:35:00+08:00">
+                2018-03-20
               </time>
             
 
@@ -299,6 +310,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/big-front-end/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -307,8 +340,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/16/AppRegistry详细解析/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/16/AppRegistry详细解析/" itemprop="commentCount"></span>
+                <a href="/2018/03/20/react-native-一场APP中的革命/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/20/react-native-一场APP中的革命/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -336,21 +369,24 @@
       
 
       
-        <p>在React-native中有一个api叫AppRegistry。这是RN中的一个重要api。</p>
-<h3 id="接口介绍"><a href="#接口介绍" class="headerlink" title="接口介绍"></a>接口介绍</h3><ul>
-<li><code>static registerComponent(appKey, componentProvider, section?)</code>注册组件，js中非常重要的一步，只有这里注册了，native code中才会找到要执行的js。</li>
-<li><code>static registerRunnable(appKey, run)</code>注册一个新的线程，通过第一个参数来区分，第二个参数是一个方法。</li>
-<li><code>static runApplication(appKey, appParameters) #</code>根据key来执行对应的应用（例如使用Runable注册的）。如果<code>appKey</code>不存在会报错。</li>
-<li><code>static getAppKeys()</code>获取注册的所有线程。其中包括第一步注册的Component和后面注册的Runable</li>
-<li><code>static unmountApplicationComponentAtRootTag(rootTag)</code>结束应用，不传参数默认结束<code>appKeys</code>中的第一个</li>
-<li><code>static registerHeadlessTask(taskKey, task)</code>创建一个任务，这个线程不支持UI。</li>
-<li><code>static startHeadlessTask(taskId, taskKey, data)</code>执行对应的任务。（暂不支持）</li>
-<li><code>static registerSection(appKey, component)</code>注册一个切片</li>
-</ul>
-<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><ul>
-<li><code>appKey</code>用到这个参数的地方，使用方法都一样</li>
-<li><code>registerHeadlessTask</code>这个方法的第二个参数是一个方法，要求返回的是一个Promise对象</li>
-</ul>
+        <p>记得从2010年开始，前端就逐渐绽放光芒。</p>
+<p>在那之前的我还是一个勤恳的后端工程师，每天的工作就是一边干着后端代码一边还要写一点table之类的前端代码。嗯，也算不上前端，仅仅是一个又一个表格的嵌套而已。那个时候的前端真的是个垃圾啊。<br><img src="http://images.gitbook.cn/811a0580-2b7e-11e8-a6fe-b7f160bc5336" alt="滑倒"></p>
+<p>也就在那一年，我第一次转做开发web应用，依然记得跟我配合的是一个可爱的前端妹子。从前端妹子身上我学到了基础的前端开发方式，也就是在那一年我认识了锋利的jquery。那是怎样一种不同的语言啊，简单快速、上手就能使用、即时产生效果。一些好看的效果实现出来真的是又快速又简单。我回头看了看无趣的java代码…..嗯，小妹妹教教我好不好？<br><img src="http://images.gitbook.cn/db931d60-2b80-11e8-a6fe-b7f160bc5336" alt="trycatch"></p>
+<p>从此真可谓一发不可收拾啊。我从jquery入门的前端，又回头研究了原生的各种使用姿势。一座新世界的大门从此向我打开。我开始制作各种有意思的小组件。有改了好几个版本的无限循环的轮播图一个系列。电脑手机上自适应网页宽度的各种姿势。导航等菜单中使用到的下拉列表的各种特效。各种效果的网页加载使用的loading动画。一路走来我深深的喜欢上了这种写完就能看效果，而且效果还日常爆炸的技术。<br><img src="http://images.gitbook.cn/4c1c3520-2b82-11e8-a6fe-b7f160bc5336" alt="松鼠"></p>
+<p>当我以为这就是前端的全部的时候，我看到了模块化技术。原来我之前骑的是自行车，果然我还是太年轻了。模块解决了大型项目分工合作的问题，顺便让网页加载的更加流畅，一举多得莫不过如此把。<br><img src="http://images.gitbook.cn/6852a670-2b82-11e8-a6fe-b7f160bc5336" alt="笑"></p>
+<p>我以为模块化已经非常厉害了，但是牛人的世界我不懂。后面有陆续遇到了gulp、babel、webpack，一个更比一个厉害，它们的思想真正让我知道，世界还可以这样子。至于后来遇到的了SPA应用，嗯，这个spa有点爽。果然，在一个适当的机会，我当机立断转战vueJs。<br><img src="http://images.gitbook.cn/a2f750a0-2b82-11e8-a6fe-b7f160bc5336" alt="厉害"></p>
+<p>在不知不觉中前端的触角已经蔓延到了整个世界。尤其是在我们有了nodejs之后。曾经的一个脚本语言，由于各路神仙的加入，再加上它天生的开源基因，一个广阔的世界已经在向各位前端开发者走来。还有什么是我们做不到的呢？</p>
+<p>在之前一直想要做一个自己的APP。但是开发一个APP非常的麻烦，不仅仅是还需要学习安卓的开发语言和模式，同时要开发ios还需要再学习一套oc的东西，如果你还要兼容swift设置wp….我的天，想想就不开心一整天。</p>
+<p>仔细想想我还能回忆曾经上手安卓代码的那段艰难岁月。下了一整天的SDK，后来才发现可以找国内的源。搞了一天的编辑器，最后还是屈服于Android studio，那个时候真的很少有好用的IDE。复杂的配置、艰难的界面布局、状况频出的开发过程。。。。。心酸啊。本来好好的学习心态也只剩下了无尽的挣扎。<br><img src="http://images.gitbook.cn/366578d0-2b83-11e8-a6fe-b7f160bc5336" alt="掉水"></p>
+<p>我在想facebook的开发者们也肯定是这么想的，不然不会出现react-native。这真的是一个天才的想法，一下子解决了很多疑难杂症。虽然它目前还处在测试版本，这决定了它还有很多问题，开发的时候也许会遇到一些麻烦。但是核心的问题确实被真正的解决了，开发一个APP再也不是巨大的工作量了。</p>
+<p>不需要一个陡峭的学习曲线，一个前端开发者就可以快速开发一个自己的APP。不在需要多个团队配合，一个团队搞定所有平台。顺便使用nodejs搭建一个后端接口，再配合MongoDB或者MySQL，完美！</p>
+<p>当我使用几天的时间开发完一个完整的APP的时候，我最大的感受就是—爽。<br><img src="http://images.gitbook.cn/8c390f60-2b83-11e8-a6fe-b7f160bc5336" alt="欢乐"></p>
+<p>真的不需要再费力发布APP客户端了。一次安装永久最新，只需要更新服务器的js版本就能做到让用户更新最新的UI界面。升级过程用户完全无感知。客户端版本升级？那是什么。</p>
+<p>再也不需要做2套代码了。开发iOS和Android只需要一套前端代码。在强大的社区帮助下，RN几乎支持所有的原生功能。一个团队只需要配备一个懂原生的开发就能轻易添加各种自定义的原生支持，想要加速某些方面只需要随着自己的心意自定义就好了，RN提供了完整的自定义流程。还有什么不满足？</p>
+<p>不需要做什么原生的开发，一个稍微复杂的APP就可以诞生出来。这得益于活跃的社区和热情的开源共享者。只需要npm和react-native短短一条命令，就跟安装web的第三方包一样简单。native就已经安装好了你需要的各种包，一切都是那么的简便。开发效率翻倍的提升。需要的开发人员翻倍的下降。<br><img src="http://images.gitbook.cn/77f548c0-2bec-11e8-9837-d1511c85f875" alt="球"></p>
+<p>往常两个团队才能开发的项目，现在只需要一个团队。如果是简单项目甚至两三个人就搞定了。如果前端开发同学比较全面的话….仔细想想吧，一个前端搞APP，一个前端搞接口，一个前端搞DB。哇！前端搞定整个项目。<br><img src="http://images.gitbook.cn/a0264790-2b88-11e8-a6fe-b7f160bc5336" alt="飞"></p>
+<p>如果你真的想要学习一下这种高大上的技术，请在gitbook.cn上搜索react-native的实战达人课。一个真实的案例加一个资深的老师教你开发一个完整的电商APP。</p>
+<p>前端才是真正的艺术，哈！</p>
 
       
     </div>
@@ -390,6 +426,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/react-native/" rel="tag"># react-native</a>
+          
+        </div>
+      
 
       
       
@@ -399,8 +441,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/14/04-基础-组件和商品详情/" rel="next" title="04.基础-组件和商品详情">
-                <i class="fa fa-chevron-left"></i> 04.基础-组件和商品详情
+              <a href="/2018/03/16/成就匹配算法解析/" rel="next" title="成就匹配算法解析">
+                <i class="fa fa-chevron-left"></i> 成就匹配算法解析
               </a>
             
           </div>
@@ -408,10 +450,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/16/成就匹配算法解析/" rel="prev" title="成就匹配算法解析">
-                成就匹配算法解析 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -468,17 +506,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -564,22 +593,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#接口介绍"><span class="nav-number">1.</span> <span class="nav-text">接口介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解释"><span class="nav-number">2.</span> <span class="nav-text">解释</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
