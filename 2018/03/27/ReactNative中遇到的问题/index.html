@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="自由,科学," />
+  <meta name="keywords" content="react-native," />
 
 
 
@@ -89,20 +89,25 @@
 
 
 
-<meta name="description" content="前段时间和谐大神比较厉害,我辈码农的很多自由上网工具都被墙掉了.我也是其中的一员…. 其实我基本上是不用的,国内的资源很多很丰富.在大多数时候一个百度就解决了问题了.偶尔遇到一些比较奇怪的问题才会去了解一下国外大神的想法.这个时候就有很大的可能遇到打不开的情况.凑巧这个时候之前用的收费工具不能用了.真的是让人着急啊. 索性我还是自己想办法吧.别人搭的商业服务不行,这里我就自己搭一个纯私人的服务算了">
-<meta name="keywords" content="自由,科学">
+<meta name="description" content="适配iPhoneXRN版本0.52之后提供了适配iPhoneX的组件SafeView。不过单独这个是不行的，还需要在ios中修改配置，把视图从一个短小的区域拉伸到全屏的大小。 这里通过修改设置打开默认的安全区域。 由于之前使用的还是旧版的RN，这里我为了兼容旧的版本做了一个js的判断。通过判断高度是否符合812来判断是否iPhoneX。同时有一个小小的缓存，不需要每次都重复判断。这里的1.0.6是">
+<meta name="keywords" content="react-native">
 <meta property="og:type" content="article">
-<meta property="og:title" content="科学而自由的上网指南">
-<meta property="og:url" content="http://www.guofangchao.com/2018/03/25/科学而自由的上网指南/index.html">
+<meta property="og:title" content="使用ReactNative的心得">
+<meta property="og:url" content="http://www.guofangchao.com/2018/03/27/ReactNative中遇到的问题/index.html">
 <meta property="og:site_name" content="IT技术博客">
-<meta property="og:description" content="前段时间和谐大神比较厉害,我辈码农的很多自由上网工具都被墙掉了.我也是其中的一员…. 其实我基本上是不用的,国内的资源很多很丰富.在大多数时候一个百度就解决了问题了.偶尔遇到一些比较奇怪的问题才会去了解一下国外大神的想法.这个时候就有很大的可能遇到打不开的情况.凑巧这个时候之前用的收费工具不能用了.真的是让人着急啊. 索性我还是自己想办法吧.别人搭的商业服务不行,这里我就自己搭一个纯私人的服务算了">
+<meta property="og:description" content="适配iPhoneXRN版本0.52之后提供了适配iPhoneX的组件SafeView。不过单独这个是不行的，还需要在ios中修改配置，把视图从一个短小的区域拉伸到全屏的大小。 这里通过修改设置打开默认的安全区域。 由于之前使用的还是旧版的RN，这里我为了兼容旧的版本做了一个js的判断。通过判断高度是否符合812来判断是否iPhoneX。同时有一个小小的缓存，不需要每次都重复判断。这里的1.0.6是">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://resource.guofangchao.com/20180325162548500/20180325044440659.png">
-<meta property="og:updated_time" content="2018-03-25T09:04:06.079Z">
+<meta property="og:image" content="http://images.gitbook.cn/49dd6a70-30ed-11e8-a4fe-a742a64d6ed6">
+<meta property="og:image" content="http://images.gitbook.cn/26ddf430-30ee-11e8-a4fe-a742a64d6ed6">
+<meta property="og:image" content="http://images.gitbook.cn/0022c060-30ed-11e8-a4fe-a742a64d6ed6">
+<meta property="og:image" content="http://images.gitbook.cn/23fde5d0-318a-11e8-ada3-857c6a61ad93">
+<meta property="og:image" content="http://images.gitbook.cn/f5394430-3191-11e8-ada3-857c6a61ad93">
+<meta property="og:image" content="http://images.gitbook.cn/04b59510-3194-11e8-ada3-857c6a61ad93">
+<meta property="og:updated_time" content="2018-03-27T11:15:25.477Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="科学而自由的上网指南">
-<meta name="twitter:description" content="前段时间和谐大神比较厉害,我辈码农的很多自由上网工具都被墙掉了.我也是其中的一员…. 其实我基本上是不用的,国内的资源很多很丰富.在大多数时候一个百度就解决了问题了.偶尔遇到一些比较奇怪的问题才会去了解一下国外大神的想法.这个时候就有很大的可能遇到打不开的情况.凑巧这个时候之前用的收费工具不能用了.真的是让人着急啊. 索性我还是自己想办法吧.别人搭的商业服务不行,这里我就自己搭一个纯私人的服务算了">
-<meta name="twitter:image" content="http://resource.guofangchao.com/20180325162548500/20180325044440659.png">
+<meta name="twitter:title" content="使用ReactNative的心得">
+<meta name="twitter:description" content="适配iPhoneXRN版本0.52之后提供了适配iPhoneX的组件SafeView。不过单独这个是不行的，还需要在ios中修改配置，把视图从一个短小的区域拉伸到全屏的大小。 这里通过修改设置打开默认的安全区域。 由于之前使用的还是旧版的RN，这里我为了兼容旧的版本做了一个js的判断。通过判断高度是否符合812来判断是否iPhoneX。同时有一个小小的缓存，不需要每次都重复判断。这里的1.0.6是">
+<meta name="twitter:image" content="http://images.gitbook.cn/49dd6a70-30ed-11e8-a4fe-a742a64d6ed6">
 
 
 
@@ -132,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="http://www.guofangchao.com/2018/03/25/科学而自由的上网指南/"/>
+  <link rel="canonical" href="http://www.guofangchao.com/2018/03/27/ReactNative中遇到的问题/"/>
 
 
 
 
 
-  <title>科学而自由的上网指南 | IT技术博客</title>
+  <title>使用ReactNative的心得 | IT技术博客</title>
   
 
 
@@ -275,7 +280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.guofangchao.com/2018/03/25/科学而自由的上网指南/">
+    <link itemprop="mainEntityOfPage" href="http://www.guofangchao.com/2018/03/27/ReactNative中遇到的问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="郭方超">
@@ -292,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">科学而自由的上网指南</h1>
+          <h1 class="post-title" itemprop="name headline">使用ReactNative的心得</h1>
         
 
         <div class="post-meta">
@@ -304,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-25T17:03:00+08:00">
-                2018-03-25
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T19:09:00+08:00">
+                2018-03-27
               </time>
             
 
@@ -327,8 +332,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/resource/" itemprop="url" rel="index">
-                    <span itemprop="name">资源</span>
+                  <a href="/categories/big-front-end/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
                   </a>
                 </span>
 
@@ -345,8 +350,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/25/科学而自由的上网指南/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/25/科学而自由的上网指南/" itemprop="commentCount"></span>
+                <a href="/2018/03/27/ReactNative中遇到的问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/27/ReactNative中遇到的问题/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -374,25 +379,35 @@
       
 
       
-        <p>前段时间和谐大神比较厉害,我辈码农的很多自由上网工具都被墙掉了.我也是其中的一员….</p>
-<p>其实我基本上是不用的,国内的资源很多很丰富.在大多数时候一个百度就解决了问题了.偶尔遇到一些比较奇怪的问题才会去了解一下国外大神的想法.这个时候就有很大的可能遇到打不开的情况.凑巧这个时候之前用的收费工具不能用了.真的是让人着急啊.</p>
-<p>索性我还是自己想办法吧.别人搭的商业服务不行,这里我就自己搭一个纯私人的服务算了.</p>
-<p>首先要选择一个合适的服务器.这里首先就排除了阿里腾讯等国内大公司产品,其次亚马逊这种费钱的大户也是不考虑的.这里稍微推荐几个靠谱的专业服务器提供商.</p>
-<ul>
-<li><a href="https://www.vultr.com/?ref=7331073" target="_blank" rel="noopener">Vultr</a>.机房遍及各大州,资源非常丰富.正常服务器500G/月流量,512MB的内存.价格为2.5$/月.不过很多时候有优惠,可以拿到1.5$/月的服务器.通过优惠地址还可以在第一次购买的时候增加更多优惠.优惠地址:<a href="https://www.vultr.com/?ref=7331073" target="_blank" rel="noopener">https://www.vultr.com/?ref=7331073</a></li>
-<li><a href="https://www.sugarhosts.com/zh-cn/" target="_blank" rel="noopener">sugarhosts</a>.提供Sata和SSD两种硬盘VPS,49￥/月.</li>
-<li><a href="bandwagonhost">搬瓦工</a>.机房非常多,目前年付低至19.99美金，多机房可选/切换.</li>
-</ul>
-<p>如果你打开vultr之后发现可以购买1.5$的服务器,不要犹豫,马上下手吧.这个服务器几乎是全网最便宜的了.如果没有也可以换换搬瓦工,20$/年算下来也是非常便宜了.<br><img src="http://resource.guofangchao.com/20180325162548500/20180325044440659.png" alt=""><br>一月才用了1G的流量….</p>
-<p>我这里就是买了一个1.5$的服务器.速度算不上快,但是看个facebook的视频还是可以的.系统挑的是centos7,</p>
-<p>在vultr上面购买服务器之后需要安装ss才能安全自由的上网.可以在github上面搜索源代码<a href="https://github.com/search?utf8=%E2%9C%93&amp;q=ShadowSocks&amp;type=" target="_blank" rel="noopener">https://github.com/search?utf8=%E2%9C%93&amp;q=ShadowSocks&amp;type=</a></p>
-<p>第一个就是ss的地址,打开之后看到的是一个默认的空地址.其实这里是个假象,只需要切换到master分支即可.<br><a href="https://github.com/shadowsocks/shadowsocks/tree/master" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks/tree/master</a></p>
-<p>这里顺便提供一个ss管理端的地址<a href="https://github.com/orvice/ss-panel/tree/master" target="_blank" rel="noopener">https://github.com/orvice/ss-panel/tree/master</a></p>
-<p>执行一键安装脚本.这里使用的是别的大神整理好的脚本,直接安装成功.这个脚本是centos上安装的脚本.别的系统没有试过,不确定是否可行.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocks-libev.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev.sh</span><br><span class="line">chmod +x shadowsocks-libev.sh</span><br><span class="line">./shadowsocks-libev.sh 2&gt;&amp;1 | tee shadowsocks-libev.log</span><br></pre></td></tr></table></figure></p>
-<p>安装过程中会提示输入ip/端口等信息.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Congratulations, Shadowsocks-libev server install completed!</span><br><span class="line">Your Server IP        :your_server_ip</span><br><span class="line">Your Server Port      :your_server_port</span><br><span class="line">Your Password         :your_password</span><br><span class="line">Your Encryption Method:your_encryption_method</span><br></pre></td></tr></table></figure></p>
-<p>到这里基本上就安装成功了,有一些改动也可以根据官网的教程来修改配置文件.</p>
-<p>也可以自己优化ss的效率,提高ss的速度.这里推荐一个优化文章,<a href="https://github.com/iMeiji/shadowsocks_install/wiki/shadowsocks-optimize" target="_blank" rel="noopener">链接地址</a></p>
-<p>ss已经停止更新了,有兴趣的可以转向研究ss的进阶版本ssr.</p>
+        <h3 id="适配iPhoneX"><a href="#适配iPhoneX" class="headerlink" title="适配iPhoneX"></a>适配iPhoneX</h3><p>RN版本0.52之后提供了适配iPhoneX的组件SafeView。不过单独这个是不行的，还需要在ios中修改配置，把视图从一个短小的区域拉伸到全屏的大小。<br><img src="http://images.gitbook.cn/49dd6a70-30ed-11e8-a4fe-a742a64d6ed6" alt="enter image description here"></p>
+<p>这里通过修改设置打开默认的安全区域。<br><img src="http://images.gitbook.cn/26ddf430-30ee-11e8-a4fe-a742a64d6ed6" alt="enter image description here"></p>
+<p>由于之前使用的还是旧版的RN，这里我为了兼容旧的版本做了一个js的判断。通过判断高度是否符合812来判断是否iPhoneX。同时有一个小小的缓存，不需要每次都重复判断。这里的1.0.6是开始使用新能力的版本号。<br><img src="http://images.gitbook.cn/0022c060-30ed-11e8-a4fe-a742a64d6ed6" alt="enter image description here"></p>
+<h3 id="添加额外的线程"><a href="#添加额外的线程" class="headerlink" title="添加额外的线程"></a>添加额外的线程</h3><p>有些功能其实没必要跑在UI线程上。这些东西如果放在组件里反而不是那么融洽。甚至有时候会对正常的逻辑产生影响。</p>
+<p>可以使用下面的方式注册一下额外的层。这个不显示UI，但是可以用来更新一些缓存，返回远程数据等。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">AppRegistry.registerRunnable(&apos;RunableTask&apos;, TaskRun)</span><br><span class="line"></span><br><span class="line">AppRegistry.runApplication(&apos;RunableTask&apos;, &#123;&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>在线上产品中就是利用了这一个层做了一些额外的事情。这里我使用事件触发的形式来做正常组件和这一个层的通知。<br><img src="http://images.gitbook.cn/23fde5d0-318a-11e8-ada3-857c6a61ad93" alt="enter image description here"></p>
+<p>需要小心一点。如果在这一层做了定时器、循环事件等操作，记得要取消掉，不然事件就会变成两次。</p>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>APP还是需要缓存的。这里可以缓存一些上次打开的数据，比如广告、用户信息等。</p>
+<p>在打开APP的时候可以先用这些数据走正常的流程，然后在用一个异步的任务去鉴定、更新这些数据。这样下来可以让APP打开非常流畅，同时用户也不会发现数据变化大等异常。这些同时也是需要后端接口数据支持的。</p>
+<h3 id="关于Alert、Modal"><a href="#关于Alert、Modal" class="headerlink" title="关于Alert、Modal"></a>关于Alert、Modal</h3><p>正常情况下Alert、Modal是独立于当前组件View之上的。如果这个时候遇到意外情况。比如组件销毁、暂停等情况下Alert还未销毁。这个时候就会发生比较严重的错误。</p>
+<p>Alert大多数会报错，APP闪退。</p>
+<p>Modal部分会报错，部分会暂停，失去事件等操作。导致APP一直停留在Modal视图上，用户也不能操作任何东西。时间长了系统就会判断APP未响应等等。</p>
+<p>如果你不想处理这些东西，可以考虑使用一个自定义的Alert或者内嵌在组件中的View来代替Modal。</p>
+<h3 id="自定义组件"><a href="#自定义组件" class="headerlink" title="自定义组件"></a>自定义组件</h3><p>在APP中其实有些属性是要经常用到的。比如Text组件的禁止使用系统字体大小，Image的缩放方式等。这些组件在平常使用过程中会经常重复添加各种属性，可以将这些组件独立出来，并且使用更加语义化的属性名来代替RN提供的使用方式。</p>
+<p>在这个的基础上还可以将按钮、卡片等组件进一步抽象出来。对于不使用第三方开源组件的项目来说还是很有必要的。</p>
+<h3 id="解决遇到的问题"><a href="#解决遇到的问题" class="headerlink" title="解决遇到的问题"></a>解决遇到的问题</h3><p>使用RN开发会遇到很多问题，这些问题都可以在RN的Issues中找到答案。如果还没有就上google去搜一下，这个要求使用科学上网的形式。</p>
+<p>有些问题需要修改RN的代码。不要怕麻烦，如果是js部分的修改，直接将下载的包修改成可上传的包就行了。这里记得上传到私有npm库中。如果是native的问题最好是在自己的native代码中覆盖掉旧的代码，毕竟前端去编译RN的源代码还是有很大的风险的。</p>
+<p>不要去百度，百度真的没有答案。</p>
+<h3 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h3><p>RN提供的按钮其实很丑，正常开发的时候大家都是使用自定义的按钮。<br><img src="http://images.gitbook.cn/f5394430-3191-11e8-ada3-857c6a61ad93" alt="enter image description here"></p>
+<p>使用这种模式做出来的按钮非常漂亮，也更能符合设计的结果。不过使用的时候尽量不要给按钮本身加样式，有样式尽量添加到内部的View等组件上。</p>
+<h3 id="向下兼容"><a href="#向下兼容" class="headerlink" title="向下兼容"></a>向下兼容</h3><p>RN使用的过程中我们升级了一个大的版本，从0.40系列升级到了0.50系列。由于大部分手机用户还存在不愿意升级APP的情况，向下兼容成了唯一的选择。</p>
+<p>我使用的策略是修改源代码。。。。</p>
+<p>比如升级0.53的时候发现有些native组件名变了。原来使用的是RCTMultilineTextInputView，现在变成了RCTTextView。不管RN出于什么理由改变了这个组件名字，造成的结果就是现在的旧代码不能跑在新的APP壳下。</p>
+<p>我们可以打印出NativeModules的UIManager对象看看。<br><img src="http://images.gitbook.cn/04b59510-3194-11e8-ada3-857c6a61ad93" alt="enter image description here"></p>
+<p>而兼容也是从这里开始做的。我们判断一下当前的RN是否在UIManager中提供了对应的原生组件即可判断当前的环境是否正确的环境。</p>
+<p>比如要升级到53，修改53的源代码<code>react-native/Libraries/Components/TextInput/TextInput.js</code>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//安卓的没变化,要排除</span></span><br><span class="line"><span class="keyword">if</span> (Platform.OS === <span class="string">'android'</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> AndroidTextInput = requireNativeComponent(<span class="string">'AndroidTextInput'</span>, <span class="literal">null</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (Platform.OS === <span class="string">'ios'</span>) &#123;</span><br><span class="line"><span class="comment">//如果支持RCTTextView,既新APP</span></span><br><span class="line">    <span class="keyword">if</span>(UIManager.RCTTextView)&#123;</span><br><span class="line">        <span class="keyword">var</span> RCTMultilineTextInputView = requireNativeComponent(<span class="string">'RCTTextView'</span>, <span class="literal">null</span>);</span><br><span class="line">        <span class="keyword">var</span> RCTSinglelineTextInputView = requireNativeComponent(<span class="string">'RCTTextField'</span>, <span class="literal">null</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="comment">//其他情况</span></span><br><span class="line">        <span class="keyword">var</span> RCTMultilineTextInputView = requireNativeComponent(<span class="string">'RCTMultilineTextInputView'</span>, <span class="literal">null</span>);</span><br><span class="line">        <span class="keyword">var</span> RCTSinglelineTextInputView = requireNativeComponent(<span class="string">'RCTSinglelineTextInputView'</span>, <span class="literal">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用类似这样的手段就能区别两种APP壳的环境。用户在使用的时候也不至于要必须升级APP才能使用新版APP的功能了。</p>
+<p>使用RN开发APP确实非常快，但是各位在开发中还是不要忘记钻研RN的源代码。很多解决方案其实很简单，有些时候可能只是由于低版本的APP不支持而导致的。</p>
+<p>如果你想对RN有一个进一步的了解，还需要对原生的代码也有一定的了解。当然正常情况下还是有位这方面的同事一起开发比较好。</p>
 
       
     </div>
@@ -434,9 +449,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/自由/" rel="tag"># 自由</a>
-          
-            <a href="/tags/科学/" rel="tag"># 科学</a>
+            <a href="/tags/react-native/" rel="tag"># react-native</a>
           
         </div>
       
@@ -449,8 +462,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/23/使用google的免费服务运行机器学习代码/" rel="next" title="使用google的免费服务运行机器学习代码">
-                <i class="fa fa-chevron-left"></i> 使用google的免费服务运行机器学习代码
+              <a href="/2018/03/25/科学而自由的上网指南/" rel="next" title="科学而自由的上网指南">
+                <i class="fa fa-chevron-left"></i> 科学而自由的上网指南
               </a>
             
           </div>
@@ -459,8 +472,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/27/ReactNative中遇到的问题/" rel="prev" title="使用ReactNative的心得">
-                使用ReactNative的心得 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/28/React-Native-实战：构建电商-App/" rel="prev" title="React Native 实战：构建电商 App">
+                React Native 实战：构建电商 App <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -518,8 +531,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -631,6 +653,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#适配iPhoneX"><span class="nav-number">1.</span> <span class="nav-text">适配iPhoneX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加额外的线程"><span class="nav-number">2.</span> <span class="nav-text">添加额外的线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存"><span class="nav-number">3.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于Alert、Modal"><span class="nav-number">4.</span> <span class="nav-text">关于Alert、Modal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义组件"><span class="nav-number">5.</span> <span class="nav-text">自定义组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决遇到的问题"><span class="nav-number">6.</span> <span class="nav-text">解决遇到的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按钮"><span class="nav-number">7.</span> <span class="nav-text">按钮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向下兼容"><span class="nav-number">8.</span> <span class="nav-text">向下兼容</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

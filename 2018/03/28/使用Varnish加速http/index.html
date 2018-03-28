@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="郭方超,疯狂紫萧" />
+  <meta name="keywords" content="varnish," />
 
 
 
@@ -89,16 +89,18 @@
 
 
 
-<meta name="description" content="全栈工程师/产品经理/游戏开发">
-<meta property="og:type" content="website">
-<meta property="og:title" content="IT技术博客">
-<meta property="og:url" content="http://www.guofangchao.com/categories/机器学习/index.html">
+<meta name="description" content="varnish是一个http缓存方案。它使用纯内存作为缓存对象，所以在速度上非常有优势。如果打算加速web服务器的图片等静态资源或者cookie、某些变动不频繁的接口等资源都可以使用Varnish来做加速。 普通情况下也可以使用nginx来做缓存，但是ngxin毕竟主业是反代。如果遇到大规模使用的情况下还是换个专业的吧。 可以使用安装包安装,这里给出一个在Red Hat和centos上安装的地址:">
+<meta name="keywords" content="varnish">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Varnish加速http">
+<meta property="og:url" content="http://www.guofangchao.com/2018/03/28/使用Varnish加速http/index.html">
 <meta property="og:site_name" content="IT技术博客">
-<meta property="og:description" content="全栈工程师/产品经理/游戏开发">
+<meta property="og:description" content="varnish是一个http缓存方案。它使用纯内存作为缓存对象，所以在速度上非常有优势。如果打算加速web服务器的图片等静态资源或者cookie、某些变动不频繁的接口等资源都可以使用Varnish来做加速。 普通情况下也可以使用nginx来做缓存，但是ngxin毕竟主业是反代。如果遇到大规模使用的情况下还是换个专业的吧。 可以使用安装包安装,这里给出一个在Red Hat和centos上安装的地址:">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-28T03:17:53.633Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="IT技术博客">
-<meta name="twitter:description" content="全栈工程师/产品经理/游戏开发">
+<meta name="twitter:title" content="使用Varnish加速http">
+<meta name="twitter:description" content="varnish是一个http缓存方案。它使用纯内存作为缓存对象，所以在速度上非常有优势。如果打算加速web服务器的图片等静态资源或者cookie、某些变动不频繁的接口等资源都可以使用Varnish来做加速。 普通情况下也可以使用nginx来做缓存，但是ngxin毕竟主业是反代。如果遇到大规模使用的情况下还是换个专业的吧。 可以使用安装包安装,这里给出一个在Red Hat和centos上安装的地址:">
 
 
 
@@ -128,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://www.guofangchao.com/categories/机器学习/"/>
+  <link rel="canonical" href="http://www.guofangchao.com/2018/03/28/使用Varnish加速http/"/>
 
 
 
 
 
-  <title>分类: 机器学习 | IT技术博客</title>
+  <title>使用Varnish加速http | IT技术博客</title>
   
 
 
@@ -163,7 +165,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -257,55 +259,223 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>机器学习<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.guofangchao.com/2018/03/28/使用Varnish加速http/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郭方超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/03/23/使用google的免费服务运行机器学习代码/" itemprop="url">
-              
-                <span itemprop="name">使用google的免费服务运行机器学习代码</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">使用Varnish加速http</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-03-23T10:14:00+08:00"
-              content="2018-03-23" >
-          03-23
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T11:17:00+08:00">
+                2018-03-28
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/28/使用Varnish加速http/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/28/使用Varnish加速http/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>varnish是一个http缓存方案。它使用纯内存作为缓存对象，所以在速度上非常有优势。如果打算加速web服务器的图片等静态资源或者cookie、某些变动不频繁的接口等资源都可以使用Varnish来做加速。</p>
+<p>普通情况下也可以使用nginx来做缓存，但是ngxin毕竟主业是反代。如果遇到大规模使用的情况下还是换个专业的吧。</p>
+<p>可以使用安装包安装,这里给出一个在Red Hat和centos上安装的地址:<a href="https://packagecloud.io/varnishcache/varnish60/install#manual-rpm" target="_blank" rel="noopener">https://packagecloud.io/varnishcache/varnish60/install#manual-rpm</a></p>
+<p>也可以使用源代码安装<code>git clone https://github.com/varnishcache/varnish-cache</code></p>
+<p>还需要安装下面的几个依赖</p>
+<ul>
+<li>autoconf</li>
+<li>automake</li>
+<li>jemalloc-devel</li>
+<li>libedit-devel</li>
+<li>libtool</li>
+<li>ncurses-devel</li>
+<li>pcre-devel</li>
+<li>pkgconfig</li>
+<li>python-docutils</li>
+<li>python-sphinx</li>
+</ul>
+<p>之后编译源代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd varnish-cache</span><br><span class="line">sh autogen.sh</span><br><span class="line">sh configure</span><br><span class="line">make</span><br></pre></td></tr></table></figure></p>
+<p>也可以在编译的时候做一次检测<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make check</span><br></pre></td></tr></table></figure></p>
+<p>最后只需要安装到系统中就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo make install</span><br></pre></td></tr></table></figure></p>
+<p>之后可以启动varnish服务了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service varnish start</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请支持我一下吧.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wxzs.jpeg" alt="郭方超 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/varnish/" rel="tag"># varnish</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/28/React-Native-实战：构建电商-App/" rel="next" title="React Native 实战：构建电商 App">
+                <i class="fa fa-chevron-left"></i> React Native 实战：构建电商 App
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -313,6 +483,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -589,6 +768,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
