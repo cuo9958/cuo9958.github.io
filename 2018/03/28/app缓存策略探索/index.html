@@ -78,7 +78,7 @@
 
 
 
-  <meta name="keywords" content="google," />
+  <meta name="keywords" content="react-native,app," />
 
 
 
@@ -89,24 +89,22 @@
 
 
 
-<meta name="description" content="如果你想学习机器学习,但是又没有一个自己的环境/显卡.这里告诉大家一个好消息,google上面有一个免费的机器学习环境可以使用了. 在google搜索google colab,打开搜索到的地址:https://colab.research.google.com 默认会提示创建一个新的记事本.这是因为google提供的是一个笔记本的环境,所有的代码都是存储在一个个的记事本中的. 这个时候可以点击取消">
-<meta name="keywords" content="google">
+<meta name="description" content="最近使用RN做APP，时间长了总是觉得接口请求是在太频繁。遂想到，不如给接口做个缓存吧。 这里申明一下，我是从前端开始接触RN，然后到APP的。对于APP原本是使用什么样的缓存策略还真的没有去深入了解。这里本着将前端的思想带入APP的原则来探讨一下使用RN来做接口部分的缓存策略。 服务器接口缓存最开始的时候只是希望减轻服务器压力，减少不必要的计算过程。比如用户数据没变化的时候就不需要去计算用户的各">
+<meta name="keywords" content="react-native,app">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用google的免费服务运行机器学习代码">
-<meta property="og:url" content="http://www.guofangchao.com/2018/03/23/使用google的免费服务运行机器学习代码/index.html">
+<meta property="og:title" content="RN的缓存策略探索">
+<meta property="og:url" content="http://www.guofangchao.com/2018/03/28/app缓存策略探索/index.html">
 <meta property="og:site_name" content="IT技术博客">
-<meta property="og:description" content="如果你想学习机器学习,但是又没有一个自己的环境/显卡.这里告诉大家一个好消息,google上面有一个免费的机器学习环境可以使用了. 在google搜索google colab,打开搜索到的地址:https://colab.research.google.com 默认会提示创建一个新的记事本.这是因为google提供的是一个笔记本的环境,所有的代码都是存储在一个个的记事本中的. 这个时候可以点击取消">
+<meta property="og:description" content="最近使用RN做APP，时间长了总是觉得接口请求是在太频繁。遂想到，不如给接口做个缓存吧。 这里申明一下，我是从前端开始接触RN，然后到APP的。对于APP原本是使用什么样的缓存策略还真的没有去深入了解。这里本着将前端的思想带入APP的原则来探讨一下使用RN来做接口部分的缓存策略。 服务器接口缓存最开始的时候只是希望减轻服务器压力，减少不必要的计算过程。比如用户数据没变化的时候就不需要去计算用户的各">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://resource.guofangchao.com/20180323095551670/20180323100315639.png">
-<meta property="og:image" content="http://resource.guofangchao.com/20180323095551670/20180323100524941.png">
-<meta property="og:image" content="http://resource.guofangchao.com/20180323095551670/20180323100901393.png">
-<meta property="og:image" content="http://resource.guofangchao.com/20180323095551670/20180323100958448.png">
-<meta property="og:image" content="http://resource.guofangchao.com/20180323095551670/20180323101356815.png">
-<meta property="og:updated_time" content="2018-03-23T02:15:00.418Z">
+<meta property="og:image" content="http://resource.guofangchao.com/20180328145700976/20180328065527378.png">
+<meta property="og:image" content="http://resource.guofangchao.com/20180328145700976/20180328070431425.png">
+<meta property="og:image" content="http://resource.guofangchao.com/20180328145700976/20180328072202910.png">
+<meta property="og:updated_time" content="2018-03-28T11:33:17.961Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用google的免费服务运行机器学习代码">
-<meta name="twitter:description" content="如果你想学习机器学习,但是又没有一个自己的环境/显卡.这里告诉大家一个好消息,google上面有一个免费的机器学习环境可以使用了. 在google搜索google colab,打开搜索到的地址:https://colab.research.google.com 默认会提示创建一个新的记事本.这是因为google提供的是一个笔记本的环境,所有的代码都是存储在一个个的记事本中的. 这个时候可以点击取消">
-<meta name="twitter:image" content="http://resource.guofangchao.com/20180323095551670/20180323100315639.png">
+<meta name="twitter:title" content="RN的缓存策略探索">
+<meta name="twitter:description" content="最近使用RN做APP，时间长了总是觉得接口请求是在太频繁。遂想到，不如给接口做个缓存吧。 这里申明一下，我是从前端开始接触RN，然后到APP的。对于APP原本是使用什么样的缓存策略还真的没有去深入了解。这里本着将前端的思想带入APP的原则来探讨一下使用RN来做接口部分的缓存策略。 服务器接口缓存最开始的时候只是希望减轻服务器压力，减少不必要的计算过程。比如用户数据没变化的时候就不需要去计算用户的各">
+<meta name="twitter:image" content="http://resource.guofangchao.com/20180328145700976/20180328065527378.png">
 
 
 
@@ -136,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://www.guofangchao.com/2018/03/23/使用google的免费服务运行机器学习代码/"/>
+  <link rel="canonical" href="http://www.guofangchao.com/2018/03/28/app缓存策略探索/"/>
 
 
 
 
 
-  <title>使用google的免费服务运行机器学习代码 | IT技术博客</title>
+  <title>RN的缓存策略探索 | IT技术博客</title>
   
 
 
@@ -279,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.guofangchao.com/2018/03/23/使用google的免费服务运行机器学习代码/">
+    <link itemprop="mainEntityOfPage" href="http://www.guofangchao.com/2018/03/28/app缓存策略探索/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="郭方超">
@@ -296,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">使用google的免费服务运行机器学习代码</h1>
+          <h1 class="post-title" itemprop="name headline">RN的缓存策略探索</h1>
         
 
         <div class="post-meta">
@@ -308,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-23T10:14:00+08:00">
-                2018-03-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T19:26:00+08:00">
+                2018-03-28
               </time>
             
 
@@ -331,8 +329,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/big-front-end/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
                   </a>
                 </span>
 
@@ -349,8 +347,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/23/使用google的免费服务运行机器学习代码/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/23/使用google的免费服务运行机器学习代码/" itemprop="commentCount"></span>
+                <a href="/2018/03/28/app缓存策略探索/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/28/app缓存策略探索/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -378,16 +376,37 @@
       
 
       
-        <p>如果你想学习机器学习,但是又没有一个自己的环境/显卡.这里告诉大家一个好消息,google上面有一个免费的机器学习环境可以使用了.</p>
-<p>在google搜索<code>google colab</code>,打开搜索到的地址:<a href="https://colab.research.google.com" target="_blank" rel="noopener">https://colab.research.google.com</a><br><img src="http://resource.guofangchao.com/20180323095551670/20180323100315639.png" alt=""></p>
-<p>默认会提示创建一个新的记事本.这是因为google提供的是一个笔记本的环境,所有的代码都是存储在一个个的记事本中的.</p>
-<p>这个时候可以点击取消查看默认的案例.<br><img src="http://resource.guofangchao.com/20180323095551670/20180323100524941.png" alt=""></p>
-<p>从案例中可以看到代码和文档是直接结合在一起的,同时可以在代码的最下面看到执行的结果.这里稍微注意下一下,每段代码都是单独的一行.</p>
-<p>可以在之前的界面点击创建,也可以在左上角的文件中选择创建.可选的有python2和python3这两种版本,根据自己的喜好来选择就好.</p>
-<p>创建之后记得选择<code>执行代码程序</code>下的<code>更改运行时类型</code>.<br><img src="http://resource.guofangchao.com/20180323095551670/20180323100901393.png" alt=""></p>
-<p>在下面的硬件加速器中选择GPU,这样之后的代码就运行在gpu上了.再也不怕家里的电脑没gpu了.<br><img src="http://resource.guofangchao.com/20180323095551670/20180323100958448.png" alt=""></p>
-<p>这里添加一行代码,输入下面的一个案例.然后点击左侧的运行按钮,这样就可以在下面看到运行的结果了.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">x = np.arange(<span class="number">20</span>)</span><br><span class="line">y = [x_i + np.random.randn(<span class="number">1</span>) <span class="keyword">for</span> x_i <span class="keyword">in</span> x]</span><br><span class="line">a, b = np.polyfit(x, y, <span class="number">1</span>)</span><br><span class="line">plt.plot(x, y, <span class="string">'o'</span>, np.arange(<span class="number">20</span>), a*np.arange(<span class="number">20</span>)+b, <span class="string">'-'</span>);</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://resource.guofangchao.com/20180323095551670/20180323101356815.png" alt=""></p>
+        <p>最近使用RN做APP，时间长了总是觉得接口请求是在太频繁。遂想到，不如给接口做个缓存吧。</p>
+<p>这里申明一下，我是从前端开始接触RN，然后到APP的。对于APP原本是使用什么样的缓存策略还真的没有去深入了解。这里本着将前端的思想带入APP的原则来探讨一下使用RN来做接口部分的缓存策略。</p>
+<h2 id="服务器接口缓存"><a href="#服务器接口缓存" class="headerlink" title="服务器接口缓存"></a>服务器接口缓存</h2><p>最开始的时候只是希望减轻服务器压力，减少不必要的计算过程。比如用户数据没变化的时候就不需要去计算用户的各种数据，直接使用缓存就好了。</p>
+<p>这里将服务器的接口返回数据根据策略缓存在redis中，然后根据上次更新之后的时间戳来判断是否需要重新计算缓存中的数据。</p>
+<p>有人可能开始质疑。这个数据本来就是放在缓存中的，尤其是用户数据，根本不可能实时去计算。这里稍微说一下这个方案的背景。</p>
+<p>后端计算和更新的数据其实已经存在在redis中了，但是在业务比较复杂的情况下，有些数据其实还是需要去获取的。这里的缓存其实类似于一个http的缓存。它的本意只是为了缓存最终接口需要返回的数据。这里使用redis去存储本来只是一个过度方案。打算使用这个方案的同学可以去关注一下varnish，这个才是真正的http缓存。<br><img src="http://resource.guofangchao.com/20180328145700976/20180328065527378.png" alt=""></p>
+<h2 id="使用APP缓存"><a href="#使用APP缓存" class="headerlink" title="使用APP缓存"></a>使用APP缓存</h2><p>这个阶段其实才开始算真正的缓存。</p>
+<p>APP端会把第一次从接口获取到的数据缓存在本地，并且返回接口的时间戳。当下一次请求的时候直接带上这个时间戳去请求。</p>
+<p>服务器根据这个时间戳去判断接口是否有更新，或者也可以定一个固定的时间。在这个时间段内默认缓存不过期。服务器返回304这样的http code。APP根据这个code判断缓存未过期，直接使用本地缓存的接口信息。</p>
+<p>这样有很多好处：</p>
+<ol>
+<li>减少不必要的计算</li>
+<li>关键时刻可以立马更新接口数据，甚至可以灰度更新某些地区的、ip的用户缓存</li>
+<li>不返回大块的数据，加速了请求速度</li>
+<li>如果遇到网络错误，可以直接使用缓存的信息。相当于离线APP</li>
+</ol>
+<p><img src="http://resource.guofangchao.com/20180328145700976/20180328070431425.png" alt=""></p>
+<h2 id="使用接口hash"><a href="#使用接口hash" class="headerlink" title="使用接口hash"></a>使用接口hash</h2><p>将接口返回的数据看过一段固定的字符串，每次都计算字符串的hash值。这样可以更加方便的判断接口返回数据是否需要更新。</p>
+<p>在上一步的策略中，接口返回的数据根据时间戳其实是根据接口更新的时间来定的。加入接口更新了，但是数据并没有变化，这个时候就会产生一次额外的请求。用户多的时候也是一个非常流量的操作。</p>
+<p>如果使用hash来判断接口是否需要更新，这样就可以直接免去了这种无用的更新操作。相比上一个版本更加的高效。不过服务端计算hash让整个项目的复杂度又高了不少。这个就要考虑这样做是否值得了。</p>
+<p>如果原有的更新策略已经完成了。比如刷新redis的策略已经做完了。其实这个时候将redis中的数据做一次hash也不费事，这样也可以非常简单的将缓存策略升级。</p>
+<h2 id="使用APP过期策略"><a href="#使用APP过期策略" class="headerlink" title="使用APP过期策略"></a>使用APP过期策略</h2><p>这里再提出一个更加激进的策略。假如某些接口的更新速度非常慢，我叫这些接口静态接口。那么每次的304请求是不是非常多余？</p>
+<p>这里就将这种接口设置一个固定的过期时间。在这个过期时间内，每次请求接口都会使用本地缓存，直到过期之后采取请求远程接口。</p>
+<p>有人提出说，这种策略在后端有更新的时候不能即时的更新数据。别着急，更新数据也可以非常及时。</p>
+<p>在所有接口之后，在新增一个本地缓存策略接口。将上述几个接口的状态放在这里。每次都请求后端接口，让后端来判断这个接口是否需要更新。比如：请求hash，如果需要更新就返回最新状态，不需要更新就不返回数据。</p>
+<p>其他的静态接口在请求之前都会使用这个状态比较一次。如果需要更新就发请求，不需要更新就使用本地缓存。这样就完美的解决了接口缓存的问题。从一个每次都要请求接口变成了部分接口快速返回304，部分接口不请求。</p>
+<p><img src="http://resource.guofangchao.com/20180328145700976/20180328072202910.png" alt=""></p>
+<hr>
+<p>RN开发的APP可以非常快的发布版本（热更新），同时开发的时候由于js的原因也会非常的灵活。这个时候使用上面的缓存策略会更加简单方便。</p>
+<p>通过上述几个策略就可以减少非常多的无用请求。比如后端的热配置信息，很多时候其实没有改动，完全可以使用静态接口的策略。</p>
+<p>进入APP的时候也可以先使用旧的数据展示列表，然后伺机更新。当然详情也和过期下架的产品还是要即时的排除掉的。</p>
 
       
     </div>
@@ -429,7 +448,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/google/" rel="tag"># google</a>
+            <a href="/tags/react-native/" rel="tag"># react-native</a>
+          
+            <a href="/tags/app/" rel="tag"># app</a>
           
         </div>
       
@@ -442,8 +463,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/22/hexo添加seo优化/" rel="next" title="hexo添加seo优化">
-                <i class="fa fa-chevron-left"></i> hexo添加seo优化
+              <a href="/2018/03/28/修改centos的欢迎界面/" rel="next" title="修改centos的欢迎界面">
+                <i class="fa fa-chevron-left"></i> 修改centos的欢迎界面
               </a>
             
           </div>
@@ -451,10 +472,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/03/25/科学而自由的上网指南/" rel="prev" title="科学而自由的上网指南">
-                科学而自由的上网指南 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -511,8 +528,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -624,6 +650,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器接口缓存"><span class="nav-number">1.</span> <span class="nav-text">服务器接口缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用APP缓存"><span class="nav-number">2.</span> <span class="nav-text">使用APP缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用接口hash"><span class="nav-number">3.</span> <span class="nav-text">使用接口hash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用APP过期策略"><span class="nav-number">4.</span> <span class="nav-text">使用APP过期策略</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

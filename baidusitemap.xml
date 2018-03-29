@@ -4,6 +4,68 @@
 
     
   <url>
+    <loc>http://www.guofangchao.com/2018/03/28/app%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5%E6%8E%A2%E7%B4%A2/</loc>
+    <lastmod>2018-03-28T11:33:17.961Z</lastmod>
+    <data>
+        <display>
+        <title>RN的缓存策略探索</title>
+        <pubTime>2018-03-28T11:26:00.000Z</pubTime>
+        
+        <tag>react-native</tag>
+         
+        <tag>app</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.guofangchao.com/categories/big-front-end/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.guofangchao.com/2018/03/28/%E4%BF%AE%E6%94%B9centos%E7%9A%84%E6%AC%A2%E8%BF%8E%E7%95%8C%E9%9D%A2/</loc>
+    <lastmod>2018-03-28T04:34:37.488Z</lastmod>
+    <data>
+        <display>
+        <title>修改centos的欢迎界面</title>
+        <pubTime>2018-03-28T04:34:00.000Z</pubTime>
+        
+        <tag>服务器</tag>
+         
+         
+           
+             
+              <breadCrumb title="服务器" url="http://www.guofangchao.com/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.guofangchao.com/2018/03/28/%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E6%8B%A5%E6%9C%89%E8%87%AA%E5%B7%B1%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2018-03-28T04:00:39.414Z</lastmod>
+    <data>
+        <display>
+        <title>前端如何拥有自己的服务器</title>
+        <pubTime>2018-03-28T04:00:00.000Z</pubTime>
+        
+        <tag>服务器</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.guofangchao.com/categories/big-front-end/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.guofangchao.com/2018/03/28/%E4%BD%BF%E7%94%A8Varnish%E5%8A%A0%E9%80%9Fhttp/</loc>
     <lastmod>2018-03-28T03:17:53.633Z</lastmod>
     <data>
