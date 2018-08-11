@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="OPbdC3XgTof4tFEWC2tht4eHDM4r4ibJbRVf-cFF104" />
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="koa,框架," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="不会造轮子的程序员不是一个好木匠  以下代码全部放在了github上:链接地址 制定web框架流程我们要做的是一个轻量级，所以一些基础的功能还是需要的。这里制定一个简单的框架启动流程。 这里包含了几个简单的功能。  定制化的配置管理，根据环境变量自动加载 提供基础的工具库，可以自由加入需要的功能（加密，远程请求等） 一个简单使用的日志类，按照日期存储在项目根目录下的logs目录中 可以使用的路由">
+<meta name="keywords" content="koa,框架">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义web框架">
+<meta property="og:url" content="http://www.guofangchao.com/2018/07/28/自定义web框架/index.html">
+<meta property="og:site_name" content="IT技术博客">
+<meta property="og:description" content="不会造轮子的程序员不是一个好木匠  以下代码全部放在了github上:链接地址 制定web框架流程我们要做的是一个轻量级，所以一些基础的功能还是需要的。这里制定一个简单的框架启动流程。 这里包含了几个简单的功能。  定制化的配置管理，根据环境变量自动加载 提供基础的工具库，可以自由加入需要的功能（加密，远程请求等） 一个简单使用的日志类，按照日期存储在项目根目录下的logs目录中 可以使用的路由">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://images.gitbook.cn/32a33120-9243-11e8-9530-11b8f149bb7c">
+<meta property="og:updated_time" content="2018-07-28T09:56:10.420Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自定义web框架">
+<meta name="twitter:description" content="不会造轮子的程序员不是一个好木匠  以下代码全部放在了github上:链接地址 制定web框架流程我们要做的是一个轻量级，所以一些基础的功能还是需要的。这里制定一个简单的框架启动流程。 这里包含了几个简单的功能。  定制化的配置管理，根据环境变量自动加载 提供基础的工具库，可以自由加入需要的功能（加密，远程请求等） 一个简单使用的日志类，按照日期存储在项目根目录下的logs目录中 可以使用的路由">
+<meta name="twitter:image" content="https://images.gitbook.cn/32a33120-9243-11e8-9530-11b8f149bb7c">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.guofangchao.com/2018/07/28/自定义web框架/"/>
+
+
+
+
+
+  <title>自定义web框架 | IT技术博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?643d73884f29a250f12d991eaf23e1d7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个技术人的实验室</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.guofangchao.com/2018/07/28/自定义web框架/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郭方超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">自定义web框架</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-28T17:55:00+08:00">
+                2018-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodejs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/07/28/自定义web框架/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/07/28/自定义web框架/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>不会造轮子的程序员不是一个好木匠</p>
+</blockquote>
+<p>以下代码全部放在了github上:<a href="https://github.com/cuo9958/duck" target="_blank" rel="noopener">链接地址</a></p>
+<h2 id="制定web框架流程"><a href="#制定web框架流程" class="headerlink" title="制定web框架流程"></a>制定web框架流程</h2><p>我们要做的是一个轻量级，所以一些基础的功能还是需要的。这里制定一个简单的框架启动流程。<br><img src="https://images.gitbook.cn/32a33120-9243-11e8-9530-11b8f149bb7c" alt="enter image description here"></p>
+<p>这里包含了几个简单的功能。</p>
+<ol>
+<li>定制化的配置管理，根据环境变量自动加载</li>
+<li>提供基础的工具库，可以自由加入需要的功能（加密，远程请求等）</li>
+<li>一个简单使用的日志类，按照日期存储在项目根目录下的logs目录中</li>
+<li>可以使用的路由基础方法，通过这个方法注入自定义的路由</li>
+<li>一个简单实用的定时任务基础类，继承即可启动</li>
+<li>可选择的app.js文件，可以对application对象注入一些自己的东西</li>
+</ol>
+<h2 id="定制目录规范"><a href="#定制目录规范" class="headerlink" title="定制目录规范"></a>定制目录规范</h2><p>通过一个合适的规范可以减少很多开发上的东西。</p>
+<p>我们通过在固定的目录中做固定的事情将框架内的不同功能区分开来。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- config <span class="comment">//配置文件</span></span><br><span class="line">    - <span class="keyword">default</span>.js    <span class="comment">//默认配置</span></span><br><span class="line">    - development.js    <span class="comment">//开发环境配置</span></span><br><span class="line">    - production.js     <span class="comment">//生成环境配置</span></span><br><span class="line">- controller    <span class="comment">//控制器</span></span><br><span class="line">    - index.js  <span class="comment">//自定义路由地址</span></span><br><span class="line">- schedule  <span class="comment">//定时任务文件</span></span><br><span class="line">    - test.js   <span class="comment">//自定义定时任务</span></span><br><span class="line">- app.js    <span class="comment">//自定义启动文件</span></span><br><span class="line">- index.js  <span class="comment">//启动文件,引用duck即可</span></span><br><span class="line">- pm2.js   <span class="comment">//pm2的配置文件</span></span><br></pre></td></tr></table></figure></p>
+<p>这里只有根目录下的<code>index.js</code>是必须要的，主要是启动整个项目。<code>config</code>目录下主要是放置配置，这个目录一般情况下省不了。<code>controller</code>目录下放置路由的方法等，也是这个框架最常用的目录。其余的都是可选择的，不添加不影响功能。</p>
+<h2 id="基础框架"><a href="#基础框架" class="headerlink" title="基础框架"></a>基础框架</h2><p>从上面的几点可以看出来，框架基于配置的方式做到动态加载。所以启动的时候会扫一次目录，将有的功能加进去，没有的功能不做处理。</p>
+<p>在<code>lib</code>目录下新建一个<code>index.js</code>文件，作为我们的整个框架的核心—-其实就是启动koa并将我们要实现的功能加上去：）<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">"koa"</span>);</span><br><span class="line"><span class="keyword">const</span> KoaBody = <span class="built_in">require</span>(<span class="string">"koa-body"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//附加一个根目录</span></span><br><span class="line"><span class="keyword">const</span> rootPath = process.cwd();</span><br><span class="line"><span class="keyword">let</span> app = <span class="keyword">new</span> Koa();</span><br><span class="line">app.root = rootPath;</span><br><span class="line"><span class="comment">//处理请求对象</span></span><br><span class="line">app.use(KoaBody(&#123;</span><br><span class="line">    multipart: <span class="literal">true</span>,</span><br><span class="line">    strict: <span class="literal">false</span>,</span><br><span class="line">    jsonLimit: <span class="string">'10mb'</span>,</span><br><span class="line">    formLimit: <span class="string">'10mb'</span>,</span><br><span class="line">    textLimit: <span class="string">'10mb'</span></span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure></p>
+<p>使用过koa的同学可能会非常的熟悉，其实这里就是一个简单的koa初始化过程。不同的地方是后面我们要附加的一些操作。</p>
+<h3 id="执行app-js"><a href="#执行app-js" class="headerlink" title="执行app.js"></a>执行app.js</h3><p>我们给用户留一个可以操作顶层application对象的地方。入口就是这里：假如app.js文件存在就会将初始化中的app对象传进去处理一次再转出来。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//加载appcalition</span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> application = <span class="built_in">require</span>(app.root + <span class="string">"/app.js"</span>);</span><br><span class="line">    application(app);</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">    Logger.info(error.message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="执行自定义路由"><a href="#执行自定义路由" class="headerlink" title="执行自定义路由"></a>执行自定义路由</h3><p>这里我们判断我们的<code>controller</code>目录下的文件。依次加载并将返回的路由对象加载到applicaiton上。这里利用的依然是一个动态加载的原理，将内容在启动阶段载入到内存中并执行它。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//添加路由</span></span><br><span class="line"><span class="keyword">if</span> (fs.existsSync(app.root + <span class="string">"/controller"</span>)) &#123;</span><br><span class="line">    <span class="keyword">let</span> controller_list = fs.readdirSync(app.root + <span class="string">"/controller"</span>);</span><br><span class="line">    controller_list.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> controller_item = <span class="built_in">require</span>(app.root + <span class="string">"/controller/"</span> + item);</span><br><span class="line">            <span class="keyword">if</span> (controller_item) &#123;</span><br><span class="line">                app.use(controller_item.routes()).use(controller_item.allowedMethods());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">            Logger.info(error.message);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="监听端口"><a href="#监听端口" class="headerlink" title="监听端口"></a>监听端口</h3><p>正常情况下只需要监听一下端口即可。这里稍微处理了一次，假如用户使用命令退出进程或者进程异常退出，这里就会监听到这个操作。</p>
+<p>这个地方可以自定义做一个触发事件，触发applicaiton的停止事件。比如数据库、redis等的连接断开操作。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> port = config(<span class="string">"port"</span>) || <span class="number">3000</span>;</span><br><span class="line">app.listen(port, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    Logger.info(<span class="string">"app已启动:"</span> + port)</span><br><span class="line">&#125;);</span><br><span class="line">process.on(<span class="string">'SIGINT'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">    process.exit();</span><br><span class="line">&#125;);</span><br><span class="line">process.on(<span class="string">'exit'</span>, (code) =&gt; &#123;</span><br><span class="line">    Logger.info(<span class="string">"app已停止:"</span> + code)</span><br><span class="line">&#125;);</span><br><span class="line">process.on(<span class="string">'uncaughtException'</span>, (code) =&gt; &#123;</span><br><span class="line">    Logger.info(<span class="string">"app已停止:"</span> + code)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">module</span>.exports = app;</span><br></pre></td></tr></table></figure></p>
+<h3 id="启动定时任务"><a href="#启动定时任务" class="headerlink" title="启动定时任务"></a>启动定时任务</h3><p>定时任务比较简单，只需要判断任务文件是否存在，然后执行即可。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//启动定时器</span></span><br><span class="line"><span class="keyword">if</span> (fs.existsSync(app.root + <span class="string">"/schedule"</span>)) &#123;</span><br><span class="line">    <span class="keyword">let</span> schedule_list = fs.readdirSync(app.root + <span class="string">"/schedule"</span>);</span><br><span class="line">    schedule_list.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">let</span> schedule_item = <span class="built_in">require</span>(app.root + <span class="string">"/schedule/"</span> + item);</span><br><span class="line">            <span class="keyword">if</span> (schedule_item) <span class="keyword">new</span> schedule_item()._run();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">            Logger.info(error.message);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>tips：上面的几个方式可以作为一个工具类中的方法存在。</p>
+</blockquote>
+<h2 id="基础支持类、方法"><a href="#基础支持类、方法" class="headerlink" title="基础支持类、方法"></a>基础支持类、方法</h2><p>上面的仅仅是一个基础的实现。假如你想现在就跑起来，不好意思，它们的依赖还没有实现呢。</p>
+<h3 id="基础配置类"><a href="#基础配置类" class="headerlink" title="基础配置类"></a>基础配置类</h3><p>npm库里已经有一个非常强大的配置加载方式了。这个轮子我们先不造了。<code>npm install --save config</code>安装一下就好了。</p>
+<h3 id="基础日志类"><a href="#基础日志类" class="headerlink" title="基础日志类"></a>基础日志类</h3><p>我们这里使用<code>log4js</code>库来完成日志的打印输出。这里稍微简单的配置一下内部的日志对象。</p>
+<p>在<code>lib/logger.js</code>中添加我们自己的日志配置。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> log4js = <span class="built_in">require</span>(<span class="string">'log4js'</span>);</span><br><span class="line">log4js.configure(&#123;</span><br><span class="line">    appenders: &#123;</span><br><span class="line">        stdout: &#123;</span><br><span class="line">            type: <span class="string">"stdout"</span></span><br><span class="line">        &#125;,</span><br><span class="line">        error: &#123;</span><br><span class="line">            type: <span class="string">'dateFile'</span>,</span><br><span class="line">            filename: <span class="string">'./logs/error.log'</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">        info: &#123;</span><br><span class="line">            type: <span class="string">'dateFile'</span>,</span><br><span class="line">            filename: <span class="string">'./logs/info.log'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    categories: &#123;</span><br><span class="line">        <span class="keyword">default</span>: &#123;</span><br><span class="line">            appenders: [<span class="string">"info"</span>, <span class="string">"stdout"</span>],</span><br><span class="line">            level: <span class="string">'info'</span></span><br><span class="line">        &#125;,</span><br><span class="line">        err: &#123;</span><br><span class="line">            appenders: [<span class="string">'error'</span>, <span class="string">"stdout"</span>],</span><br><span class="line">            level: <span class="string">'error'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    pm2: <span class="literal">true</span>,</span><br><span class="line">    pm2InstanceVar: <span class="string">"node-sso-wechat"</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> logger = log4js.getLogger(<span class="string">'error'</span>);</span><br><span class="line"><span class="keyword">const</span> logger2 = log4js.getLogger(<span class="string">'info'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    error() &#123;</span><br><span class="line">        logger.error(...arguments);</span><br><span class="line">    &#125;,</span><br><span class="line">    info() &#123;</span><br><span class="line">        logger2.info(...arguments);</span><br><span class="line">    &#125;,</span><br><span class="line">    warm() &#123;</span><br><span class="line">        logger2.info(...arguments);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>这里我们简单的提供3中日志形式。</p>
+<ol>
+<li>一直存在的输出到命令行</li>
+<li>输出到info.log中info和warm方法</li>
+<li>输出到error.js的error方法</li>
+</ol>
+<p>这里将日志分开存主要是为了区分记录日志和错误信息这2中特殊情况。当然，也可以将这些配置放在config中，通过使用中去配置日志。</p>
+<h3 id="基础控制器方法"><a href="#基础控制器方法" class="headerlink" title="基础控制器方法"></a>基础控制器方法</h3><p>我们给使用者提供一个简单的路由方法，这样就不需要用户去主动实现路由了。用户只需要关注具体的路由和实现即可。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Router = <span class="built_in">require</span>(<span class="string">"koa-router"</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">prefix</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> opts = &#123;&#125;;</span><br><span class="line">    <span class="keyword">if</span> (prefix) opts.prefix = prefix;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Router(opts);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到我们使用的是<code>koa-router</code>这个库。用户调用的时候还可以传入<code>prefix</code>参数来配置路由的跟目录。</p>
+<p>用户只需要使用返回的路由方法即可。</p>
+<h3 id="基础定时任务类"><a href="#基础定时任务类" class="headerlink" title="基础定时任务类"></a>基础定时任务类</h3><p>由于定时任务并不需要参数web的请求返回等过程，所以在设计的时候只需要继承我们的基础类就能实现了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> schedule = <span class="built_in">require</span>(<span class="string">'node-schedule'</span>);</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 定时任务的基类</span></span><br><span class="line"><span class="comment"> * 设置时间,可执行方法</span></span><br><span class="line"><span class="comment"> * 默认执行run方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">module</span>.exports = <span class="class"><span class="keyword">class</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">this</span>.time = <span class="string">""</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    start() &#123;&#125;</span><br><span class="line">    _run() &#123;</span><br><span class="line">        schedule.scheduleJob(<span class="keyword">this</span>.time, <span class="keyword">this</span>.start);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们仅仅做了3件事就完成了定时任务。</p>
+<ol>
+<li>初始化<code>time</code>参数,预留给用户做时间间隔配置</li>
+<li>初始化<code>start</code>方法，预留给用户做具体的执行内容</li>
+<li><code>_run</code>方法就是我们自己的执行定时任务的方法，是不能给用户看到的。（当然还是可以重载了。。。）</li>
+</ol>
+<h2 id="使用我们的框架"><a href="#使用我们的框架" class="headerlink" title="使用我们的框架"></a>使用我们的框架</h2><p>一个简单的demo已经放在github上了：<a href="https://github.com/cuo9958/duck-example" target="_blank" rel="noopener">链接地址</a></p>
+<h3 id="启动入口"><a href="#启动入口" class="headerlink" title="启动入口"></a>启动入口</h3><p>在根目录下添加<code>index.js</code>文件，引用我们的框架。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Duck = <span class="built_in">require</span>(<span class="string">"node-duck"</span>);</span><br></pre></td></tr></table></figure></p>
+<h3 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h3><p>在根目录下新建<code>config</code>目录，新建<code>default.js</code>默认配置，<code>production.js</code>等环境配置。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 默认的配置文件</span></span><br><span class="line"><span class="comment"> * 不同环境下还会加载不同的配置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">    name: <span class="string">"duck.js"</span>,<span class="comment">//给自己用的配置</span></span><br><span class="line">    port: <span class="string">"3001"</span>,<span class="comment">//启动的接口</span></span><br><span class="line">    <span class="comment">//初始化的body对象参数</span></span><br><span class="line">    body: &#123;</span><br><span class="line">        multipart: <span class="literal">true</span>,</span><br><span class="line">        strict: <span class="literal">false</span>,</span><br><span class="line">        jsonLimit: <span class="string">'10mb'</span>,</span><br><span class="line">        formLimit: <span class="string">'10mb'</span>,</span><br><span class="line">        textLimit: <span class="string">'10mb'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="自定义控制器"><a href="#自定义控制器" class="headerlink" title="自定义控制器"></a>自定义控制器</h3><p>在根目录下新建<code>controller</code>目录，将我们的路由写在这个目录中。文件的名字对路由没有影响。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试路由</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> Duck = <span class="built_in">require</span>(<span class="string">"node-duck"</span>);</span><br><span class="line"><span class="comment">//默认跟路由</span></span><br><span class="line"><span class="keyword">const</span> Controller = <span class="keyword">new</span> Duck.Controller(<span class="string">"/"</span>);</span><br><span class="line"><span class="comment">//首页</span></span><br><span class="line">Controller.get(<span class="string">""</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx</span>) </span>&#123;</span><br><span class="line">    ctx.body = <span class="string">"hi,duck!"</span>;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//test目录</span></span><br><span class="line">Controller.get(<span class="string">"test"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">ctx</span>) </span>&#123;</span><br><span class="line">    ctx.body = <span class="string">"hi,duck!"</span>;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//导出</span></span><br><span class="line"><span class="built_in">module</span>.exports = Controller;</span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure></p>
+<p>从这里可以看到，我们的路由天生就配置比较简单。只需要配置一个prefix，剩下就简单多了。</p>
+<h3 id="自定义定时任务"><a href="#自定义定时任务" class="headerlink" title="自定义定时任务"></a>自定义定时任务</h3><p>在根目录下新建<code>schedule</code>目录，里面的任何一个文件都必须集成导出的schedule对象，不然会报错的^_^<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试定时任务</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">const</span> Schedule = <span class="built_in">require</span>(<span class="string">"node-duck"</span>).Schedule;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">testSchedule</span> <span class="keyword">extends</span> <span class="title">Schedule</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="keyword">super</span>();</span><br><span class="line">        <span class="keyword">this</span>.time = <span class="string">"*/1 * * * * *"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    start() &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"执行一次"</span>, <span class="built_in">Date</span>.now());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = testSchedule;</span><br></pre></td></tr></table></figure></p>
+<p>这里使用的时间配置是cron的格式:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">*    *    *    *    *    *</span><br><span class="line">┬    ┬    ┬    ┬    ┬    ┬</span><br><span class="line">│    │    │    │    │    │</span><br><span class="line">│    │    │    │    │    └ day of week (0 - 7) (0 or 7 is Sun)</span><br><span class="line">│    │    │    │    └───── month (1 - 12)</span><br><span class="line">│    │    │    └────────── day of month (1 - 31)</span><br><span class="line">│    │    └─────────────── hour (0 - 23)</span><br><span class="line">│    └──────────────────── minute (0 - 59)</span><br><span class="line">└───────────────────────── second (0 - 59, OPTIONAL)</span><br></pre></td></tr></table></figure></p>
+<p>ex:</p>
+<ol>
+<li>每秒执行一次<code>&quot;*/1 * * * * *&quot;</code></li>
+<li>每分钟的第一秒执行一次<code>&quot;1 * * * * *&quot;</code></li>
+<li>第2到5秒执行一次<code>&quot;2-5 * * * * *&quot;</code></li>
+<li>time参数也可以传Date对象</li>
+</ol>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p>到这里的时候一个框架的基础架构以及demo展示都已经做完了。如果你还有自己更多的需求，也可以在这个的基础上扩展一下。</p>
+<ol>
+<li>扩展utils，给自己添加更多的工具</li>
+<li>扩展插件，添加数据库操作类等方法</li>
+<li>扩展事件，将application的各种事件扩展出来</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>写这个框架最初的目的可能就是用不惯其他框架吧。好用的又封装太厉害了。封装不那么厉害的实现又非常的复杂。既然如此，干脆自己写一个好了。反正这玩意也不是一个多难的东西，再说了我还可以自己往上面安装各种奇怪的功能。</p>
+<p>我将我自己的想法分享出来，希望有需要的能够从中有一些收获。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请支持我一下吧.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wxzs.jpeg" alt="郭方超 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/koa/" rel="tag"># koa</a>
+          
+            <a href="/tags/框架/" rel="tag"># 框架</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/07/19/xcode历史版本下载/" rel="next" title="xcode历史版本下载">
+                <i class="fa fa-chevron-left"></i> xcode历史版本下载
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/28/js高级技巧/" rel="prev" title="js高级技巧">
+                js高级技巧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="郭方超" />
+            
+              <p class="site-author-name" itemprop="name">郭方超</p>
+              <p class="site-description motion-element" itemprop="description">全栈工程师/产品经理/游戏开发</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/cuo9958" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:545570335@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/fangchao.guo" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ezo.biz/" title="小猪的博客" target="_blank">小猪的博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#制定web框架流程"><span class="nav-number">1.</span> <span class="nav-text">制定web框架流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定制目录规范"><span class="nav-number">2.</span> <span class="nav-text">定制目录规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础框架"><span class="nav-number">3.</span> <span class="nav-text">基础框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#执行app-js"><span class="nav-number">3.1.</span> <span class="nav-text">执行app.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行自定义路由"><span class="nav-number">3.2.</span> <span class="nav-text">执行自定义路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监听端口"><span class="nav-number">3.3.</span> <span class="nav-text">监听端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动定时任务"><span class="nav-number">3.4.</span> <span class="nav-text">启动定时任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础支持类、方法"><span class="nav-number">4.</span> <span class="nav-text">基础支持类、方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础配置类"><span class="nav-number">4.1.</span> <span class="nav-text">基础配置类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础日志类"><span class="nav-number">4.2.</span> <span class="nav-text">基础日志类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础控制器方法"><span class="nav-number">4.3.</span> <span class="nav-text">基础控制器方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础定时任务类"><span class="nav-number">4.4.</span> <span class="nav-text">基础定时任务类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用我们的框架"><span class="nav-number">5.</span> <span class="nav-text">使用我们的框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#启动入口"><span class="nav-number">5.1.</span> <span class="nav-text">启动入口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义配置"><span class="nav-number">5.2.</span> <span class="nav-text">自定义配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义控制器"><span class="nav-number">5.3.</span> <span class="nav-text">自定义控制器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义定时任务"><span class="nav-number">5.4.</span> <span class="nav-text">自定义定时任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展"><span class="nav-number">6.</span> <span class="nav-text">扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郭方超</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+<div>
+  <a href="http://www.miitbeian.gov.cn/">京ICP备14044836号</a>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/three.js/84/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'JVfh8Anp0UMvaxLASDflkRGG-gzGzoHsz',
+        appKey: 'mMoiWejqJwBDcku0FIuKXMYy',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

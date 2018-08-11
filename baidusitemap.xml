@@ -4,6 +4,262 @@
 
     
   <url>
+    <loc>http://www.guofangchao.com/2018/08/11/julia%E5%AE%89%E8%A3%851-0%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2018-08-11T06:06:42.638Z</lastmod>
+    <data>
+        <display>
+        <title>julia安装1.0教程</title>
+        <pubTime>2018-08-11T06:06:00.000Z</pubTime>
+        
+        <tag>julia</tag>
+         
+        <tag>教程</tag>
+         
+         
+           
+             
+              <breadCrumb title="编程语言" url="http://www.guofangchao.com/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.guofangchao.com/2018/08/10/nodejs%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2018-08-10T03:05:58.798Z</lastmod>
+    <data>
+        <display>
+        <title>nodejs连接远程服务器</title>
+        <pubTime>2018-08-10T03:04:00.000Z</pubTime>
+        
+        <tag>nodejs</tag>
+         
+        <tag>ssh</tag>
+         
+         
+           
+             
+              <breadCrumb title="nodejs" url="http://www.guofangchao.com/categories/nodejs/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.guofangchao.com/2018/08/10/bigpipe%E5%88%86%E6%AE%B5%E5%8A%A0%E8%BD%BD/</loc>
+    <lastmod>2018-08-10T03:03:42.548Z</lastmod>
+    <data>
+        <display>
+        <title>bigpipe分段加载</title>
+        <pubTime>2018-08-10T03:00:00.000Z</pubTime>
+        
+        <tag>前端</tag>
+         
+        <tag>分段渲染</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.guofangchao.com/categories/big-front-end/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.guofangchao.com/2018/08/09/%E4%BD%BF%E7%94%A8Sequelize%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2018-08-09T03:05:15.245Z</lastmod>
+    <data>
+        <display>
+        <title>使用Sequelize连接数据库</title>
+        <pubTime>2018-08-09T03:03:00.000Z</pubTime>
+        
+        <tag>前端</tag>
+         
+        <tag>Sequelize</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.guofangchao.com/categories/big-front-end/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.guofangchao.com/2018/08/06/%E5%8A%A8%E6%80%81RN%E6%8A%80%E6%9C%AF%E6%9E%84%E6%80%9D/</loc>
+    <lastmod>2018-08-06T12:27:57.932Z</lastmod>
+    <data>
+        <display>
+        <title>动态RN技术构思</title>
+        <pubTime>2018-08-06T12:19:00.000Z</pubTime>
+        
+        <tag>react-native</tag>
+         
+        <tag>想法</tag>
+         
+         
+           
+             
+              <breadCrumb title="react-native" url="http://www.guofangchao.com/categories/react-native/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.guofangchao.com/2018/07/28/js%E9%AB%98%E7%BA%A7%E6%8A%80%E5%B7%A7/</loc>
+    <lastmod>2018-07-28T13:52:47.685Z</lastmod>
+    <data>
+        <display>
+        <title>js高级技巧</title>
+        <pubTime>2018-07-28T13:45:00.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+         
+           
+             
+              <breadCrumb title="前端" url="http://www.guofangchao.com/categories/big-front-end/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.guofangchao.com/2018/07/28/%E8%87%AA%E5%AE%9A%E4%B9%89web%E6%A1%86%E6%9E%B6/</loc>
+    <lastmod>2018-07-28T09:56:10.420Z</lastmod>
+    <data>
+        <display>
+        <title>自定义web框架</title>
+        <pubTime>2018-07-28T09:55:00.000Z</pubTime>
+        
+        <tag>koa</tag>
+         
+        <tag>框架</tag>
+         
+         
+           
+             
+              <breadCrumb title="nodejs" url="http://www.guofangchao.com/categories/nodejs/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.guofangchao.com/2018/07/19/xcode%E5%8E%86%E5%8F%B2%E7%89%88%E6%9C%AC%E4%B8%8B%E8%BD%BD/</loc>
+    <lastmod>2018-07-19T03:19:36.160Z</lastmod>
+    <data>
+        <display>
+        <title>xcode历史版本下载</title>
+        <pubTime>2018-07-19T03:18:00.000Z</pubTime>
+        
+        <tag>xcode</tag>
+         
+        <tag>ios</tag>
+         
+         
+           
+             
+              <breadCrumb title="ios" url="http://www.guofangchao.com/categories/ios/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.guofangchao.com/2018/07/16/hping%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2018-07-16T04:33:18.204Z</lastmod>
+    <data>
+        <display>
+        <title>hping安装教程</title>
+        <pubTime>2018-07-16T04:32:00.000Z</pubTime>
+        
+        <tag>hping</tag>
+         
+         
+           
+             
+              <breadCrumb title="hping" url="http://www.guofangchao.com/categories/hping/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.guofangchao.com/2018/07/16/git%E5%90%8C%E6%97%B6%E6%8E%A8%E9%80%812%E4%B8%AA%E4%BB%93%E5%BA%93/</loc>
+    <lastmod>2018-07-16T03:39:57.211Z</lastmod>
+    <data>
+        <display>
+        <title>git同时推送2个仓库</title>
+        <pubTime>2018-07-16T03:39:00.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+         
+           
+             
+              <breadCrumb title="git" url="http://www.guofangchao.com/categories/git/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.guofangchao.com/2018/07/06/react-native%E5%8A%A8%E6%80%81tab%E7%BB%84%E4%BB%B6/</loc>
+    <lastmod>2018-07-06T07:34:16.507Z</lastmod>
+    <data>
+        <display>
+        <title>react-native动态tab组件</title>
+        <pubTime>2018-07-06T07:31:00.000Z</pubTime>
+        
+        <tag>tab</tag>
+         
+         
+           
+             
+              <breadCrumb title="react-native" url="http://www.guofangchao.com/categories/react-native/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www.guofangchao.com/2018/06/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85node%E7%AD%89%E8%84%9A%E6%9C%AC/</loc>
+    <lastmod>2018-06-13T10:02:20.326Z</lastmod>
+    <data>
+        <display>
+        <title>服务器安装node等脚本</title>
+        <pubTime>2018-06-13T09:57:00.000Z</pubTime>
+        
+        <tag>服务器</tag>
+         
+        <tag>node</tag>
+         
+         
+           
+             
+              <breadCrumb title="服务器" url="http://www.guofangchao.com/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www.guofangchao.com/2018/05/12/react-native%E5%AE%9A%E6%97%B6%E5%99%A8/</loc>
     <lastmod>2018-05-12T04:12:05.969Z</lastmod>
     <data>

@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="OPbdC3XgTof4tFEWC2tht4eHDM4r4ibJbRVf-cFF104" />
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端,Sequelize," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Sequelize.js是一款针对nodejs的ORM框架。 使用nodejs连接过数据库的人肯定对数据库不陌生了。如果是直接链接，需要自己建立并管理连接，还需要手动编写sql语句。简单的项目到是无所谓，可是一旦项目设计的东西比较复杂，表比较多的时候整个sql的编写就非常的消耗精力。 在Java、c#等语言中已经有轻量的数据库框架或者解决方案了。在nodejs中我推荐Sequelize。它是一个很">
+<meta name="keywords" content="前端,Sequelize">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Sequelize连接数据库">
+<meta property="og:url" content="http://www.guofangchao.com/2018/08/09/使用Sequelize连接数据库/index.html">
+<meta property="og:site_name" content="IT技术博客">
+<meta property="og:description" content="Sequelize.js是一款针对nodejs的ORM框架。 使用nodejs连接过数据库的人肯定对数据库不陌生了。如果是直接链接，需要自己建立并管理连接，还需要手动编写sql语句。简单的项目到是无所谓，可是一旦项目设计的东西比较复杂，表比较多的时候整个sql的编写就非常的消耗精力。 在Java、c#等语言中已经有轻量的数据库框架或者解决方案了。在nodejs中我推荐Sequelize。它是一个很">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-09T03:05:15.245Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Sequelize连接数据库">
+<meta name="twitter:description" content="Sequelize.js是一款针对nodejs的ORM框架。 使用nodejs连接过数据库的人肯定对数据库不陌生了。如果是直接链接，需要自己建立并管理连接，还需要手动编写sql语句。简单的项目到是无所谓，可是一旦项目设计的东西比较复杂，表比较多的时候整个sql的编写就非常的消耗精力。 在Java、c#等语言中已经有轻量的数据库框架或者解决方案了。在nodejs中我推荐Sequelize。它是一个很">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.guofangchao.com/2018/08/09/使用Sequelize连接数据库/"/>
+
+
+
+
+
+  <title>使用Sequelize连接数据库 | IT技术博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?643d73884f29a250f12d991eaf23e1d7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个技术人的实验室</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.guofangchao.com/2018/08/09/使用Sequelize连接数据库/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郭方超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用Sequelize连接数据库</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-09T11:03:00+08:00">
+                2018-08-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/big-front-end/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/09/使用Sequelize连接数据库/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/08/09/使用Sequelize连接数据库/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Sequelize.js是一款针对nodejs的ORM框架。</p>
+<p>使用nodejs连接过数据库的人肯定对数据库不陌生了。如果是直接链接，需要自己建立并管理连接，还需要手动编写sql语句。简单的项目到是无所谓，可是一旦项目设计的东西比较复杂，表比较多的时候整个sql的编写就非常的消耗精力。</p>
+<p>在Java、c#等语言中已经有轻量的数据库框架或者解决方案了。在nodejs中我推荐Sequelize。它是一个很成熟的框架，在速度和性能上也非常有优势。而其中最关键的地方就在于，日常开发只需要管理对象的创建、查询方法的调用等即可，极少需要编写sql语句。这一个好处就是省去了复杂的sql语句维护，同时也避免了因sql而引起的不必要的bug。</p>
+<p>Sequelize是针对node.js和io.js提供的ORM框架。具体就是突出一个支持广泛，配置和查询方法统一。它支持的数据库包括：PostgreSQL、 MySQL、MariaDB、 SQLite 和 MSSQL。</p>
+<p>本文中测试以及API展示地址：<a href="https://github.com/cuo9958/sequelize-api" target="_blank" rel="noopener">github地址</a></p>
+<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><p>Sequelize的调用突出一个简单快捷。具体情况可以感受一下下面的代码。如果有过开发经验的可以略过。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Table1.findById(<span class="number">23</span>);</span><br><span class="line"><span class="comment">//select a,b,c,d from table1 where id=23;</span></span><br><span class="line"></span><br><span class="line">Table1.findAll(&#123;</span><br><span class="line">	where:&#123;<span class="attr">a</span>:<span class="string">"test"</span>,<span class="attr">b</span>:<span class="number">76</span>&#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//select a,b,c,d from table1 where a="test" and "b=76;</span></span><br></pre></td></tr></table></figure></p>
+<p>在单表查询的时候只需要简单的配置即可完成查询。是不是非常的简单方便呢？</p>
+<h2 id="连接数据库"><a href="#连接数据库" class="headerlink" title="连接数据库"></a>连接数据库</h2><p>Sequelize的连接需要传入参数，并且可以配置开启线程池、读写分库等操作。</p>
+<p>简单的写法是这样的:<code>new Sequelize(&quot;表名&quot;,&quot;用户名&quot;,&quot;密码&quot;,配置)</code></p>
+<p>正常使用中很少使用到所有的参数，这里提供一个常用的模板，只需要修改自己使用的值即可。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sequelize = <span class="keyword">new</span> Sequelize(<span class="string">'database'</span>, <span class="string">'username'</span>, <span class="string">'password'</span>,  &#123;</span><br><span class="line">  host: <span class="string">'localhost'</span>,    <span class="comment">//数据库地址,默认本机</span></span><br><span class="line">  port:<span class="string">'3306'</span>,</span><br><span class="line">  dialect: <span class="string">'mysql'</span>,</span><br><span class="line">  pool: &#123;   <span class="comment">//连接池设置</span></span><br><span class="line">    max: <span class="number">5</span>, <span class="comment">//最大连接数</span></span><br><span class="line">    min: <span class="number">0</span>, <span class="comment">//最小连接数</span></span><br><span class="line">    idle: <span class="number">10000</span></span><br><span class="line">  &#125;,</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>下面是详细的配置参数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sequelize = <span class="keyword">new</span> Sequelize(<span class="string">'database'</span>, <span class="string">'username'</span>, <span class="string">'password'</span>, &#123;</span><br><span class="line">  <span class="comment">// 数据库类型，支持: 'mysql', 'sqlite', 'postgres', 'mssql'</span></span><br><span class="line">  dialect: <span class="string">'mysql'</span>,</span><br><span class="line">  <span class="comment">// 自定义链接地址，可以是ip或者域名，默认本机：localhost</span></span><br><span class="line">  host: <span class="string">'my.server.tld'</span>,</span><br><span class="line">  <span class="comment">// 自定义端口，默认3306</span></span><br><span class="line">  port: <span class="number">12345</span>,</span><br><span class="line">  <span class="comment">// postgres使用的参数,连接类型，默认：tcp</span></span><br><span class="line">  protocol: <span class="literal">null</span>,</span><br><span class="line">  <span class="comment">// 是否开始日志，默认是用console.log</span></span><br><span class="line">  <span class="comment">// 建议开启，方便对照生成的sql语句</span></span><br><span class="line">  logging: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// 默认是空</span></span><br><span class="line">  <span class="comment">// 支持: 'mysql', 'postgres', 'mssql'</span></span><br><span class="line">  dialectOptions: &#123;</span><br><span class="line">    socketPath: <span class="string">'/Applications/MAMP/tmp/mysql/mysql.sock'</span>,</span><br><span class="line">    supportBigNumbers: <span class="literal">true</span>,</span><br><span class="line">    bigNumberStrings: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// sqlite的存储位置,仅sqlite有用</span></span><br><span class="line">  <span class="comment">// - 默认 ':memory:'</span></span><br><span class="line">  storage: <span class="string">'path/to/database.sqlite'</span>,</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 是否将undefined转化为NULL</span></span><br><span class="line">  <span class="comment">// - 默认: false</span></span><br><span class="line">  omitNull: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// pg中开启ssl支持</span></span><br><span class="line">  <span class="comment">// - 默认: false</span></span><br><span class="line">  native: <span class="literal">true</span>,</span><br><span class="line">  <span class="comment">// 数据库默认参数,全局参数</span></span><br><span class="line">  define: &#123;</span><br><span class="line">    underscored: <span class="literal">false</span></span><br><span class="line">    freezeTableName: <span class="literal">false</span>,</span><br><span class="line">    charset: <span class="string">'utf8'</span>,</span><br><span class="line">    dialectOptions: &#123;</span><br><span class="line">      collate: <span class="string">'utf8_general_ci'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    timestamps: <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 是否同步</span></span><br><span class="line">  sync: &#123; <span class="attr">force</span>: <span class="literal">true</span> &#125;,</span><br><span class="line">  <span class="comment">// 连接池配置</span></span><br><span class="line">  pool: &#123;</span><br><span class="line">    max: <span class="number">5</span>,</span><br><span class="line">    idle: <span class="number">30000</span>,</span><br><span class="line">    acquire: <span class="number">60000</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  isolationLevel: Transaction.ISOLATION_LEVELS.REPEATABLE_READ</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="定义模型对象"><a href="#定义模型对象" class="headerlink" title="定义模型对象"></a>定义模型对象</h2><p>在使用之前一定要先创建模型对象。就是数据库中表的名称、使用到的字段、字段类型等。</p>
+<p>这里有一个推荐的开发方式。先在nodejs中将对象创建出来，然后调用Sequelize的同步方法，将数据库自动创建出来。这样就避免了既要写代码建表，又要手工创建数据库中的表的操作。只需要单独考虑代码中的对象类型等属性就好了。</p>
+<p>如果数据库中已经建好了表，并且不能删除，这个时候就不能自动创建了，因为创建的时候会删除掉旧的数据。</p>
+<p>下面是简单的对象创建多数情况下这样就可以了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> users = db.define(<span class="string">'t_user'</span><span class="comment">/*自定义表名*/</span>, &#123;</span><br><span class="line">    id: &#123;</span><br><span class="line">        type: Sequelize.INTEGER,</span><br><span class="line">        primaryKey: <span class="literal">true</span>,       <span class="comment">//主键</span></span><br><span class="line">        autoIncrement: <span class="literal">true</span>,    <span class="comment">//自增</span></span><br><span class="line">        comment: <span class="string">"自增id"</span>       <span class="comment">//注释:只在代码中有效</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//用户名</span></span><br><span class="line">    username: &#123;</span><br><span class="line">        type: Sequelize.STRING,</span><br><span class="line">        validate:&#123;</span><br><span class="line">	        isEmail: <span class="literal">true</span>,   <span class="comment">//类型检测,是否是邮箱格式</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//密码</span></span><br><span class="line">    pwd: &#123;</span><br><span class="line">        type: Sequelize.STRING(<span class="number">10</span>),</span><br><span class="line">        allowNull: <span class="literal">false</span>,<span class="comment">//不允许为null</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//状态</span></span><br><span class="line">    status: &#123;</span><br><span class="line">        type: Sequelize.INTEGER,</span><br><span class="line">         defaultValue: <span class="number">0</span>,<span class="comment">//默认值是0</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//昵称</span></span><br><span class="line">    nickname: &#123;</span><br><span class="line">        type: Sequelize.STRING</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//token</span></span><br><span class="line">    token: &#123;</span><br><span class="line">        type: Sequelize.UUID</span><br><span class="line">    &#125;,</span><br><span class="line">    create_time: &#123;</span><br><span class="line">        type: Sequelize.DATE,</span><br><span class="line">        defaultValue: Sequelize.NOW</span><br><span class="line">    &#125;</span><br><span class="line">&#125;, &#123;</span><br><span class="line">    <span class="comment">//使用自定义表名</span></span><br><span class="line">    freezeTableName: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">//去掉默认的添加时间和更新时间</span></span><br><span class="line">    timestamps: <span class="literal">false</span>,</span><br><span class="line">    indexes:[</span><br><span class="line">	    <span class="comment">//普通索引,默认BTREE</span></span><br><span class="line">        &#123;</span><br><span class="line">            unique: <span class="literal">true</span>,</span><br><span class="line">            fields: [<span class="string">'pid'</span>]</span><br><span class="line">        &#125;,</span><br><span class="line">     ]</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//同步:没有就新建,有就不变</span></span><br><span class="line"><span class="comment">// users.sync();</span></span><br><span class="line"><span class="comment">//先删除后同步</span></span><br><span class="line">users.sync(&#123;</span><br><span class="line">    force: <span class="literal">true</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>前段将了对象的创建，里面用到了对象的各种类型。这里再介绍一下类型的具体使用方式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">Sequelize.STRING 		<span class="comment">//字符串,长度默认255,VARCHAR(255)</span></span><br><span class="line">Sequelize.STRING(<span class="number">1234</span>)  <span class="comment">//设定长度的字符串,VARCHAR(1234)</span></span><br><span class="line">Sequelize.STRING.BINARY   <span class="comment">//定义类型VARCHAR BINARY</span></span><br><span class="line">Sequelize.TEXT           <span class="comment">//长字符串,文本 TEXT</span></span><br><span class="line">Sequelize.TEXT(<span class="string">'tiny'</span>)   <span class="comment">//小文本字符串,TINYTEXT</span></span><br><span class="line"></span><br><span class="line">Sequelize.INTEGER      <span class="comment">//int数字,int</span></span><br><span class="line">Sequelize.BIGINT       <span class="comment">//更大的数字,BIGINT</span></span><br><span class="line">Sequelize.BIGINT(<span class="number">11</span>)   <span class="comment">//设定长度的数字,BIGINT(11)</span></span><br><span class="line"></span><br><span class="line">Sequelize.FLOAT        <span class="comment">//浮点类型,FLOAT</span></span><br><span class="line">Sequelize.FLOAT(<span class="number">11</span>)     <span class="comment">//设定长度的浮点,FLOAT(11)</span></span><br><span class="line">Sequelize.FLOAT(<span class="number">11</span>, <span class="number">12</span>)  <span class="comment">//设定长度和小数位数的浮点,FLOAT(11,12)</span></span><br><span class="line"></span><br><span class="line">Sequelize.REAL     <span class="comment">//REAL  PostgreSQL only.</span></span><br><span class="line">Sequelize.REAL(<span class="number">11</span>) <span class="comment">// REAL(11)    PostgreSQL only.</span></span><br><span class="line">Sequelize.REAL(<span class="number">11</span>, <span class="number">12</span>)  <span class="comment">// REAL(11,12) PostgreSQL only.</span></span><br><span class="line"></span><br><span class="line">Sequelize.DOUBLE     <span class="comment">// DOUBLE</span></span><br><span class="line">Sequelize.DOUBLE(<span class="number">11</span>)  <span class="comment">// DOUBLE(11)</span></span><br><span class="line">Sequelize.DOUBLE(<span class="number">11</span>, <span class="number">12</span>) <span class="comment">// DOUBLE(11,12)</span></span><br><span class="line"></span><br><span class="line">Sequelize.DECIMAL     <span class="comment">// DECIMAL</span></span><br><span class="line">Sequelize.DECIMAL(<span class="number">10</span>, <span class="number">2</span>)  <span class="comment">// DECIMAL(10,2)</span></span><br><span class="line"></span><br><span class="line">Sequelize.DATE    <span class="comment">// 日期类型,DATETIME for mysql / sqlite, TIMESTAMP WITH TIME ZONE for postgres</span></span><br><span class="line">Sequelize.DATE(<span class="number">6</span>) <span class="comment">// mysql 5.6.4+支持,分秒精度为6位</span></span><br><span class="line">Sequelize.DATEONLY   <span class="comment">// 仅日期部分</span></span><br><span class="line">Sequelize.BOOLEAN   <span class="comment">// int类型,长度为1,TINYINT(1)</span></span><br><span class="line"></span><br><span class="line">Sequelize.ENUM(<span class="string">'value 1'</span>, <span class="string">'value 2'</span>)  <span class="comment">// 枚举类型</span></span><br><span class="line">Sequelize.ARRAY(Sequelize.TEXT)  <span class="comment">//PostgreSQL only.</span></span><br><span class="line">Sequelize.ARRAY(Sequelize.ENUM)  <span class="comment">//  PostgreSQL only.</span></span><br><span class="line"></span><br><span class="line">Sequelize.JSON   <span class="comment">// JSON column. PostgreSQL, SQLite and MySQL only.</span></span><br><span class="line">Sequelize.JSONB  <span class="comment">// JSONB column. PostgreSQL only.</span></span><br><span class="line"></span><br><span class="line">Sequelize.BLOB   <span class="comment">// BLOB (bytea for PostgreSQL)</span></span><br><span class="line">Sequelize.BLOB(<span class="string">'tiny'</span>)  <span class="comment">// TINYBLOB (bytea for PostgreSQL. Other options are medium and long)</span></span><br><span class="line"></span><br><span class="line">Sequelize.UUID  <span class="comment">// PostgreSQL和SQLite的数据类型是UUID, MySQL是CHAR(36)类型</span></span><br><span class="line"></span><br><span class="line">Sequelize.CIDR  <span class="comment">// PostgreSQL中的CIDR类型</span></span><br><span class="line">Sequelize.INET   <span class="comment">// PostgreSQL中的INET类型</span></span><br><span class="line">Sequelize.MACADDR  <span class="comment">// PostgreSQL中的MACADDR类型</span></span><br><span class="line"></span><br><span class="line">Sequelize.RANGE(Sequelize.INTEGER)    <span class="comment">//PostgreSQL only.</span></span><br><span class="line">Sequelize.RANGE(Sequelize.BIGINT)     <span class="comment">// PostgreSQL only.</span></span><br><span class="line">Sequelize.RANGE(Sequelize.DATE)       <span class="comment">//PostgreSQL only.</span></span><br><span class="line">Sequelize.RANGE(Sequelize.DATEONLY)   <span class="comment">//PostgreSQL only.</span></span><br><span class="line">Sequelize.RANGE(Sequelize.DECIMAL)    <span class="comment">//PostgreSQL only.</span></span><br><span class="line"></span><br><span class="line">Sequelize.ARRAY(Sequelize.RANGE(Sequelize.DATE)) <span class="comment">// PostgreSQL only.</span></span><br><span class="line"></span><br><span class="line">Sequelize.GEOMETRY   <span class="comment">//PostgreSQL (with PostGIS) or MySQL only.</span></span><br><span class="line">Sequelize.GEOMETRY(<span class="string">'POINT'</span>)  <span class="comment">// PostgreSQL (with PostGIS) or MySQL only.</span></span><br><span class="line">Sequelize.GEOMETRY(<span class="string">'POINT'</span>, <span class="number">4326</span>)<span class="comment">// PostgreSQL (with PostGIS) or MySQL only.</span></span><br></pre></td></tr></table></figure>
+<h2 id="数据类型检测"><a href="#数据类型检测" class="headerlink" title="数据类型检测"></a>数据类型检测</h2><p>上面可以看到使用validate字段去验证字段的值是否符合标准，这样就可以在入库之前就能知道数据是否符合规则。否则贸然将陌生的数据存入数据库就好像将陌生人带到家里一样，是否安全全靠缘分啊。</p>
+<p>Sequelize内置支持的验证还是非常的多的，如果这些都不满意，还可以自己定义一个。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">validate: &#123;</span><br><span class="line">    is: [<span class="string">"^[a-z]+$"</span>,<span class="string">'i'</span>],     <span class="comment">// 全匹配字母</span></span><br><span class="line">    is: <span class="regexp">/^[a-z]+$/i</span>,          <span class="comment">// 全匹配字母，用规则表达式写法</span></span><br><span class="line">    not: [<span class="string">"[a-z]"</span>,<span class="string">'i'</span>],       <span class="comment">// 不能包含字母</span></span><br><span class="line">    isEmail: <span class="literal">true</span>,            <span class="comment">// 检查邮件格式</span></span><br><span class="line">    isUrl: <span class="literal">true</span>,              <span class="comment">// 是否是合法网址</span></span><br><span class="line">    isIP: <span class="literal">true</span>,               <span class="comment">// 是否是合法IP地址</span></span><br><span class="line">    isIPv4: <span class="literal">true</span>,             <span class="comment">// 是否是合法IPv4地址</span></span><br><span class="line">    isIPv6: <span class="literal">true</span>,             <span class="comment">// 是否是合法IPv6地址</span></span><br><span class="line">    isAlpha: <span class="literal">true</span>,            <span class="comment">// 是否是字母</span></span><br><span class="line">    isAlphanumeric: <span class="literal">true</span>,     <span class="comment">// 是否是数字和字母</span></span><br><span class="line">    isNumeric: <span class="literal">true</span>,          <span class="comment">// 只允许数字</span></span><br><span class="line">    isInt: <span class="literal">true</span>,              <span class="comment">// 只允许整数</span></span><br><span class="line">    isFloat: <span class="literal">true</span>,            <span class="comment">// 是否是浮点数</span></span><br><span class="line">    isDecimal: <span class="literal">true</span>,          <span class="comment">// 是否是十进制书</span></span><br><span class="line">    isLowercase: <span class="literal">true</span>,        <span class="comment">// 是否是小写</span></span><br><span class="line">    isUppercase: <span class="literal">true</span>,        <span class="comment">// 是否大写</span></span><br><span class="line">    notNull: <span class="literal">true</span>,            <span class="comment">// 不允许为null</span></span><br><span class="line">    isNull: <span class="literal">true</span>,             <span class="comment">// 是否是null</span></span><br><span class="line">    notEmpty: <span class="literal">true</span>,           <span class="comment">// 不允许为空</span></span><br><span class="line">    equals: <span class="string">'specific value'</span>, <span class="comment">// 等于某些值</span></span><br><span class="line">    contains: <span class="string">'foo'</span>,          <span class="comment">// 包含某些字符</span></span><br><span class="line">    notIn: [[<span class="string">'foo'</span>, <span class="string">'bar'</span>]],  <span class="comment">// 不在列表中</span></span><br><span class="line">    isIn: [[<span class="string">'foo'</span>, <span class="string">'bar'</span>]],   <span class="comment">// 在列表中</span></span><br><span class="line">    notContains: <span class="string">'bar'</span>,       <span class="comment">// 不包含</span></span><br><span class="line">    len: [<span class="number">2</span>,<span class="number">10</span>],              <span class="comment">// 长度范围</span></span><br><span class="line">    isUUID: <span class="number">4</span>,                <span class="comment">// 是否是合法 uuids</span></span><br><span class="line">    isDate: <span class="literal">true</span>,             <span class="comment">// 是否是有效日期</span></span><br><span class="line">    isAfter: <span class="string">"2011-11-05"</span>,    <span class="comment">// 是否晚于某个日期</span></span><br><span class="line">    isBefore: <span class="string">"2011-11-05"</span>,   <span class="comment">// 是否早于某个日期</span></span><br><span class="line">    max: <span class="number">23</span>,                  <span class="comment">// 最大值</span></span><br><span class="line">    min: <span class="number">23</span>,                  <span class="comment">// 最小值</span></span><br><span class="line">    isArray: <span class="literal">true</span>,            <span class="comment">// 是否是数组</span></span><br><span class="line">    isCreditCard: <span class="literal">true</span>,       <span class="comment">// 是否是有效信用卡号</span></span><br><span class="line">    <span class="comment">// 自定义规则</span></span><br><span class="line">    isEven: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">parseInt</span>(value) % <span class="number">2</span> != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'请输入偶数!'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="API略讲"><a href="#API略讲" class="headerlink" title="API略讲"></a>API略讲</h2><p>Sequelize的API基本覆盖了常用的使用方式，其中单表查询常用的有一下几种。复杂的可以参考更多的API。</p>
+<h3 id="查询多条-findAll-opts-或者-all-opts"><a href="#查询多条-findAll-opts-或者-all-opts" class="headerlink" title="查询多条 findAll(opts) 或者 all(opts)"></a>查询多条 findAll(opts) 或者 all(opts)</h3><p>查询用的参数普遍通用，只有部分API的有特殊参数。这里展示一次常用参数，下面就略过了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> list = <span class="keyword">await</span> model.findAll(&#123;</span><br><span class="line">	where:&#123;</span><br><span class="line">		id:&#123;<span class="attr">$gt</span>:<span class="number">10</span>&#125;,<span class="comment">//id大于10的</span></span><br><span class="line">		name:<span class="string">"test"</span>  <span class="comment">//name等于test</span></span><br><span class="line">	&#125;,</span><br><span class="line">	order:[</span><br><span class="line">		<span class="string">"id"</span>,   <span class="comment">//根据id排序</span></span><br><span class="line">		[<span class="string">"id"</span>,<span class="string">"desc"</span>]<span class="comment">//根据id倒序</span></span><br><span class="line">	],</span><br><span class="line">	limit:<span class="number">10</span>,<span class="comment">//返回个数</span></span><br><span class="line">	offset:<span class="number">20</span>,<span class="comment">//起始位置,跳过数量</span></span><br><span class="line">	attributes:[<span class="string">"attr1"</span>,<span class="string">"attr2"</span>], <span class="comment">//返回的字段</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//select attr1,attr2 from model where ......</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="通过id查询-findById-id-opts"><a href="#通过id查询-findById-id-opts" class="headerlink" title="通过id查询 findById(id,opts)"></a>通过id查询 findById(id,opts)</h3><p>这里默认数据的主键是id，查询的时候直接通过id查询数据。这里推荐在新建数据库的时候可以添加id作为唯一主键。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> model = <span class="keyword">await</span> model.findById(<span class="number">12</span>);</span><br><span class="line"><span class="comment">//select a,b,c from model where id=12;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="查询一条记录-findOne-opts"><a href="#查询一条记录-findOne-opts" class="headerlink" title="查询一条记录 findOne(opts)"></a>查询一条记录 findOne(opts)</h3><p>根据条件查询记录，这里的条件一定要填写，不然就是返回第一条数据了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> model = <span class="keyword">await</span> model.findOne(&#123;</span><br><span class="line">	where:&#123;<span class="attr">id</span>:<span class="number">12</span>&#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//select a,b,c from model where id=12;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="分页查询-findAndCount-opts-或者-findAndCountAll"><a href="#分页查询-findAndCount-opts-或者-findAndCountAll" class="headerlink" title="分页查询 findAndCount(opts) 或者 findAndCountAll"></a>分页查询 findAndCount(opts) 或者 findAndCountAll</h3><p>分页查询恐怕是另外一个常用方法了。任何一个列表都有需要分页的时候。</p>
+<p>这个方法会同时执行2跳语句。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> data = <span class="keyword">await</span> model.findAndCount(&#123;</span><br><span class="line">	limit:<span class="number">10</span>,<span class="comment">//每页10条</span></span><br><span class="line">	offset:<span class="number">0</span>*<span class="number">10</span>,<span class="comment">//第x页*每页个数</span></span><br><span class="line">	where:&#123;&#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">let</span> list = data.rows;</span><br><span class="line"><span class="keyword">let</span> count = data.count;</span><br><span class="line"><span class="comment">//select count(*) from model where ...;</span></span><br><span class="line"><span class="comment">//select a,b,c from model where .... limit 0,10;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="添加新数据-create-model-opts"><a href="#添加新数据-create-model-opts" class="headerlink" title="添加新数据 create(model,opts)"></a>添加新数据 create(model,opts)</h3><p>添加就非常的自在了。简单的只需要传入model对象即可。这里要保证model对象的属性和字段名要一致。如果不一致就会出错。也可以传入配置参数来增加条件等。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> model= &#123;</span><br><span class="line">	name:<span class="string">"test"</span>,</span><br><span class="line">	token:<span class="string">"adwadfv2324"</span></span><br><span class="line">&#125;</span><br><span class="line"> <span class="keyword">await</span> model.create(model);</span><br><span class="line"><span class="comment">//insert into model (name,token) values("test","adwadfv2324");</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="查询-不存在就返回默认对象-findOrInitialize-opts"><a href="#查询-不存在就返回默认对象-findOrInitialize-opts" class="headerlink" title="查询,不存在就返回默认对象 findOrInitialize(opts)"></a>查询,不存在就返回默认对象 findOrInitialize(opts)</h3><p>opts.default 默认值对象</p>
+<p>这个方法首先会查询数据库，如果没有结果就会返回参数中的default对象。这个比较适合返回默认对象之类的场景。</p>
+<h3 id="查询-不存在就新建一个-findOrCreate-opts-或者findCreateFind"><a href="#查询-不存在就新建一个-findOrCreate-opts-或者findCreateFind" class="headerlink" title="查询,不存在就新建一个 findOrCreate(opts)或者findCreateFind"></a>查询,不存在就新建一个 findOrCreate(opts)或者findCreateFind</h3><p>这个方法用到的情况也比较多。通常用于自动创建不存在的数据。直接就返回了默认值。</p>
+<h3 id="有则更新-无则添加-upsert-model-opts-或者-insertOrUpdate-model-opts"><a href="#有则更新-无则添加-upsert-model-opts-或者-insertOrUpdate-model-opts" class="headerlink" title="有则更新,无则添加 upsert(model,opts) 或者 insertOrUpdate(model,opts)"></a>有则更新,无则添加 upsert(model,opts) 或者 insertOrUpdate(model,opts)</h3><p>根据主键或者唯一约束键匹配</p>
+<p>常用于编辑的时候添加或者更新统一操作。</p>
+<h3 id="更新记录-update-model-opts"><a href="#更新记录-update-model-opts" class="headerlink" title="更新记录 update(model,opts)"></a>更新记录 update(model,opts)</h3><p>就是最常用的更新方法，可以传入要更新的model对象，同时用配置参数有条件的区别要更新的对象。</p>
+<h3 id="删除记录-destroy-opts"><a href="#删除记录-destroy-opts" class="headerlink" title="删除记录 destroy(opts)"></a>删除记录 destroy(opts)</h3><p>删除有2种情况，一种是物理删除。删除就从表中不存在了。另外一种就是设置paranoid，这个是虚拟删除，默认一个字段表示数据是否删除，查询的时候去掉这个条件即可查询到删除的数据。</p>
+<h3 id="恢复记录-restore-opts"><a href="#恢复记录-restore-opts" class="headerlink" title="恢复记录 restore(opts)"></a>恢复记录 restore(opts)</h3><p>恢复多个实例，当启用paranoid时就可以使用这个方法将曾今删除的数据恢复了。</p>
+<h3 id="其他常用API"><a href="#其他常用API" class="headerlink" title="其他常用API"></a>其他常用API</h3><ol>
+<li>指定字段查询最大值 max(“id”,opts)</li>
+<li>指定字段查询最小值 min(“id”,opts)</li>
+<li>求和 sum(“id”,opts)</li>
+<li>批量添加 bulkCreate([model],opts)</li>
+<li>查表结构的信息 describe()</li>
+<li>递增 increment(“id”,{by:1})</li>
+<li>递减 decrement(“id”,{by:1})</li>
+<li>统计查询个数 count(opts)</li>
+</ol>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>Sequelize中的事务比较简单。但是如果有多个事务的话写出来的代码会非常的难看。这也算是Sequelize优化的比较差的地方了。</p>
+<p>需要记得transaction参数要一致传递就可以了。其他就是一个正常的Promise调用。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//调用Sequelize初始化之后的sequelize对象</span></span><br><span class="line"><span class="keyword">return</span> sequelize.transaction(<span class="function"><span class="keyword">function</span> (<span class="params">t</span>) </span>&#123;</span><br><span class="line">	<span class="comment">//返回最终的Promise</span></span><br><span class="line">  <span class="keyword">return</span> User.create(&#123;</span><br><span class="line">    firstName: <span class="string">'Abraham'</span>,</span><br><span class="line">    lastName: <span class="string">'Lincoln'</span></span><br><span class="line">  &#125;, &#123;<span class="attr">transaction</span>: t&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">user</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> user.setShooter(&#123;</span><br><span class="line">      firstName: <span class="string">'John'</span>,</span><br><span class="line">      lastName: <span class="string">'Boothe'</span></span><br><span class="line">    &#125;, &#123;<span class="attr">transaction</span>: t&#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//主动调用commit提交结果</span></span><br><span class="line">  <span class="keyword">return</span> t.commit();</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">  <span class="comment">//主动回滚操作</span></span><br><span class="line">  <span class="keyword">return</span> t.rollback();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="多表联查"><a href="#多表联查" class="headerlink" title="多表联查"></a>多表联查</h2><p>外键可能算是Sequelize中的一个难点了。这里涉及的东西稍微多一点，我们来慢慢捋一遍。</p>
+<h3 id="外键知识点"><a href="#外键知识点" class="headerlink" title="外键知识点"></a>外键知识点</h3><p>外键的定制作用—-三种约束模式：</p>
+<ol>
+<li>district：严格模式(默认), 父表不能删除或更新一个被子表引用的记录。</li>
+<li>cascade：级联模式, 父表操作后，子表关联的数据也跟着一起操作。也是Sequelize的默认模式。</li>
+<li>set null：置空模式,前提外键字段允许为NLL,  父表操作后，子表对应的字段被置空。</li>
+</ol>
+<h3 id="使用外键的前提"><a href="#使用外键的前提" class="headerlink" title="使用外键的前提"></a>使用外键的前提</h3><p>在Sequelize中使用外键需要提前检查一下下面的这些选项，里面有一条出错就会导致设置失败。</p>
+<ol>
+<li>表储存引擎必须是innodb，否则创建的外键无约束效果。</li>
+<li>外键的列类型必须与父表的主键类型完全一致。</li>
+<li>外键的名字不能重复。</li>
+<li>已经存在数据的字段被设为外键时，必须保证字段中的数据与父表的主键数据对应起来。</li>
+</ol>
+<h3 id="使用示例—默认"><a href="#使用示例—默认" class="headerlink" title="使用示例—默认"></a>使用示例—默认</h3><p>默认情况下，主键使用的是主表的id字段，外键是使用的按照table+字段的方式建立的外键。一般情况下需要手动指定。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//主表指定关系</span></span><br><span class="line"> test1.hasMany(test2, &#123;</span><br><span class="line">     foreignKey: <span class="string">"pid"</span>,<span class="comment">//外键名称</span></span><br><span class="line"> &#125;);</span><br><span class="line"> <span class="comment">//子表指定关系</span></span><br><span class="line"> test2.belongsTo(test1, &#123;</span><br><span class="line">     foreignKey: <span class="string">"pid"</span>,<span class="comment">//外键名称</span></span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure></p>
+<p>默认就会在子表中添加一条外键记录，指向的就是主表的id。一般情况下这样就能够满足正常的使用了。比如一个主表记录商品信息，一个子表记录多个评论消息。</p>
+<h3 id="使用示例—自定义"><a href="#使用示例—自定义" class="headerlink" title="使用示例—自定义"></a>使用示例—自定义</h3><p>如果主表使用的主键id并不能满足正常的使用，还可以指定某一个固定的字段作为主表中的约束关系。</p>
+<blockquote>
+<p>tips：主表中如果不是使用id作为主要关系，自定义的字段必须添加索引等条件，作为依赖中的关系。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> test1.hasMany(test2, &#123;</span><br><span class="line">     foreignKey: <span class="string">"pid"</span>,<span class="comment">//外键字段名</span></span><br><span class="line">     sourceKey: <span class="string">"pid"</span>,<span class="comment">//主键字段名</span></span><br><span class="line"> &#125;);</span><br><span class="line"> test2.belongsTo(test1, &#123;</span><br><span class="line">     foreignKey: <span class="string">"pid"</span>,<span class="comment">//关联名</span></span><br><span class="line">     targetKey:<span class="string">"pid"</span><span class="comment">//自定义外键字段</span></span><br><span class="line"> &#125;);</span><br><span class="line"> <span class="comment">//等待主键建立成功再建立子表的外键关系</span></span><br><span class="line"> setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    test2.sync(&#123;</span><br><span class="line">        force: <span class="literal">true</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;, <span class="number">2500</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="使用示例—伪关系"><a href="#使用示例—伪关系" class="headerlink" title="使用示例—伪关系"></a>使用示例—伪关系</h3><p>实际使用的时候我还是倾向于这种关系。即表中关系已定的情况下仅仅指定外键关系。同步的时候仅仅同步表内容，不同步这个外键关系。</p>
+<blockquote>
+<p>真正的建立可以使用手动建表的时候添加。或者也可以在自动建表结束后异步再执行一次外键关系的添加。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">test1.hasMany(test2, &#123;</span><br><span class="line">    foreignKey: <span class="string">"pid"</span>,</span><br><span class="line">    sourceKey: <span class="string">"pid"</span>,</span><br><span class="line">    constraints: <span class="literal">false</span> <span class="comment">//不同步建立外键关系</span></span><br><span class="line">&#125;);</span><br><span class="line">test2.belongsTo(test1, &#123;</span><br><span class="line">    foreignKey: <span class="string">"pid"</span>,</span><br><span class="line">    targetKey:<span class="string">"pid"</span>,</span><br><span class="line">    constraints: <span class="literal">false</span> <span class="comment">//不同步建立外键关系</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>实际的操作部分大家可以看github中的test.js。<a href="https://github.com/cuo9958/sequelize-api" target="_blank" rel="noopener">github地址</a></p>
+<h3 id="单表操作"><a href="#单表操作" class="headerlink" title="单表操作"></a>单表操作</h3><p>Sequelize在查询结果返回之后会返回一个它自定义的对象。这个对象是支持继续操作的，其中具体的值存放在datavalues中。不过可以放心的是在转化为字符串的时候是不会带有任何Sequelize的属性的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据条件查询一条数据</span></span><br><span class="line"><span class="keyword">let</span> model = <span class="keyword">await</span> test1.findOne(&#123;</span><br><span class="line">	where:&#123;</span><br><span class="line">		id:<span class="number">5</span>,</span><br><span class="line">		name:<span class="string">"test"</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//修改其中的name字段的值</span></span><br><span class="line">model.name=<span class="string">"更新"</span>;</span><br><span class="line"><span class="comment">//保存,会自动update数据库中的值</span></span><br><span class="line">model.save();</span><br></pre></td></tr></table></figure>
+<h3 id="联查"><a href="#联查" class="headerlink" title="联查"></a>联查</h3><p>正常的使用过程中很少会说只需要查询一个表就能结果问题的。这里再说一下2个表查询的时候是怎么使用的。</p>
+<p>这里的查询默认已经做好了外键的的关系。不过在使用的时候不做也是可以的，就是在查询的时候性能稍微不好而已。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查询主表list的数据</span></span><br><span class="line"><span class="comment">//一条list中的数据对应多条item中的数据</span></span><br><span class="line"> <span class="keyword">let</span> data = <span class="keyword">await</span> models.List.findAll(&#123;</span><br><span class="line">	 where:&#123;<span class="attr">id</span>:<span class="number">5</span>&#125;,<span class="comment">//条件,这里jiashe只需查询一条</span></span><br><span class="line">     include: [&#123;</span><br><span class="line">         model: models.Item,</span><br><span class="line">         <span class="keyword">as</span>:<span class="string">"items"</span>,<span class="comment">//返回的对象修改成一个固定的名称</span></span><br><span class="line">     &#125;]</span><br><span class="line"> &#125;);</span><br><span class="line"> <span class="keyword">let</span> list1=data[<span class="number">0</span>];<span class="comment">//返回的第一条数据就是要查询的数据</span></span><br><span class="line"> <span class="keyword">let</span> list2=list1.items;<span class="comment">//返回子表数据,items是自定义的名称</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上面的介绍已经解决了大多数情况下的查询等操作。而且我也相信，真的遇到了瓶颈，解决方案很可能也并不是在Sequelize方面，或者说主要不是Sequelize的问题。比如大数据量的时候分表操作，就涉及到了更多的知识点。</p>
+<p>nodejs在做后端方面还处于发展阶段。希望有更多的前端能够接触并了解它。不仅仅在开发过程中对自己是一个增强，在长期的职业规划中也是一个很好的增强自己的武器。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请支持我一下吧.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wxzs.jpeg" alt="郭方超 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+            <a href="/tags/Sequelize/" rel="tag"># Sequelize</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/06/动态RN技术构思/" rel="next" title="动态RN技术构思">
+                <i class="fa fa-chevron-left"></i> 动态RN技术构思
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/10/bigpipe分段加载/" rel="prev" title="bigpipe分段加载">
+                bigpipe分段加载 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="郭方超" />
+            
+              <p class="site-author-name" itemprop="name">郭方超</p>
+              <p class="site-description motion-element" itemprop="description">全栈工程师/产品经理/游戏开发</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/cuo9958" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:545570335@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/fangchao.guo" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ezo.biz/" title="小猪的博客" target="_blank">小猪的博客</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#演示"><span class="nav-number">1.</span> <span class="nav-text">演示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#连接数据库"><span class="nav-number">2.</span> <span class="nav-text">连接数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义模型对象"><span class="nav-number">3.</span> <span class="nav-text">定义模型对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">4.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型检测"><span class="nav-number">5.</span> <span class="nav-text">数据类型检测</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API略讲"><span class="nav-number">6.</span> <span class="nav-text">API略讲</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查询多条-findAll-opts-或者-all-opts"><span class="nav-number">6.1.</span> <span class="nav-text">查询多条 findAll(opts) 或者 all(opts)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过id查询-findById-id-opts"><span class="nav-number">6.2.</span> <span class="nav-text">通过id查询 findById(id,opts)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询一条记录-findOne-opts"><span class="nav-number">6.3.</span> <span class="nav-text">查询一条记录 findOne(opts)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页查询-findAndCount-opts-或者-findAndCountAll"><span class="nav-number">6.4.</span> <span class="nav-text">分页查询 findAndCount(opts) 或者 findAndCountAll</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加新数据-create-model-opts"><span class="nav-number">6.5.</span> <span class="nav-text">添加新数据 create(model,opts)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询-不存在就返回默认对象-findOrInitialize-opts"><span class="nav-number">6.6.</span> <span class="nav-text">查询,不存在就返回默认对象 findOrInitialize(opts)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查询-不存在就新建一个-findOrCreate-opts-或者findCreateFind"><span class="nav-number">6.7.</span> <span class="nav-text">查询,不存在就新建一个 findOrCreate(opts)或者findCreateFind</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有则更新-无则添加-upsert-model-opts-或者-insertOrUpdate-model-opts"><span class="nav-number">6.8.</span> <span class="nav-text">有则更新,无则添加 upsert(model,opts) 或者 insertOrUpdate(model,opts)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新记录-update-model-opts"><span class="nav-number">6.9.</span> <span class="nav-text">更新记录 update(model,opts)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除记录-destroy-opts"><span class="nav-number">6.10.</span> <span class="nav-text">删除记录 destroy(opts)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#恢复记录-restore-opts"><span class="nav-number">6.11.</span> <span class="nav-text">恢复记录 restore(opts)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他常用API"><span class="nav-number">6.12.</span> <span class="nav-text">其他常用API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务"><span class="nav-number">7.</span> <span class="nav-text">事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多表联查"><span class="nav-number">8.</span> <span class="nav-text">多表联查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#外键知识点"><span class="nav-number">8.1.</span> <span class="nav-text">外键知识点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用外键的前提"><span class="nav-number">8.2.</span> <span class="nav-text">使用外键的前提</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用示例—默认"><span class="nav-number">8.3.</span> <span class="nav-text">使用示例—默认</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用示例—自定义"><span class="nav-number">8.4.</span> <span class="nav-text">使用示例—自定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用示例—伪关系"><span class="nav-number">8.5.</span> <span class="nav-text">使用示例—伪关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例"><span class="nav-number">9.</span> <span class="nav-text">示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单表操作"><span class="nav-number">9.1.</span> <span class="nav-text">单表操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#联查"><span class="nav-number">9.2.</span> <span class="nav-text">联查</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">10.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郭方超</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+<div>
+  <a href="http://www.miitbeian.gov.cn/">京ICP备14044836号</a>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/three.js/84/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'JVfh8Anp0UMvaxLASDflkRGG-gzGzoHsz',
+        appKey: 'mMoiWejqJwBDcku0FIuKXMYy',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
