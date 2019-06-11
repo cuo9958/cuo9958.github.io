@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="OPbdC3XgTof4tFEWC2tht4eHDM4r4ibJbRVf-cFF104" />
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端,nodejs,配置中心," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="项目地址 单项目的时候只需要一个简单的配置文件即可完成配置管理。假如多个项目多个环境同时配置就会产生非常复杂的配置管理情况。 这个时候就需要用到配置中心了，它的原理其实类似于redis缓存这种。不同之处在于配置中心只关注配置，并且有更多的有利于配置的功能。大概的功能如下： 同时这些功能也是这次要开发的配置中心需要包含的功能。  本次开发的配置中心是基于nodejs的版本。客户端获取配置的方式可以参">
+<meta name="keywords" content="前端,nodejs,配置中心">
+<meta property="og:type" content="article">
+<meta property="og:title" content="轻量级配置中心">
+<meta property="og:url" content="http://www.guofangchao.com/2018/11/20/轻量级配置中心/index.html">
+<meta property="og:site_name" content="IT技术博客">
+<meta property="og:description" content="项目地址 单项目的时候只需要一个简单的配置文件即可完成配置管理。假如多个项目多个环境同时配置就会产生非常复杂的配置管理情况。 这个时候就需要用到配置中心了，它的原理其实类似于redis缓存这种。不同之处在于配置中心只关注配置，并且有更多的有利于配置的功能。大概的功能如下： 同时这些功能也是这次要开发的配置中心需要包含的功能。  本次开发的配置中心是基于nodejs的版本。客户端获取配置的方式可以参">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2018/11/20/5bf384bb4775c.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/20/5bf387fe004f8.png">
+<meta property="og:image" content="https://i.loli.net/2018/11/20/5bf38fbe6aba3.png">
+<meta property="og:updated_time" content="2018-11-20T05:00:15.476Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="轻量级配置中心">
+<meta name="twitter:description" content="项目地址 单项目的时候只需要一个简单的配置文件即可完成配置管理。假如多个项目多个环境同时配置就会产生非常复杂的配置管理情况。 这个时候就需要用到配置中心了，它的原理其实类似于redis缓存这种。不同之处在于配置中心只关注配置，并且有更多的有利于配置的功能。大概的功能如下： 同时这些功能也是这次要开发的配置中心需要包含的功能。  本次开发的配置中心是基于nodejs的版本。客户端获取配置的方式可以参">
+<meta name="twitter:image" content="https://i.loli.net/2018/11/20/5bf384bb4775c.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.guofangchao.com/2018/11/20/轻量级配置中心/"/>
+
+
+
+
+
+  <title>轻量级配置中心 | IT技术博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?643d73884f29a250f12d991eaf23e1d7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个技术人的实验室</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.guofangchao.com/2018/11/20/轻量级配置中心/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郭方超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">轻量级配置中心</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-20T12:59:00+08:00">
+                2018-11-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodejs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/20/轻量级配置中心/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/11/20/轻量级配置中心/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://github.com/cuo9958/node-config" target="_blank" rel="noopener">项目地址</a></p>
+<p>单项目的时候只需要一个简单的配置文件即可完成配置管理。假如多个项目多个环境同时配置就会产生非常复杂的配置管理情况。</p>
+<p>这个时候就需要用到配置中心了，它的原理其实类似于redis缓存这种。不同之处在于配置中心只关注配置，并且有更多的有利于配置的功能。大概的功能如下：<br><img src="https://i.loli.net/2018/11/20/5bf384bb4775c.png" alt=""></p>
+<p>同时这些功能也是这次要开发的配置中心需要包含的功能。</p>
+<blockquote>
+<p>本次开发的配置中心是基于nodejs的版本。<br>客户端获取配置的方式可以参考协议来开发属于自己的客户端SDK。目前已经提供的是javascript版本。</p>
+</blockquote>
+<h2 id="功能设计"><a href="#功能设计" class="headerlink" title="功能设计"></a>功能设计</h2><p>配置中心的开发是基于nodejs的，这里先看一下大体的流程。</p>
+<p><img src="https://i.loli.net/2018/11/20/5bf387fe004f8.png" alt=""></p>
+<p>从上面可以看到，一个配置中心最主要的功能包括：</p>
+<ol>
+<li>数据存储。这里使用存储协议匹配多种存储形式。</li>
+<li>定时任务。这里包含了定时存储和自定义的定时更新任务。</li>
+<li>web站点。主要是提供一个简单快速的设置配置的方式。</li>
+<li>心跳检测。使用TCP协议将客户端和配置中心相连，可以监听到配置的改动，及时获取最新的配置内容。</li>
+</ol>
+<h2 id="开发功能"><a href="#开发功能" class="headerlink" title="开发功能"></a>开发功能</h2><p>落实到具体的开发上面其实非常简单，很多时候可能只需要一个了解和实践的过程。这里我把大概的思路跟大家捋一下。</p>
+<h3 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h3><p>存储的目的只有2个：</p>
+<ol>
+<li>存储用到的配置。这里只是简单的实现了列表、存、取的功能</li>
+<li>用户登录。</li>
+</ol>
+<p>本教程目前只实现了本地json文件的读写，如果想要使用MySQL或者Redis等可以自己按照下面的协议实现。</p>
+<p><code>init()</code>，存储库的初始化方法。在项目启动的时候会第一时间调用。</p>
+<p><code>list()</code>，获取命名空间列表。这里使用命名空间区分不同的配置文件。这里默认使用<code>def</code>来保存第一个文件。</p>
+<p><code>all(namespace = &quot;def&quot;)</code>，获取对应命名空间下的配置内容。</p>
+<p><code>update(namespace, txt)</code>，更新一个命名空间的所有配置。这里传入的是字符串，保存的也是字符串。</p>
+<p><code>get(key, namespace = &quot;def&quot;)</code>，获取对应命名空间下的某个字段的内容。这里需要警惕，配置不一定是json对象的。</p>
+<p><code>set(key, val, namespace = &quot;def&quot;)</code>，设置对应命名空间下的某个字段的值。</p>
+<p><code>login(user, pwd)</code>，登录判断，目前返回true或者false就可以了。</p>
+<hr>
+<p>只要是实现了上面协议的存储库就可以无痕替换掉项目的存储方式。</p>
+<h3 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h3><p>固定的定时任务只有定时存储当前缓存的配置数据。这里一个是为了项目重启的时候能够获得上次保存的配置内容，另外一个也是为了防止程序崩溃的情况下能够不丢失已经保存的数据。</p>
+<p>程序内容设定了一个状态变量<code>changed</code>，如果有对应的配置变动了，就会将其的状态变更为<code>true</code>。定时保存任务就会在启动的时候讲数据保存在存储库中。</p>
+<p>自定义定时任务的目的在于设置一个配置结果和定时时间，当时间到了的时候就触发一次更新操作。这个功能实现非常简单，但是对于使用的人来说是一个非常好用的功能。例如：半夜2点定时上线某些产品什么的。。。。在也不需要熬夜等了。</p>
+<p>这次分享的项目还没有实现这个自定义定时更新功能。在后续的更新中会逐步完善这个功能。</p>
+<h3 id="web站点"><a href="#web站点" class="headerlink" title="web站点"></a>web站点</h3><p>web站点就是操作配置的地方。项目默认提供了几个接口用来获取和更新配置。</p>
+<p>目前使用jQuery实现，界面比较简陋，基础功能已经实现了。<br><img src="https://i.loli.net/2018/11/20/5bf38fbe6aba3.png" alt=""></p>
+<p>这里可以看到最上面是命名空间的标签。下面是添加命名空间。再往下是显示和编辑配置的地方。</p>
+<h3 id="心跳检测"><a href="#心跳检测" class="headerlink" title="心跳检测"></a>心跳检测</h3><p>心跳其实才是配置中心的核心内容。它主要的任务就是及时并且快速的通知到客户端配置有更新，需要使用最新的配置。</p>
+<p>服务端使用nodejs的<code>net.createServer</code>方法创建一个TCP的监听服务，如果客户端连接就会将客户端的连接对象放入对象缓存池。</p>
+<p>在连接的时候这里做了2件事：</p>
+<ol>
+<li>给连接对象添加了一个uuid，方便辨认不同的客户端。</li>
+<li>通知客户端发送验证令牌。这里的逻辑比较简陋，只是简单的验证一下。</li>
+</ol>
+<p>在连接之后就是心跳检测的过程了。客户端需要定时去更新自己的状态，服务端根据这个请求来更新客户端的最后存在时间，加入超时或者断开连接就代表客户端断线，就会将客户端从对象缓存池中移除。</p>
+<p>如果web站点更新了对应的配置，服务端会主动发送命名到客户端。命令类似于<code>操作|命名空间|更改值</code>，客户端根据收到的命令触发客户端的配置更新监听并且使用远程api更新客户端的缓存配置。</p>
+<p>客户端本身会自动更新配置内容，同时提供了一个监听方法便于监听配置的更改。</p>
+<h3 id="多环境配置"><a href="#多环境配置" class="headerlink" title="多环境配置"></a>多环境配置</h3><p>在服务端根目录下有一个<code>config</code>目录，这里就是给服务端多环境提供的配置。</p>
+<p>只需要根据<code>NODE_ENV</code>的值创建对应的文件即可。项目启动的时候会自动根据环境参数使用对应文件的配置。</p>
+<p>如果你要问客户端的多环境？命名空间已经完全可以实现了。如果要添加更多级的环境参数可以自定义命名空间的命名协议，比如：<code>test.conf1</code>这样的方式即可在不更改主体程序的情况下实现多级配置环境。代价是需要修改web站点的界面。。。。</p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>到此一个nodejs版本的轻量级配置中心已经开发完成。如果将上面最开始提到的功能全部完成，这个项目也就不仅仅是一个轻量级的配置中心。它的功能已经完全不亚于其他的开源配置中心了。</p>
+<blockquote>
+<p>有兴趣的可以参与进来一起更新最好用的配置中心。</p>
+</blockquote>
+<p><a href="https://github.com/cuo9958/node-config" target="_blank" rel="noopener">项目地址</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请支持我一下吧.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wxzs.jpeg" alt="郭方超 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"># 前端</a>
+          
+            <a href="/tags/nodejs/" rel="tag"># nodejs</a>
+          
+            <a href="/tags/配置中心/" rel="tag"># 配置中心</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/01/centos安装Rabbitmq3-7-7/" rel="next" title="centos安装Rabbitmq3.7.7">
+                <i class="fa fa-chevron-left"></i> centos安装Rabbitmq3.7.7
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/28/react-native中图片加载变黑/" rel="prev" title="react-native中图片加载变黑">
+                react-native中图片加载变黑 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="郭方超" />
+            
+              <p class="site-author-name" itemprop="name">郭方超</p>
+              <p class="site-description motion-element" itemprop="description">全栈工程师/产品经理/游戏开发</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">46</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/cuo9958" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:545570335@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/fangchao.guo" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ezo.biz/" title="小猪的博客" target="_blank">小猪的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://godbmw.com/" title="董沅鑫的个人网站" target="_blank">董沅鑫的个人网站</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#功能设计"><span class="nav-number">1.</span> <span class="nav-text">功能设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开发功能"><span class="nav-number">2.</span> <span class="nav-text">开发功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据存储"><span class="nav-number">2.1.</span> <span class="nav-text">数据存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定时任务"><span class="nav-number">2.2.</span> <span class="nav-text">定时任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#web站点"><span class="nav-number">2.3.</span> <span class="nav-text">web站点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#心跳检测"><span class="nav-number">2.4.</span> <span class="nav-text">心跳检测</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多环境配置"><span class="nav-number">2.5.</span> <span class="nav-text">多环境配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束语"><span class="nav-number">3.</span> <span class="nav-text">结束语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郭方超</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+<div>
+  <a href="http://www.miitbeian.gov.cn/">京ICP备14044836号</a>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'JVfh8Anp0UMvaxLASDflkRGG-gzGzoHsz',
+        appKey: 'mMoiWejqJwBDcku0FIuKXMYy',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
