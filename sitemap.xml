@@ -2,6 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.guofangchao.com/about/index.html</loc>
+    
+    <lastmod>2021-01-20T11:06:17.402Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.guofangchao.com/2021/01/20/%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E7%9A%84%E6%A8%A1%E7%89%88/</loc>
+    
+    <lastmod>2021-01-20T10:41:09.065Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.guofangchao.com/2020/03/13/%E5%85%8D%E8%B4%B9%E5%BE%B7%E5%9B%BD%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    
+    <lastmod>2020-03-13T06:47:29.848Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://www.guofangchao.com/2020/02/24/%E4%BC%98%E5%8C%96centos%E7%B3%BB%E7%BB%9F/</loc>
+    
+    <lastmod>2020-02-24T08:16:29.926Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.guofangchao.com/2019/08/21/ReactNative%E7%83%AD%E6%9B%B4%E6%96%B0%E7%B3%BB%E7%BB%9F/</loc>
     
     <lastmod>2019-08-21T08:48:27.328Z</lastmod>
@@ -278,13 +306,6 @@
     <loc>http://www.guofangchao.com/2018/03/22/hexo%E6%B7%BB%E5%8A%A0seo%E4%BC%98%E5%8C%96/</loc>
     
     <lastmod>2018-03-22T06:43:35.341Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.guofangchao.com/about/index.html</loc>
-    
-    <lastmod>2018-03-21T14:51:42.904Z</lastmod>
     
   </url>
   

@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="OPbdC3XgTof4tFEWC2tht4eHDM4r4ibJbRVf-cFF104" />
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="服务器," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="centos系统相对比debian archlinux等来说占用资源还是相当大的，对此，我们进行一些有必要的精简和优化还是有好处的；当然，在服务器资源较为充足的情况下，完整的系统当然是更加方便使用；所以各位自己自行判断！ 删除不必要的自带软件包 123456789yum remove Deployment_Guide-en-US finger cups-libs cups ypbindyum re">
+<meta name="keywords" content="服务器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优化centos系统">
+<meta property="og:url" content="http://www.guofangchao.com/2020/02/24/优化centos系统/index.html">
+<meta property="og:site_name" content="IT技术博客">
+<meta property="og:description" content="centos系统相对比debian archlinux等来说占用资源还是相当大的，对此，我们进行一些有必要的精简和优化还是有好处的；当然，在服务器资源较为充足的情况下，完整的系统当然是更加方便使用；所以各位自己自行判断！ 删除不必要的自带软件包 123456789yum remove Deployment_Guide-en-US finger cups-libs cups ypbindyum re">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-24T08:16:29.926Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="优化centos系统">
+<meta name="twitter:description" content="centos系统相对比debian archlinux等来说占用资源还是相当大的，对此，我们进行一些有必要的精简和优化还是有好处的；当然，在服务器资源较为充足的情况下，完整的系统当然是更加方便使用；所以各位自己自行判断！ 删除不必要的自带软件包 123456789yum remove Deployment_Guide-en-US finger cups-libs cups ypbindyum re">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.guofangchao.com/2020/02/24/优化centos系统/"/>
+
+
+
+
+
+  <title>优化centos系统 | IT技术博客</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?643d73884f29a250f12d991eaf23e1d7";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">IT技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一个技术人的实验室</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.guofangchao.com/2020/02/24/优化centos系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="郭方超">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="IT技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">优化centos系统</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-24T16:15:00+08:00">
+                2020-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">服务器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/02/24/优化centos系统/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/02/24/优化centos系统/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>centos系统相对比debian archlinux等来说占用资源还是相当大的，对此，我们进行一些有必要的精简和优化还是有好处的；当然，在服务器资源较为充足的情况下，完整的系统当然是更加方便使用；所以各位自己自行判断！</p>
+<p>删除不必要的自带软件包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">yum remove Deployment_Guide-en-US finger cups-libs cups ypbind</span><br><span class="line">yum remove bluez-libs desktop-file-utils ppp rp-pppoe wireless-tools irda-utils</span><br><span class="line">yum remove sendmail* samba* talk-server finger-server bind* xinetd</span><br><span class="line">yum remove nfs-utils nfs-utils-lib rdate fetchmail eject ksh mkbootdisk mtools</span><br><span class="line">yum remove syslinux tcsh startup-notification talk apmd rmt dump setserial portmap yp-tools</span><br><span class="line">yum groupremove &quot;Mail Server&quot; &quot;Games and Entertainment&quot; &quot;X Window System&quot; &quot;X Software Development&quot;</span><br><span class="line">yum groupremove &quot;Development Libraries&quot; &quot;Dialup Networking Support&quot;</span><br><span class="line">yum groupremove &quot;Games and Entertainment&quot; &quot;Sound and Video&quot; &quot;Graphics&quot; &quot;Editors&quot;</span><br><span class="line">yum groupremove &quot;Text-based Internet&quot; &quot;GNOME Desktop Environment&quot; &quot;GNOME Software Development&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum update #更新系统</span><br><span class="line">yum clean all #清理全部缓存文件</span><br></pre></td></tr></table></figure>
+<p>禁用seLinux<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sestatus #先执行看seLinux状态，如果不是disabled，就需要执行下面步骤，否则不要执行</span><br><span class="line">vi /etc/selinux/config</span><br><span class="line">SELINUX=disabled #禁用SeLinux</span><br><span class="line">SELINUX=enforcing #使用SeLinux</span><br></pre></td></tr></table></figure></p>
+<p>禁止IPV6（执行后需要reboot重启）<br>vi /etc/modprobe.conf #打开文件，把下面两行加到最后<br>alias net-pf-10 off<br>alias ipv6 off</p>
+<p>初始化防火墙<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">touch /etc/sysconfig/iptables</span><br><span class="line">iptables -F</span><br><span class="line">iptables -X</span><br><span class="line">iptables -Z</span><br><span class="line">service iptables save</span><br><span class="line">service iptables restart</span><br></pre></td></tr></table></figure></p>
+<p>禁止无用服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">#! /bin/bash</span><br><span class="line">service acpid off</span><br><span class="line">service atd stop</span><br><span class="line">service auditd stop</span><br><span class="line">service avahi-daemon stop</span><br><span class="line">service avahi-dnsconfd stop</span><br><span class="line">service bluetooth stop</span><br><span class="line">service conman stop</span><br><span class="line">service cpuspeed stop</span><br><span class="line">service cups stop</span><br><span class="line">service dnsmasq stop</span><br><span class="line">service dund stop</span><br><span class="line">service firstboot stop</span><br><span class="line">service hidd stop</span><br><span class="line">service httpd stop</span><br><span class="line">service ibmasm stop</span><br><span class="line">service ip6tables stop</span><br><span class="line">service irda stop</span><br><span class="line">service kdump stop</span><br><span class="line">service lm_sensors stop</span><br><span class="line">service mcstrans stop</span><br><span class="line">service messagebus stop</span><br><span class="line">service microcode_ctl stop</span><br><span class="line">service netconsole stop</span><br><span class="line">service netfs stop</span><br><span class="line">service netplugd stop</span><br><span class="line">service nfs stop</span><br><span class="line">service nfslock stop</span><br><span class="line">service nscd stop</span><br><span class="line">service ntpd stop</span><br><span class="line">service oddjobd stop</span><br><span class="line">service pand stop</span><br><span class="line">service pcscd stop</span><br><span class="line">service portmap stop</span><br><span class="line">service psacct stop</span><br><span class="line">service rdisc stop</span><br><span class="line">service restorecond stop</span><br><span class="line">service rpcgssd stop</span><br><span class="line">service rpcidmapd stop</span><br><span class="line">service rpcsvcgssd stop</span><br><span class="line">service saslauthd stop</span><br><span class="line">service sendmail stop</span><br><span class="line">service setroubleshoot stop</span><br><span class="line">service smb stop</span><br><span class="line">service vncserver stop</span><br><span class="line">service winbind stop</span><br><span class="line">service wpa_supplicant stop</span><br><span class="line">service xfs stop</span><br><span class="line">service ypbind stop</span><br><span class="line">service yum-updatesd stop</span><br><span class="line">chkconfig acpid off</span><br><span class="line">chkconfig atd off</span><br><span class="line">chkconfig auditd off</span><br><span class="line">chkconfig avahi-daemon off</span><br><span class="line">chkconfig avahi-dnsconfd off</span><br><span class="line">chkconfig bluetooth off</span><br><span class="line">chkconfig conman off</span><br><span class="line">chkconfig cpuspeed off</span><br><span class="line">chkconfig cups off</span><br><span class="line">chkconfig dnsmasq off</span><br><span class="line">chkconfig dund off</span><br><span class="line">chkconfig firstboot off</span><br><span class="line">chkconfig hidd off</span><br><span class="line">chkconfig httpd off</span><br><span class="line">chkconfig ibmasm off</span><br><span class="line">chkconfig ip6tables off</span><br><span class="line">chkconfig irda off</span><br><span class="line">chkconfig kdump off</span><br><span class="line">chkconfig lm_sensors off</span><br><span class="line">chkconfig mcstrans off</span><br><span class="line">chkconfig messagebus off</span><br><span class="line">chkconfig microcode_ctl off</span><br><span class="line">chkconfig netconsole off</span><br><span class="line">chkconfig netfs off</span><br><span class="line">chkconfig netplugd off</span><br><span class="line">chkconfig nfs off</span><br><span class="line">chkconfig nfslock off</span><br><span class="line">chkconfig nscd off</span><br><span class="line">chkconfig ntpd off</span><br><span class="line">chkconfig oddjobd off</span><br><span class="line">chkconfig pand off</span><br><span class="line">chkconfig pcscd off</span><br><span class="line">chkconfig portmap off</span><br><span class="line">chkconfig psacct off</span><br><span class="line">chkconfig rdisc off</span><br><span class="line">chkconfig restorecond off</span><br><span class="line">chkconfig rpcgssd off</span><br><span class="line">chkconfig rpcidmapd off</span><br><span class="line">chkconfig rpcsvcgssd off</span><br><span class="line">chkconfig saslauthd off</span><br><span class="line">chkconfig sendmail off</span><br><span class="line">chkconfig setroubleshoot off</span><br><span class="line">chkconfig smb off</span><br><span class="line">chkconfig vncserver off</span><br><span class="line">chkconfig winbind off</span><br><span class="line">chkconfig wpa_supplicant off</span><br><span class="line">chkconfig xfs off</span><br><span class="line">chkconfig ypbind off</span><br><span class="line">chkconfig yum-updatesd off</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>请支持我一下吧.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wxzs.jpeg" alt="郭方超 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/服务器/" rel="tag"># 服务器</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/21/ReactNative热更新系统/" rel="next" title="ReactNative热更新系统">
+                <i class="fa fa-chevron-left"></i> ReactNative热更新系统
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/13/免费德国云服务器/" rel="prev" title="免费德国云服务器">
+                免费德国云服务器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="郭方超" />
+            
+              <p class="site-author-name" itemprop="name">郭方超</p>
+              <p class="site-description motion-element" itemprop="description">全栈工程师/产品经理/游戏开发</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/cuo9958" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:545570335@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/fangchao.guo" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i>FB Page</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ezo.biz/" title="小猪的博客" target="_blank">小猪的博客</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://pengrl.com/" title="yoko blog" target="_blank">yoko blog</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郭方超</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+<div>
+  <a href="http://beian.miit.gov.cn/">京ICP备14044836号-4</a>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/velocity/1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'JVfh8Anp0UMvaxLASDflkRGG-gzGzoHsz',
+        appKey: 'mMoiWejqJwBDcku0FIuKXMYy',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
